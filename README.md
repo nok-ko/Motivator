@@ -7,6 +7,7 @@
 ## General Info
 This browser based web application to ...
 * Hi, my name is Stan. I'm excited about this project because it is tackling an issue I've personally had!
+* Haha I am a superior hacker named Maxwell!
 	
 ## Technologies
 Technologies used for this project:
