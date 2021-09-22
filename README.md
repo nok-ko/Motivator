@@ -8,6 +8,7 @@
 This browser based web application to ...
 * Hi, my name is Stan. I'm excited about this project because it is tackling an issue I've personally had!
 * Haha I am a superior hacker named Maxwell!
+* Hi my name is Chi. I'm excited for no reasons.
 	
 ## Technologies
 Technologies used for this project:
