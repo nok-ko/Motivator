@@ -2,7 +2,42 @@ body {
     background-color: rgb(35, 35, 40);
     color: white;
 }
-#logIn {
-    width: 100%;
+
+.logIn {
+    width: 50%;
     border-radius: 4px;
 }
+#logo {
+    text-align: center;
+    width: 35%;
+    margin: auto;
+}
+
+/* Circle clipping mask for avatar images. */
+.img-avatar {
+    clip-path: circle(45% at 50% 50%);
+}
+
+/* === Icon styles === */
+/* Hide text used as an accessibility label: */
+.access-label {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+}
+/* Style inline icons: */
+
+.icon {
+    /* Use the current text color as the icon’s fill color. */
+    fill: currentColor;
+    /* Inherit the text’s size too. Also allows sizing the icon by changing its font-size. */
+    width: 1em;
+    height: 1em;
+    /* The default vertical-align is `baseline`, which leaves a few pixels of space below the icon. Using `center` prevents this. For icons shown alongside text, you may want to use a more precise value, e.g. `vertical-align: -4px` or `vertical-align: -0.15em`. */
+    vertical-align: middle;
+    /* Paths and strokes that overflow the viewBox can show in IE11. */
+    overflow: hidden;
+}
+/* === Icon styles =/= */
