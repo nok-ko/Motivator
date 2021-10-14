@@ -12,6 +12,12 @@ body {
     width: 35%;
     margin: auto;
 }
+#trophyBackground {
+    width: 50%;
+    height: 50%;
+    background: gold;
+    border-radius: 50%;
+}
 
 /* Circle clipping mask for avatar images. */
 .img-avatar {
