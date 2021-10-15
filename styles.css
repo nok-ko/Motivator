@@ -1,6 +1,21 @@
+:root {
+    --bs-darker-rgb: 22, 26, 30;
+    --bs-darkbg-rgb: 35, 35, 40;
+    --bs-darkish-rgb: 40, 40, 45;
+    --sticky-footer-height: 4em;
+}
+
 body {
-    background-color: rgb(35, 35, 40);
+    background-color: rgb(var(--bs-darkbg-rgb));
     color: white;
+}
+
+.bg-darker {
+    background-color: rgb(var(--bs-darker-rgb));
+}
+
+.rounded {
+    border-radius: 1em !important;
 }
 
 .logIn {
@@ -32,6 +47,7 @@ body {
 .icon {
     /* Use the current text color as the icon’s fill color. */
     fill: currentColor;
+    stroke: currentColor;
     /* Inherit the text’s size too. Also allows sizing the icon by changing its font-size. */
     width: 1em;
     height: 1em;
@@ -40,4 +56,57 @@ body {
     /* Paths and strokes that overflow the viewBox can show in IE11. */
     overflow: hidden;
 }
+
+.meta-icon-container {
+    display:grid;
+    grid-template-columns: 6em 6em 6em 6em;
+    height: 100%;
+}
+
+.footer-icon-container {
+    /* fill: limegreen;
+    stroke: limegreen; */
+
+    margin-right: 2em;
+    margin-left: 2em;
+
+    height: fit-content;
+    /* width: 100%; */
+}
+
+.footer-icon-container > img {
+    /* fill: limegreen;
+    stroke: limegreen; */
+
+    height: 3em;
+    /* width: 100%; */
+}
 /* === Icon styles =/= */
+
+main {
+    max-height: calc(100% - var(--sticky-footer-height));
+    height: 100%;
+}
+
+footer.sticky {
+    border-top: 0.125em solid rgb(var(--bs-darkish-rgb));
+    position: fixed;
+    /* top:100%; */
+    bottom:0;
+    width:100%;
+    height: var(--sticky-footer-height);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+.linklist > li {
+    display: inline;
+}
+
+.linklist > li > a {
+    width: 4em;
+    height: 4em;
+}
