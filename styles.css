@@ -1,6 +1,20 @@
+:root {
+    --bs-darker-rgb: 22, 26, 30;
+    --bs-darkbg-rgb: 35, 35, 40;
+    --sticky-footer-height: 4em;
+}
+
 body {
-    background-color: rgb(35, 35, 40);
+    background-color: rgb(var(--bs-darkbg-rgb));
     color: white;
+}
+
+.bg-darker {
+    background-color: rgb(var(--bs-darker-rgb));
+}
+
+.rounded {
+    border-radius: 1em !important;
 }
 
 .logIn {
@@ -41,3 +55,31 @@ body {
     overflow: hidden;
 }
 /* === Icon styles =/= */
+
+main {
+    max-height: calc(100% - var(--sticky-footer-height));
+    height: 100%;
+}
+
+footer.sticky {
+    position: fixed;
+    /* top:100%; */
+    bottom:0;
+    width:100%;
+    height: var(--sticky-footer-height);
+}
+
+.linklist {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.linklist > li {
+    display: inline;
+}
+
+.linklist > li > a {
+    width: 4em;
+    height: 4em;
+}
