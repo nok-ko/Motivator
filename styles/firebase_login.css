@@ -3,18 +3,34 @@ body {
     color: white;
 }
 
-.logIn {
-    width: 50%;
-    border-radius: 4px;
+#wrapper {
+    display: grid;
+    grid-template-columns: repeat(8, 12.5vw);
+    grid-template-rows: repeat(10, 5vw);
 }
+
 #logo {
+    grid-column: 4 / 6;
+    grid-row: 2 / 6;
     text-align: center;
-    width: 35%;
-    margin: auto;
 }
-#trophyBackground {
-    width: 50%;
-    height: 50%;
+#logo #trophy_icon {
+    width: 75%;
+    height: 75%;
     background: gold;
     border-radius: 50%;
+}
+
+#title {
+    grid-column: 4 / 6;
+    grid-row: 6 / 8;
+    text-align: center;
+}
+#title h1 {
+    font-size: 3vw;
+}
+
+#login_block {
+    grid-column: 3 / 7;
+    grid-row-start: 8;
 }

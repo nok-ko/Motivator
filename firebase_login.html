@@ -25,25 +25,31 @@
 </head>
 
 <body>
+  <div id="wrapper">
+    <!-- Trophy Image -->
+    <div id="logo">
+      <figure>
+        <img id="trophy_icon" src="images/trophy_icon.png" width="50%" height="auto">
+      </figure>
+    </div>
 
-  <!-- Trophy Image -->
-  <div id="logo">
-    <figure>
-      <img id="trophyBackground" src="images/trophy_icon.png" width="50%" height="auto">
-    </figure>
+    <!-- Title -->
+    <div id="title">
+      <h1><small>Welcome to</small> Motivator</h1>
+    </div>
+
+    <!-- Login Block -->
+    <main id="login_block">
+      <div id="firebaseui-auth-container"></div>
+      <div id="loader">Loading...</div>
+    </main>
+
+    <div>
+      <!-- <Footer></Footer> -->
+    </div>
   </div>
 
-
-  <!-- The surrounding HTML is left untouched by FirebaseUI.
-     Your app may use that space for branding, controls and other customizations.-->
-  <h1>Welcome to My Awesome App</h1>
-  <div id="firebaseui-auth-container"></div>
-  <div id="loader">Loading...</div>
-
-  <div>
-    <!-- <Footer></Footer> -->
-  </div>
-
+  <!-- Scripts -->
   <script src="scripts/firebase_login.js"></script>
 
 </body>
