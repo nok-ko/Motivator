@@ -1,0 +1,36 @@
+body {
+    background-color: rgb(35, 35, 40);
+    color: white;
+}
+
+#wrapper {
+    display: grid;
+    grid-template-columns: repeat(8, 12.5vw);
+    grid-template-rows: repeat(10, 5vw);
+}
+
+#logo {
+    grid-column: 4 / 6;
+    grid-row: 2 / 6;
+    text-align: center;
+}
+#logo #trophy_icon {
+    width: 75%;
+    height: 75%;
+    background: gold;
+    border-radius: 50%;
+}
+
+#title {
+    grid-column: 4 / 6;
+    grid-row: 6 / 8;
+    text-align: center;
+}
+#title h1 {
+    font-size: 3vw;
+}
+
+#login_block {
+    grid-column: 3 / 7;
+    grid-row-start: 8;
+}
