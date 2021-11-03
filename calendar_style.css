@@ -6,13 +6,13 @@ body {
 .container {
     display: grid;
     grid-template-columns: 4.5vw 91vw 4.5vw;
-    grid-template-rows: 5vh 5vh 80vh 5vh 5vh;
+    grid-template-rows: 5vh 5vh 80vh 5vh 55vh;
     grid-template-areas: 
     " . header . "
     " . aside . "
     " . calendar . "
     " . section . "
-    " . footer . ";
+    " footer footer footer ";
 }
 
 .container > p {
@@ -57,6 +57,3 @@ header {
     grid-area: header;
 }
 
-footer {
-    grid-area: footer;
-}
