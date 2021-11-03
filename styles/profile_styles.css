@@ -105,11 +105,72 @@ body {
     border: 2px solid white;
 }
 
+/*=/= Goal Widgets! =/=*/
+
 #user_goals {
-    grid-column: 1 / 9;
-    grid-row: 7 / 13;
-    margin: 1vw;
-    font-size: 1vw;
+    grid-column: 1 / span 8;
+    grid-row: 7 / span 7;
+    padding: 1rem;
+    font-size: 0.7rem;
+
+    display: grid;
+    grid-gap: 1rem;
+
+    grid-template: 3rem 1fr 1fr / 1fr 1fr;
+
+}
+
+#user_goals h2 {
+    grid-column: 1 / span 2;
+}
+
+.goal {
+    border: 1px solid white;
+    border-radius: 2rem;
+    padding: 1rem;
+    max-height: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.progress-anim-finished {
+    transform: scaleX(var(--progressbar-finish-percent));
+}
+
+.progressbar {
+    display: block;
+    min-width: 90%;
+    --progressbar-finish-percent: 100%; /* JS will change this */
+    /* grid-column: 2 / span 3;
+    grid-row: 2 / span 1; */
+    max-height: 1.5rem;
+    
+}
+
+.progressbar-fill {
+    animation: load-progressbar 1.5s ease;
+}
+
+.goal-smallinfo {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.goal-deadline {
+    align-self: flex-end;
+}
+
+@keyframes load-progressbar {
+    from {
+        transform: scaleX(0%);
+    }
+    to {
+        transform: scaleX(var(--progressbar-finish-percent));
+    }
 }
 
 /*=/= Grid layout for page =/=*/
