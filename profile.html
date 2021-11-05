@@ -6,9 +6,10 @@
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="scripts/firebase_API.js"></script>
 
-    <!-- Bootstarp -->
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
 
@@ -58,28 +59,8 @@
             <p>Stats! Stuff like goal bars, points, etc. Whatever we decide to go with.</p>
         </section>
 
-
-
-
         <section id="user_goals" class="bg-darker rounded py-3 my-2 text-light">
             <h2>Goals</h2>
-            <div id="goal1" class="goal">
-                <p class="goal-description">I will…</p>
-                <svg class="progressbar" version="1.1" viewBox="0 0 100 200" preserveAspectRatio="none">
-                    <rect fill="#CCCCCC" stroke-width="10" x="0" y="0" width="100" height="200" />
-                    <rect class="progressbar-fill" fill="#888888" stroke-width="10" x="0" y="0" width="100"
-                        height="200" />
-                </svg>
-                <div role="group" class="goal-smallinfo">
-                    <span class="goal-progress">
-                        0/30000
-                    </span>
-                    <span class="goal-deadline">
-                        <!-- insert icon here -->
-                        Due by Xth of X, 20XX
-                    </span>
-                </div>
-            </div>
         </section>
     </div>
 
@@ -107,6 +88,9 @@
             </div>
         </div>
     </footer>
+
+    <script src="scripts/profile.js"></script>
+
 </body>
 
 </html>
