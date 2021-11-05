@@ -18,7 +18,7 @@ body {
 /*== Grid layout for profile page ==*/
 #wrapper {
     display: grid;
-    grid-template-columns: repeat(8, 12.25vw);
+    grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(20, 5vw);
 }
 
