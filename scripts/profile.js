@@ -72,9 +72,10 @@ function populateInfo() {
 				var userBio = userDoc.data().bio;
 
 				//if the data fields are not empty, then write them in to the form.
-				// if (userName != null) {
-				// 	document.getElementById("userName").value = userName;
-				// }
+				if (userName != null) {
+					document.getElementById("nameInput").value = userName;
+					document.getElementById("nameText").textContent = userName;
+				}
 				// if (userEmail != null) {
 				// 	document.getElementById("userEmail").value = userEmail
 				// }
@@ -91,6 +92,43 @@ function populateInfo() {
 }
 populateInfo();
 
+//--Username field editing-----------
+//Enable editing for the username field.
+function editProfile() {
+	//Enable the name fields. Makes the name text invisible and
+	//	turn the input on. 
+	document.getElementById('nameField').disabled = false;
+	document.getElementById('nameInput').hidden = false;
+	document.getElementById('nameText').hidden = true;
+	//Disappear the edit version of the button and appear the save version of the button.
+	document.getElementById("editName").hidden = true;
+	document.getElementById("saveName").hidden = false;
+
+}
+editProfile();
+
+//Save current form input into firebase. Disable editing of name form.
+function saveProfile() {
+	userName = document.getElementById('userInput').value;
+
+	currentUser.update({
+		name: userName
+	}).then(() => {
+		console.log(currentUser + " name updated successfully.")
+	})
+
+	//Disable the form fields. Makes the input box invisible and
+	//	turn the name text on.
+	document.getElementById('nameField').disabled = true;
+	document.getElementById('nameInput').hidden = true;
+	document.getElementById('nameText').hidden = false;
+	//Disappear the save version of the button and appear the edit version of the button.
+	document.getElementById('editName').hidden = false;
+	document.getElementById('saveName').hidden = true;
+}
+saveProfile();
+
+//--Bio field editing----------
 //Enable editing for bio field.
 function editBio() {
 	//Enable the form fields. Makes the paragraph text invisible and
