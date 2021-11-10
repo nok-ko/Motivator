@@ -49,7 +49,7 @@
     font-size: 1vw;
 }
 
-#contact_info {
+/*#contact_info {
     grid-column: 7 / 9;
     grid-row: 1 / 4;
     text-align: center;
@@ -60,7 +60,41 @@
 }
 #contact_info p {
     font-size: 1vw;
+}*/
+
+#contact_info {
+    /*height: fit-content;*/
+    grid-column: 7 / 9;
+    grid-row: 1 / 4;
 }
+
+.calendar {
+    grid-area: calendar;
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    grid-template-rows: repeat(6,1fr);
+    justify-items: center;
+    align-items: center;  
+    width: 100% 
+}
+
+.calendar > div {
+    font-size: 10pt;
+}
+
+.day:not(:hover)::before {
+    content: ".";
+    font-size: 10pt;
+}
+
+.day span {
+    display: none;
+}
+
+.day:hover span {
+    display: inline;
+}
+
 
 #user_stats {
     grid-column: 4 / 9;
