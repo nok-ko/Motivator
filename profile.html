@@ -25,7 +25,7 @@
         <section id="user_pic_block" class="bg-darker container">
             <img class="img-avatar img-thumbnail" src="https://dummyimage.com/256/256" alt="Profile Picture">
             <div>
-                <h1 class="text-light h3">Tommy Longname
+                <h1 class="text-light h3"> <span id="userName"></span>
                     <a class="text-primary" href="/editProfile.html" title="Edit Profile">
                         <svg id="edit-icon" aria-hidden="true" focusable="false">
                             <use xlink:href="icons/edit-2.svg#icon"></use>
@@ -35,7 +35,7 @@
                     </a>
                 </h1>
             </div>
-            <h4>@tommylong</h4>
+            <h4 id="userEmail"></h4>
         </section>
 
         <!--Bio Section.-->
@@ -51,45 +51,58 @@
             <p>Phone: +1-604-555-0905</p> -->
 
             <!--Small calendar for Profile-->
-            <div class="calendar">
-                <div> M </div>
-                <div> T </div>
-                <div> W </div>
-                <div> T </div>
-                <div> F </div>
-                <div> S </div>
-                <div> S </div>
-                <div class="day"> <span>1</span> </div>
-                <div class="day"> <span>2</span> </div>
-                <div class="day"> <span>3</span> </div>
-                <div class="day"> <span>4</span> </div>
-                <div class="day"> <span>5</span> </div>
-                <div class="day"> <span>6</span> </div>
-                <div class="day"> <span>7</span> </div>
-                <div class="day"> <span>8</span> </div>
-                <div class="day"> <span>9</span> </div>
-                <div class="day"> <span>10</span> </div>
-                <div class="day"> <span>11</span> </div>
-                <div class="day"> <span>12</span> </div>
-                <div class="day"> <span>13</span> </div>
-                <div class="day"> <span>14</span> </div>
-                <div class="day"> <span>15</span> </div>
-                <div class="day"> <span>16</span> </div>
-                <div class="day"> <span>17</span> </div>
-                <div class="day"> <span>18</span> </div>
-                <div class="day"> <span>19</span> </div>
-                <div class="day"> <span>20</span> </div>
-                <div class="day"> <span>21</span> </div>
-                <div class="day"> <span>22</span> </div>
-                <div class="day"> <span>23</span> </div>
-                <div class="day"> <span>24</span> </div>
-                <div class="day"> <span>25</span> </div>
-                <div class="day"> <span>26</span> </div>
-                <div class="day"> <span>27</span> </div>
-                <div class="day"> <span>28</span> </div>
-                <div class="day"> <span>29</span> </div>
-                <div class="day"> <span>30</span> </div>
-                <div class="day"> <span>31</span> </div>
+            <div id="calendar">
+                <table width = 100%>
+                    <tr>
+                        <th>M</th>
+                        <th>T</th>
+                        <th>W</th>
+                        <th>T</th>
+                        <th>F</th>
+                        <th>S</th>
+                        <th>S</th>
+                    </tr>
+                    <tr>
+                        <td><span>1</span></td>
+                        <td><span>2</span></td>
+                        <td><span>3</span></td>
+                        <td><span>4</span></td>
+                        <td><span>5</span></td>
+                        <td><span>6</span></td>
+                        <td><span>7</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>8</span></td>
+                        <td><span>9</span></td>
+                        <td><span>10</span></td>
+                        <td><span>11</span></td>
+                        <td><span>12</span></td>
+                        <td><span>13</span></td>
+                        <td><span>14</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>15</span></td>
+                        <td><span>16</span></td>
+                        <td><span>17</span></td>
+                        <td><span>18</span></td>
+                        <td><span>19</span></td>
+                        <td><span>20</span></td>
+                        <td><span>21</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>22</span></td>
+                        <td><span>23</span></td>
+                        <td><span>24</span></td>
+                        <td><span>25</span></td>
+                        <td><span>26</span></td>
+                        <td><span>27</span></td>
+                        <td><span>28</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>29</span></td>
+                        <td><span>30</span></td>
+                    </tr>
+                </table>
             </div>
         </section>
 
@@ -121,21 +134,12 @@
                 </a>
                 <!-- <span class="label">Profile</span> -->
             </div>
-            <div class="footer-icon-container" role="group">
-                <img src="icons/leaderboard.svg#icon">
-                <!-- <span class="label">Leaderboards</span> -->
-            </div>
+            <div> </div>
             <div class="footer-icon-container" role="group">
                 <a href="calendar.html">
                     <img src="icons/calendar.svg#icon">
                 </a>
                 <!-- <span class="label">Calendar</span> -->
-            </div>
-            <div class="footer-icon-container" role="group">
-                <a href="post.html">
-                    <img src="icons/share.svg#icon">
-                </a>
-                <!-- <span class="label">Feed</span> -->
             </div>
         </div>
     </footer>

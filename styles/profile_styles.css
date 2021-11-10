@@ -63,12 +63,12 @@
 }*/
 
 #contact_info {
-    /*height: fit-content;*/
+    height: fit-content;
     grid-column: 7 / 9;
     grid-row: 1 / 4;
 }
 
-.calendar {
+/*.calendar {
     grid-area: calendar;
     display: grid;
     grid-template-columns: repeat(7,1fr);
@@ -92,6 +92,49 @@
 }
 
 .day:hover span {
+    display: inline;
+} */
+
+#calendar {
+    width: 100%;
+    grid-area: calendar;
+}
+
+table {
+    text-align: center;
+
+}
+
+tr {
+    height: auto;
+}
+
+tr > {
+    font-size: 10px;
+}
+/*tr {
+    height: 60px;
+} 
+
+th {
+    width: 14vw;
+}
+
+td {
+    height: 100px;
+    width: 14vw;
+} */
+
+td:not(:hover)::before {
+    content: ".";
+    font-size: 15px;
+}
+
+td span {
+    display: none;
+}
+
+td:hover span {
     display: inline;
 }
 
