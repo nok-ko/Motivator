@@ -1,9 +1,9 @@
 /*== Backgrounds ==*/
 
 :root {
-    --bs-darkish-rgb: 40, 40, 45;
-    --bs-dark-rgb: 35, 35, 40;
-    --bs-darker-rgb: 22, 26, 30;
+    --bs-dark-rgb: 40, 40, 45;
+    --bs-darker-rgb: 35, 35, 40;
+    --bs-darkest-rgb: 22, 26, 30;
     --sticky-footer-height: 4em;
 }
 body {
@@ -20,12 +20,12 @@ body {
 /*== Footer ==*/
 
 footer.sticky {
-    border-top: 0.125em solid rgb(var(--bs-darkish-rgb));
+    border-top: 0.125em solid rgb(var(--bs-darkest-rgb));
     position: fixed;
     bottom:0;
     width:100%;
     height: var(--sticky-footer-height);
-
+    background-color: rgb(var(--bs-darkest-rgb));
     display: flex;
     flex-direction: row;
     justify-content: center;

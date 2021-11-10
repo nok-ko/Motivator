@@ -1,4 +1,6 @@
 #wrapper {
+    max-height: calc(100% - var(--sticky-footer-height));
+    height: 100%;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(20, 5vw);
@@ -16,7 +18,7 @@
     font-size: 1vw;
     color: grey;
 }
-#edit-icon {
+#user_pic_block #edit-icon {
     /* Use the current text color as the icon’s fill color. */
     fill: currentColor;
     stroke: currentColor;
@@ -29,7 +31,7 @@
     overflow: hidden;
 }
 /* Circle clipping mask for user profile images. */
-.img-avatar {
+#user_pic_block .img-avatar {
     clip-path: circle(45% at 50% 50%);
     width: 50%;
     height:auto;
@@ -78,7 +80,6 @@
     color: white;
     text-align: center;
     text-decoration: none;
-    /* display: inline-block; */
     font-size: 1.7vw;
 }
 #new_goal_button button:hover {
@@ -97,7 +98,6 @@
     color: white;
     text-align: center;
     text-decoration: none;
-    /* display: inline-block; */
     font-size: 1.7vw;
 }
 #challenge_button button:hover {
@@ -110,10 +110,8 @@
     grid-row: 7 / span 7;
     padding: 1rem;
     font-size: 0.7rem;
-
     display: grid;
     grid-gap: 1rem;
-
     grid-template: 3rem 1fr 1fr / 1fr 1fr;
 }
 
@@ -162,11 +160,6 @@
     align-self: flex-end;
 }
 
-
-
-
-/* === Icon styles =/= */
-
 /* Round the corners of elements with rounded class */
 .rounded {
     border-radius: 1em !important;
@@ -183,11 +176,6 @@
     height: 1px !important;
     overflow: hidden !important;
     white-space: nowrap !important;
-} */
-
-/* main {
-    max-height: calc(100% - var(--sticky-footer-height));
-    height: 100%;
 } */
 
 /* .linklist {
