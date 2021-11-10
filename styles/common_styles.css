@@ -1,0 +1,44 @@
+/*== Backgrounds ==*/
+
+:root {
+    --bs-darkish-rgb: 40, 40, 45;
+    --bs-dark-rgb: 35, 35, 40;
+    --bs-darker-rgb: 22, 26, 30;
+    --sticky-footer-height: 4em;
+}
+body {
+    background-color: rgb(var(--bs-dark-rgb));
+    color: white;
+}
+.bg-darker {
+    background-color: rgb(var(--bs-darker-rgb));
+}
+
+/*=/= Backgrounds =/=*/
+
+
+/*== Footer ==*/
+
+footer.sticky {
+    border-top: 0.125em solid rgb(var(--bs-darkish-rgb));
+    position: fixed;
+    bottom:0;
+    width:100%;
+    height: var(--sticky-footer-height);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.meta-icon-container {
+    display:grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    height: 100%;
+    justify-items: center;
+    width: 100%;
+}
+.footer-icon-container img {
+    height: 3em;
+}
+
+/*=/= Footer =/=*/
