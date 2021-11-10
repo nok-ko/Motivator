@@ -40,8 +40,17 @@
 
         <!--Bio Section.-->
         <section id="bio" class="bg-darker rounded py-3 my-2 text-light">
+
             <h1 class="h3">User Bio</h1>
-            <p>Hi, I am Tommy Longname and this is my profile!</p>
+            <div class="d-flex justify-content-end mt-5">
+                <button type="button" id="editBio" class="btn btn-secondary" onclick="editBio()">Edit</button>
+                <span style="width: 10px"></span>
+                <button hidden id="saveBio" type="button" class="btn btn-info" onclick="saveBio()">Save</button>
+            </div>
+            <fieldset id="bioField" disabled>
+                <textarea hidden id="bioInput" class="form-control"></textarea>
+                <p id="bioText"></p>
+            </fieldset>
         </section>
 
         <!--Contact info section (turn into calendar widget section?).-->
