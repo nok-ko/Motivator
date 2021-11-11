@@ -101,15 +101,14 @@ function editProfile() {
 	document.getElementById('nameInput').hidden = false;
 	document.getElementById('nameText').hidden = true;
 	//Disappear the edit version of the button and appear the save version of the button.
-	document.getElementById("editName").hidden = true;
-	document.getElementById("saveName").hidden = false;
-
+	//Not currently working.
+	document.getElementById('editName').hidden = true;
+	document.getElementById('saveName').hidden = false;
 }
-editProfile();
 
 //Save current form input into firebase. Disable editing of name form.
 function saveProfile() {
-	userName = document.getElementById('userInput').value;
+	userName = document.getElementById('nameInput').value;
 
 	currentUser.update({
 		name: userName
@@ -123,10 +122,10 @@ function saveProfile() {
 	document.getElementById('nameInput').hidden = true;
 	document.getElementById('nameText').hidden = false;
 	//Disappear the save version of the button and appear the edit version of the button.
+	//Not currently working.
 	document.getElementById('editName').hidden = false;
 	document.getElementById('saveName').hidden = true;
 }
-saveProfile();
 
 //--Bio field editing----------
 //Enable editing for bio field.
@@ -140,7 +139,6 @@ function editBio() {
 	document.getElementById('editBio').hidden = true;
 	document.getElementById('saveBio').hidden = false;
 }
-onclick = "editBio()"
 
 //Save current form input to Firebase. Disable editing of bio field.
 function saveBio() {
@@ -163,4 +161,3 @@ function saveBio() {
 	document.getElementById('editBio').hidden = false;
 	document.getElementById('saveBio').hidden = true;
 }
-onclick = "saveUserInfo()"

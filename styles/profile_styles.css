@@ -18,7 +18,7 @@
     font-size: 1vw;
     color: grey;
 }
-#user_pic_block #editProfile {
+#user_pic_block .edit-icon {
     /* Use the current text color as the icon’s fill color. */
     fill: currentColor;
     stroke: currentColor;
