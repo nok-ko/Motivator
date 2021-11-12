@@ -7,8 +7,24 @@
           // User successfully signed in.
           // Return type determines whether we continue the redirect automatically
           // or whether we leave that to developer to handle.
-          return true;
-        },
+          var user = authResult.user;
+
+                    if (authResult.additionalUserInfo.isNewUser) { //if new user
+                        db.collection("users").doc(user.uid).set({ //write to firestore
+                                name: user.displayName, //"users" collection
+                                email: user.email //with authenticated user's ID (user.uid)
+                            }).then(function () {
+                                console.log("New user added to firestore");
+                                window.location.assign("main.html"); //re-direct to main.html after signup
+                            })
+                            .catch(function (error) {
+                                console.log("Error adding new user: " + error);
+                            });
+                    } else {
+                        return true;
+                    }
+                    return false;
+                },
         uiShown: function () {
           // The widget is rendered.
           // Hide the loader.

@@ -76,9 +76,9 @@ function populateInfo() {
 					document.getElementById("nameInput").value = userName;
 					document.getElementById("nameText").textContent = userName;
 				}
-				// if (userEmail != null) {
-				// 	document.getElementById("userEmail").value = userEmail
-				// }
+				 if (userEmail != null) {
+				 	document.getElementById("userEmail").value = userEmail
+				}
 				if (userBio != null) {
 					document.getElementById("bioInput").value = userBio;
 					document.getElementById("bioText").textContent = userBio;
