@@ -77,7 +77,7 @@ function populateInfo() {
 					document.getElementById("nameText").textContent = userName;
 				}
 				 if (userEmail != null) {
-				 	document.getElementById("userEmail").value = userEmail
+					document.getElementById("emailText").textContent = userEmail;
 				}
 				if (userBio != null) {
 					document.getElementById("bioInput").value = userBio;
@@ -95,25 +95,27 @@ populateInfo();
 //--Username field editing-----------
 //Enable editing for the username field.
 function editProfile() {
-	//Enable the name fields. Makes the name text invisible and
+	//Enable the info fields. Makes the name text invisible and
 	//	turn the input on. 
 	document.getElementById('nameField').disabled = false;
 	document.getElementById('nameInput').hidden = false;
 	document.getElementById('nameText').hidden = true;
 	//Disappear the edit version of the button and appear the save version of the button.
 	//Not currently working.
-	document.getElementById('editName').hidden = true;
-	document.getElementById('saveName').hidden = false;
+	document.getElementById('editInfo').hidden = true;
+	document.getElementById('saveInfo').hidden = false;
 }
 
 //Save current form input into firebase. Disable editing of name form.
 function saveProfile() {
 	userName = document.getElementById('nameInput').value;
+	userEmail = document.getElementById('emailInput').value;
 
 	currentUser.update({
-		name: userName
+		name: userName,
+		email: userEmail
 	}).then(() => {
-		console.log(currentUser + " name updated successfully.")
+		console.log("Name updated successfully.")
 	})
 
 	//Disable the form fields. Makes the input box invisible and
@@ -123,8 +125,8 @@ function saveProfile() {
 	document.getElementById('nameText').hidden = false;
 	//Disappear the save version of the button and appear the edit version of the button.
 	//Not currently working.
-	document.getElementById('editName').hidden = false;
-	document.getElementById('saveName').hidden = true;
+	document.getElementById('editInfo').hidden = false;
+	document.getElementById('saveInfo').hidden = true;
 }
 
 //--Bio field editing----------
@@ -149,7 +151,7 @@ function saveBio() {
 		bio: userBio
 	})
 		.then(() => {
-			console.log("Document successfully updated!");
+			console.log("Bio successfully updated.");
 		})
 
 	//Disable editing of the form fields. Makes the form invisible and
