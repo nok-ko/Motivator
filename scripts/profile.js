@@ -37,7 +37,7 @@ function listGoals() {
 						</span>
 						<span class="goal-deadline">
 							<!-- insert icon here -->
-							Due by ${new Date(goal.data().dateEnd.seconds * 1000).toDateString()}
+							Due by ${new Date(goal.data().dateEnd).toDateString()}
 						</span>
 					</div>`;
 
@@ -170,6 +170,13 @@ function saveBio() {
 	document.getElementById('saveBio').hidden = true;
 }
 
+//--New Goal feature-------
+//Enable goal input interface.
+function summonGoal() {
+	document.getElementById('make_goal').hidden = false;
+}
+
+//Create a new goal document and store it in the database.
 function makeGoal() {
 	//Get values in input fields.
 	goalDescrip = document.getElementById('goalDescrip').value;
@@ -192,5 +199,10 @@ function makeGoal() {
 	.catch((error) => {
 		console.error("Error writing document: ", error);
 	});
+	dismissGoal();
+}
 
+//Disable goal input interface.
+function dismissGoal() {
+	document.getElementById('make_goal').hidden = true;
 }
