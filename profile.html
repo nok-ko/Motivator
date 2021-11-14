@@ -45,8 +45,8 @@
             <h1 class="h3">User Bio</h1>
             <div class="d-flex justify-content-end mt-5">
                 <button type="button" id="editBio" class="btn btn-secondary" onclick="editBio()">Edit</button>
-                <span style="width: 10px"></span>
                 <button hidden id="saveBio" type="button" class="btn btn-info" onclick="saveBio()">Save</button>
+                <span style="width: 10px"></span>
             </div>
             <fieldset id="bioField" disabled>
                 <textarea hidden id="bioInput" class="form-control"></textarea>
@@ -61,6 +61,11 @@
             <p>Phone: +1-604-555-0905</p>
         </section> -->
 
+        <!--User stats section.-->
+        <section id="user_stats" class="bg-darker rounded py-3 my-2 text-light">
+            <p>Stats! Stuff like goal bars, points, etc. Whatever we decide to go with.</p>
+        </section>
+
         <!--Buttons for new goals and making challenges.-->
         <section id="new_goal_button">
             <button><b>New Goal</b></button>
@@ -69,9 +74,17 @@
             <button><b>Issue a Challenge</b></button>
         </section>
 
-        <!--User stats section.-->
-        <section id="user_stats" class="bg-darker rounded py-3 my-2 text-light">
-            <p>Stats! Stuff like goal bars, points, etc. Whatever we decide to go with.</p>
+        <!-- Make goal interface -->
+        <section id="make_goal">
+            <fieldset>
+                <textarea id="goalDescrip"></textarea>
+                <input id="dateStartInput" type="date">
+                <input id="dateEndInput" type="date">
+                <input id="amountInput" type="number">
+                <input id="amountGoalInput" type="number">
+            </fieldset>
+            <button id="saveGoal" type="button" class="btn btn-info" onclick="makeGoal()">Create</button>
+            <button id="cancelGoal" type="button" class="btn btn-secondary">Cancel</button>
         </section>
 
         <!--User goals section. Contains goal widget.-->

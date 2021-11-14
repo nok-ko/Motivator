@@ -53,14 +53,16 @@ function listGoals() {
 	);
 }
 
+// The variable which stores the UID to be used as a reference in multiple methods
 var currentUser;
+
+//Fill the profile with the data in fireDB.
 function populateInfo() {
 	firebase.auth().onAuthStateChanged(user => {
 		// Check if user is signed in:
 		if (user) {
+			//Assign UID to currentUser.
 			currentUser = db.collection("users").doc(user.uid);
-			// Update the page, list the goals of the currently signed-in user.
-			listGoals();
 
 			//go to the correct user document by referencing to the user uid
 			//get the document for current user.
@@ -81,12 +83,19 @@ function populateInfo() {
 				if (userBio != null) {
 					document.getElementById("bioInput").value = userBio;
 					document.getElementById("bioText").textContent = userBio;
+				} else {
+					document.getElementById("bioText").textContent = "Write a bit about yourself.";
 				}
 			})
+			
+			//List the goals of the currently signed-in user.
+			listGoals();
+
 		} else {
 			// No user is signed in.
 			console.log("No user is signed in");
 		}
+
 	});
 }
 populateInfo();
@@ -159,4 +168,29 @@ function saveBio() {
 	//Disappear the save button and show the edit button.
 	document.getElementById('editBio').hidden = false;
 	document.getElementById('saveBio').hidden = true;
+}
+
+function makeGoal() {
+	//Get values in input fields.
+	goalDescrip = document.getElementById('goalDescrip').value;
+	dateStart = document.getElementById('dateStartInput').value;
+	dateEnd = document.getElementById('dateEndInput').value;
+	amount = document.getElementById('amountInput').value;
+	amountGoal = document.getElementById('amountGoalInput').value;
+
+	//Add new goal with generated ID.
+	currentUser.collection("goals").add({
+		description: goalDescrip,
+		dateStart: dateStart,
+		dateEnd: dateEnd,
+		amount: amount,
+		amountGoal: amountGoal
+	})
+	.then(() => {
+		console.log("Goal created.");
+	})
+	.catch((error) => {
+		console.error("Error writing document: ", error);
+	});
+
 }

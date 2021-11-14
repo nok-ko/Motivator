@@ -88,7 +88,10 @@
     background-color: rgba(0, 0, 255, 0.7);
     border: 2px solid white;
 }
-
+/* #make_goal {
+    TODO: styles for make goal form.
+    Make anim for appear: page below slide down, new goal form unveiled.   
+}*/
 #challenge_button {
     grid-column: 5 / 8;
     grid-row: 6 / 7;
