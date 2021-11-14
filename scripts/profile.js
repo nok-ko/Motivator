@@ -58,7 +58,6 @@ function populateInfo() {
 	firebase.auth().onAuthStateChanged(user => {
 		// Check if user is signed in:
 		if (user) {
-			// Now we have a reference to the logged in user!
 			currentUser = db.collection("users").doc(user.uid);
 			// Update the page, list the goals of the currently signed-in user.
 			listGoals();
@@ -76,7 +75,7 @@ function populateInfo() {
 					document.getElementById("nameInput").value = userName;
 					document.getElementById("nameText").textContent = userName;
 				}
-				 if (userEmail != null) {
+				if (userEmail != null) {
 					document.getElementById("emailText").textContent = userEmail;
 				}
 				if (userBio != null) {
@@ -109,11 +108,9 @@ function editProfile() {
 //Save current form input into firebase. Disable editing of name form.
 function saveProfile() {
 	userName = document.getElementById('nameInput').value;
-	userEmail = document.getElementById('emailInput').value;
 
 	currentUser.update({
 		name: userName,
-		email: userEmail
 	}).then(() => {
 		console.log("Name updated successfully.")
 	})

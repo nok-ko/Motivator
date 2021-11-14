@@ -20,15 +20,17 @@
 }
 #user_pic_block .edit-icon {
     /* Use the current text color as the icon’s fill color. */
-    fill: currentColor;
-    stroke: currentColor;
+    background-color: white;
+    /* fill: currentColor;
+    stroke: currentColor; */
     /* Inherit the text’s size too. Also allows sizing the icon by changing its font-size. */
-    width: 1em;
-    height: 1em;
+    /* width: 1em;
+    height: 1em; */
     /* The default vertical-align is `baseline`, which leaves a few pixels of space below the icon. Using `center` prevents this. For icons shown alongside text, you may want to use a more precise value, e.g. `vertical-align: -4px` or `vertical-align: -0.15em`. */
-    vertical-align: middle;
+    /* vertical-align: middle; */
     /* Paths and strokes that overflow the viewBox can show in IE11. */
-    overflow: hidden;
+    /* overflow: hidden; */
+    cursor: pointer;
 }
 /* Circle clipping mask for user profile images. */
 #user_pic_block .img-avatar {
