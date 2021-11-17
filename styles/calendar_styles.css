@@ -25,6 +25,7 @@ header {
 
 .container > p {
     font-size: 25pt;
+    text-align: center;
 }
 
 /*
@@ -61,6 +62,7 @@ header {
 
 table {
     text-align: center;
+    width: 100%;
 }
 
 tr {
@@ -87,4 +89,8 @@ td span {
 
 td:hover span {
     display: inline;
+}
+
+a {
+    color: white;
 }
