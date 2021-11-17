@@ -7,6 +7,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.0/firebase-ui-auth.css" />
     <script src="scripts/firebase_API.js"></script>
 
     <!-- Bootstrap -->
@@ -25,26 +26,37 @@
         <section id="user_pic_block" class="bg-darker container">
             <img class="img-avatar img-thumbnail" src="https://dummyimage.com/256/256" alt="Profile Picture">
             <div>
-                <h1 class="text-light h3"> <span id="userName"></span>
-                    <a class="text-primary" href="/editProfile.html" title="Edit Profile">
-                        <svg id="edit-icon" aria-hidden="true" focusable="false">
-                            <use xlink:href="icons/edit-2.svg#icon"></use>
-                        </svg>
-                        <!--What does this do? Seems obsolete.-->
-                        <!-- <span class="access-label">Edit Profile</span> -->
-                    </a>
-                </h1>
-            </div>
-            <h4 id="userEmail"></h4>
+                <fieldset id="nameField" disabled>
+                    <input hidden id="nameInput" type="text" class="form-control">
+                    <h1 class="text-light h3" id="nameText"></h1>
+                </fieldset>
+                    <h4 id="emailText"></h4>
+                    <img id="editInfo" src="icons/edit-2.svg#icon" onclick="editProfile()" class="edit-icon" alt="Edit">  
+                    <img hidden id="saveInfo" src="icons/edit-2.svg#icon" onclick="saveProfile()" class="edit-icon" alt="Save">  
+                    <!-- <svg id="saveInfo" onclick="saveProfile()" class="edit-icon" aria-hidden="true" focusable="false">
+                        <use xlink:href="icons/edit-2.svg#icon"></use>
+                    </svg> -->
+                </div>
+                <img src="icons/edit-2.svg#icon" alt="test">
+          
         </section>
 
         <!--Bio Section.-->
         <section id="bio" class="bg-darker rounded py-3 my-2 text-light">
             <h1 class="h3">User Bio</h1>
-            <p>Hi, I am Tommy Longname and this is my profile!</p>
+            <div class="d-flex justify-content-end mt-5">
+                <button type="button" id="editBio" class="btn btn-secondary" onclick="editBio()">Edit</button>
+                <button hidden id="saveBio" type="button" class="btn btn-info" onclick="saveBio()">Save</button>
+                <span style="width: 10px"></span>
+            </div>
+            <fieldset id="bioField" disabled>
+                <textarea hidden id="bioInput" class="form-control"></textarea>
+                <p id="bioText"></p>
+            </fieldset>
         </section>
 
         <!--Contact info section (turn into calendar widget section?).-->
+      
         <section id="contact_info" class="bg-darker rounded py-3 my-2 text-light">
             <!--<h1 class="h3">Contact Info</h1>
             <p>E-mail: tommylong@example.com</p>
@@ -108,15 +120,23 @@
 
         <!--Buttons for new goals and making challenges.-->
         <section id="new_goal_button">
-            <button><b>New Goal</b></button>
+            <button type="button" onclick="summonGoal()"><b>New Goal</b></button>
         </section>
         <section id="challenge_button">
             <button><b>Issue a Challenge</b></button>
         </section>
 
-        <!--User stats section.-->
-        <section id="user_stats" class="bg-darker rounded py-3 my-2 text-light">
-            <p>Stats! Stuff like goal bars, points, etc. Whatever we decide to go with.</p>
+        <!-- Make goal interface -->
+        <section hidden id="make_goal">
+            <fieldset>
+                <textarea id="goalDescrip" required="required"></textarea>
+                <input id="dateStartInput" type="date" required="required">
+                <input id="dateEndInput" type="date" required="required">
+                <input id="amountInput" type="number" required="required" value="0">
+                <input id="amountGoalInput" type="number" required="required" value="1">
+            </fieldset>
+            <button id="saveGoal" type="submit" class="btn btn-info" onclick="makeGoal()">Create</button>
+            <button id="cancelGoal" type="button" class="btn btn-secondary" onclick="dismissGoal()">Close</button>
         </section>
 
         <!--User goals section. Contains goal widget.-->
