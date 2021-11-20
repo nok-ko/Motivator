@@ -6,10 +6,9 @@ body {
 .container {
     display: grid;
     grid-template-columns: 4.5vw 91vw 4.5vw;
-    grid-template-rows: 5vh 5vh 80vh 5vh 55vh;
+    grid-template-rows: 5vh 85vh 5vh 5vh;
     grid-template-areas: 
     " . header . "
-    " . aside . "
     " . calendar . "
     " . section . "
     " footer footer footer ";
@@ -26,8 +25,10 @@ header {
 
 .container > p {
     font-size: 25pt;
+    text-align: center;
 }
 
+/*
 .calendar {
     grid-area: calendar;
     display: grid;
@@ -52,4 +53,44 @@ header {
 
 .day:hover span {
     display: inline;
+} */
+
+#calendar {
+    width: 100%;
+    grid-area: calendar;
+}
+
+table {
+    text-align: center;
+    width: 100%;
+}
+
+tr {
+    height: 60px;
+}
+
+th {
+    width: 14vw;
+}
+
+td {
+    height: 100px;
+    width: 14vw;
+}
+
+td:not(:hover)::before {
+    content: ".";
+    font-size: 50px;
+}
+
+td span {
+    display: none;
+}
+
+td:hover span {
+    display: inline;
+}
+
+a {
+    color: white;
 }

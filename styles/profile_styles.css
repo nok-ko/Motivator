@@ -51,18 +51,78 @@
     font-size: 0.9rem;
 }
 
+
 #contact_info {
+    height: fit-content;
     grid-column: 1/ span 8;
     /* grid-row: 1 / 4; */
+
     text-align: center;
     margin: 1vw;
 }
 #contact_info h1 {
     font-size: 1.3rem;
 }
-#contact_info p {
+#contact_info p { 
     font-size: 0.8rem;
 }
+
+.day:not(:hover)::before {
+    content: ".";
+    font-size: 10pt;
+}
+
+.day span {
+    display: none;
+}
+
+.day:hover span {
+    display: inline;
+} */
+
+#calendar {
+    width: 100%;
+    grid-area: calendar;
+}
+
+table {
+    text-align: center;
+
+}
+
+tr {
+    height: auto;
+}
+
+tr > {
+    font-size: 10px;
+}
+/*tr {
+    height: 60px;
+} 
+
+th {
+    width: 14vw;
+}
+
+td {
+    height: 100px;
+    width: 14vw;
+} */
+
+td:not(:hover)::before {
+    content: ".";
+    font-size: 15px;
+}
+
+td span {
+    display: none;
+}
+
+td:hover span {
+    display: inline;
+}
+
 
 #user_stats {
     /* grid-column: 4 / 9; */
