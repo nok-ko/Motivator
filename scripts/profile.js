@@ -8,15 +8,20 @@ const db = firebase.firestore(app);
 // TODO: documentation pass
 function listGoals() {
 	const userID = firebase.auth().currentUser.uid; // assume current user is logged in
-	const goalsContainer = document.getElementById("user_goals")
+	const goalContainer = document.getElementById("goal_container");
 
 	// TODO: Show/hide “loading” message while we pull in data
-	// TODO: live-update goals
-
-	db.collection('users').doc(userID).collection('goals').get().then(
+	db.collection('users').doc(userID).collection('goals').onSnapshot(
 		(goals) => {
+			// Clear existing goals on each update:
+			goalsContainer.innerHTML = "";
+
+			// Append to a fragment
+			goalFragment = document.createDocumentFragment();
+
+			// Populate the section with goals
 			goals.forEach((goal) => {
-				const goalEl = document.createElement("div")
+				const goalEl = document.createElement("div");
 				const amountGoal = goal.data().amountGoal;
 				const amount = goal.data().amount;
 				goalEl.classList.add("goal");
@@ -44,11 +49,11 @@ function listGoals() {
 				// Clean up animations once they finish
 				goalEl.querySelector(".progressbar-fill").addEventListener("animationend",
 					function () {
-						this.classList.add("progress-anim-finished")
+						this.classList.add("progress-anim-finished");
 					}, false);
-				// TODO: use a DocumentFragment when appending?
-				goalsContainer.appendChild(goalEl);
-			})
+				goalFragment.appendChild(goalEl);
+			});
+			goalContainer.appendChild(goalFragment);
 		}
 	);
 }
@@ -66,8 +71,10 @@ function startFeedUpdates(userID) {
 	});
 }
 
-// The variable which stores the UID to be used as a reference in multiple methods
+// The reference to the user's document
 let currentUser;
+// Access the user ID with currentUser.id
+// (see https://firebase.google.com/docs/reference/js/v8/firebase.firestore.DocumentReference for all methods)
 
 //Fill the profile with the data in fireDB.
 function populateInfo() {
@@ -211,12 +218,19 @@ function makeGoal() {
 		amount: amount,
 		amountGoal: amountGoal
 	})
-	.then(() => {
+	//The Promise from CollectionReference.add(…) resolves to a DocumentReference to the added thing
+	.then((goalDoc) => {
 		console.log("Goal created.");
+		
+		// Now that we have a goal, add an entry to the `feed` collection
+		db.collection("feed").add({
+			type: "added",
+			user: currentUser.id,
+			goal: goalDoc.id,
+		}).catch(console.error);
+		
 	})
-	.catch((error) => {
-		console.error("Error writing document: ", error);
-	});
+	.catch(console.error);
 	dismissGoal();
 }
 
