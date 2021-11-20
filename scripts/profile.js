@@ -67,7 +67,7 @@ function startFeedUpdates(userID) {
 }
 
 // The variable which stores the UID to be used as a reference in multiple methods
-var currentUser;
+let currentUser;
 
 //Fill the profile with the data in fireDB.
 function populateInfo() {
@@ -81,9 +81,9 @@ function populateInfo() {
 			//get the document for current user.
 			currentUser.onSnapshot(userDoc => {
 				//get the data fields of the user
-				var userName = userDoc.data().name;
-				var userEmail = userDoc.data().email;
-				var userBio = userDoc.data().bio;
+				let userName = userDoc.data().name;
+				let userEmail = userDoc.data().email;
+				let userBio = userDoc.data().bio;
 
 				//if the data fields are not empty, then write them in to the form.
 				if (userName != null) {
