@@ -17,46 +17,47 @@
     <!-- Local styles -->
     <link rel="stylesheet" href="styles/common_styles.css">
     <link rel="stylesheet" href="styles/profile_styles.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 
 <body>
-    <div id="wrapper">
-
+    <main id="wrapper">
         <!--User image, name, edit info button.-->
-        <section id="user_pic_block" class="bg-darker container">
+        <section id="user_pic_block" class="bg-darker rounded">
             <img class="img-avatar img-thumbnail" src="https://dummyimage.com/256/256" alt="Profile Picture">
             <div>
                 <fieldset id="nameField" disabled>
                     <input hidden id="nameInput" type="text" class="form-control">
                     <h1 class="text-light h3" id="nameText"></h1>
                 </fieldset>
-                    <h4 id="emailText"></h4>
-                    <img id="editInfo" src="icons/edit-2.svg#icon" onclick="editProfile()" class="edit-icon" alt="Edit">  
-                    <img hidden id="saveInfo" src="icons/edit-2.svg#icon" onclick="saveProfile()" class="edit-icon" alt="Save">  
-                    <!-- <svg id="saveInfo" onclick="saveProfile()" class="edit-icon" aria-hidden="true" focusable="false">
+                <h4 id="emailText"></h4>
+                <!-- <img id="editInfo" src="icons/edit-2.svg#icon" onclick="editProfile()" class="edit-icon" alt="Edit">   -->
+                <img hidden id="saveInfo" src="icons/edit-2.svg#icon" onclick="saveProfile()" class="edit-icon"
+                    alt="Save">
+                <!-- <svg id="saveInfo" onclick="saveProfile()" class="edit-icon" aria-hidden="true" focusable="false">
                         <use xlink:href="icons/edit-2.svg#icon"></use>
                     </svg> -->
-                </div>
-                <img src="icons/edit-2.svg#icon" alt="test">
-          
+            </div>
+
         </section>
 
         <!--Bio Section.-->
         <section id="bio" class="bg-darker rounded py-3 my-2 text-light">
             <h1 class="h3">User Bio</h1>
-            <div class="d-flex justify-content-end mt-5">
-                <button type="button" id="editBio" class="btn btn-secondary" onclick="editBio()">Edit</button>
-                <button hidden id="saveBio" type="button" class="btn btn-info" onclick="saveBio()">Save</button>
-                <span style="width: 10px"></span>
-            </div>
             <fieldset id="bioField" disabled>
                 <textarea hidden id="bioInput" class="form-control"></textarea>
                 <p id="bioText"></p>
             </fieldset>
+            <div class="d-flex justify-content-end">
+                <button type="button" id="editBio" class="btn btn-secondary" onclick="editBio()">Edit</button>
+                <button hidden id="saveBio" type="button" class="btn btn-info" onclick="saveBio()">Save</button>
+                <span style="width: 10px"></span>
+            </div>
         </section>
 
         <!--Contact info section (turn into calendar widget section?).-->
-      
+
         <section id="contact_info" class="bg-darker rounded py-3 my-2 text-light">
             <!--<h1 class="h3">Contact Info</h1>
             <p>E-mail: tommylong@example.com</p>
@@ -64,7 +65,7 @@
 
             <!--Small calendar for Profile-->
             <div id="calendar">
-                <table width = 100%>
+                <table width=100%>
                     <tr>
                         <th>M</th>
                         <th>T</th>
@@ -119,10 +120,8 @@
         </section>
 
         <!--Buttons for new goals and making challenges.-->
-        <section id="new_goal_button">
+        <section id="buttons">
             <button type="button" onclick="summonGoal()"><b>New Goal</b></button>
-        </section>
-        <section id="challenge_button">
             <button><b>Issue a Challenge</b></button>
         </section>
 
@@ -143,7 +142,7 @@
         <section id="user_goals" class="bg-darker rounded py-3 my-2 text-light">
             <h2>Goals</h2>
         </section>
-    </div>
+    </main>
 
     <!--Footer-->
     <footer class="sticky py-2 text-light">
