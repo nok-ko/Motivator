@@ -9,6 +9,7 @@
 body {
     background-color: rgb(var(--bs-dark-rgb));
     color: white;
+    height: calc(100% - var(--sticky-footer-height))
 }
 .bg-darker {
     background-color: rgb(var(--bs-darker-rgb));

@@ -1,5 +1,5 @@
 #wrapper {
-    max-height: calc(1fr - var(--sticky-footer-height));
+    padding-bottom: var(--sticky-footer-height);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -59,9 +59,7 @@
 #bio {
     text-align: center;
 }
-#bio h1 {
-    font-size: 1.3rem;
-}
+
 #bio p {
     font-size: 0.9rem;
 }
@@ -192,8 +190,11 @@ td:hover span {
     /* grid-row: 7 / span 7; */
     padding: 1rem;
     font-size: 0.7rem;
-    display: grid;
-    grid-gap: 1rem;
+    display: flex;
+    gap: 1rem;
+
+    flex-direction: column;
+
     grid-template: 3rem 1fr 1fr / 1fr;
 }
 
