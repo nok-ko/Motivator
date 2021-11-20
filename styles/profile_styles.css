@@ -9,6 +9,10 @@
     /* grid-template-rows: repeat(20, 5vw); */
 }
 
+#wrapper > section {
+    margin: calc(min(3.0rem, 2%));
+}
+
 
 /* profile_styles.css | http://127.0.0.1:5502/styles/profile_styles.css */
 
@@ -27,8 +31,6 @@
     flex-direction: row;
     align-items: center;
     gap: 2rem;
-    width: 100%;
-    margin:0;
 }
 
 /* Real broken icon stuff */
@@ -56,13 +58,6 @@
 }
 
 #bio {
-    /* No longer in a grid, grid props are redundant */
-    /* grid-column: 1 / span 8; */
-    /* grid-row: 1 / 4; */
-    
-    /* margin seems suspect, better to set on container */
-    margin: 1vw;
-
     text-align: center;
 }
 #bio h1 {
@@ -79,7 +74,6 @@
     /* grid-row: 1 / 4; */
 
     text-align: center;
-    margin: 1vw;
 }
 #contact_info h1 {
     font-size: 1.3rem;
@@ -152,14 +146,13 @@ td:hover span {
 #user_stats {
     /* grid-column: 4 / 9; */
     /* grid-row: 4 / 6; */
-    margin: 1vw;
     font-size: 0.8rem;
 }
 
 #new_goal_button {
     /* grid-column: 2 / 5; */
     /* grid-row: 6 / 7; */
-    margin: 1vw auto;
+    margin: auto auto;
 }
 #new_goal_button button {
     background-color: rgba(0, 0, 255, 0.1);
