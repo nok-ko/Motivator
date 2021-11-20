@@ -53,6 +53,19 @@ function listGoals() {
 	);
 }
 
+// Feed feature:
+// Subscribe to feed updates from the database
+function startFeedUpdates(userID) {
+	db.collection("feeds").doc(userID).collection("entries").onSnapshot(entries => {
+		if (entries.empty) {
+			// 
+		}
+		entries.forEach(entry => {
+			console.log("feed entry ", entry.data());
+		});
+	});
+}
+
 // The variable which stores the UID to be used as a reference in multiple methods
 var currentUser;
 
@@ -86,7 +99,12 @@ function populateInfo() {
 				} else {
 					document.getElementById("bioText").textContent = "Write a bit about yourself.";
 				}
-			})
+			});
+
+			//Feed feature: 
+			// Start updating feed
+
+			startFeedUpdates(user.uid);
 			
 			//List the goals of the currently signed-in user.
 			listGoals();
