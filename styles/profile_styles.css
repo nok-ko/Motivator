@@ -250,6 +250,18 @@ section#buttons {
     border-radius: 1em !important;
 }
 
+/* List of feed stuff */
+ol#feed_entries {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+}
+
+/* Date Headings within the list of feed entries */
+ol#feed_entries > li > h3 {
+    font-size: large;
+}
 
 
 /* What do these things do? They seem obsolete.*/

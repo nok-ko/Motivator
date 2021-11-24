@@ -59,16 +59,42 @@ function listGoals() {
 }
 
 // Feed feature:
-// Subscribe to feed updates from the database
-function startFeedUpdates(userID) {
-	db.collection("feeds").doc(userID).collection("entries").onSnapshot(entries => {
-		if (entries.empty) {
-			// 
+// Update feed with latest entries
+function updateFeed(entryCollection) {
+	// Define references to DOM elements
+	const entryList = document.getElementById("feed_entries");
+
+	// Exit early if nothing is in the feed.
+	if (entryCollection.empty) {
+		return;
+	}
+
+	// Sort clientside to avoid composite indexes in Firestore
+	const entries = entryCollection.docs
+		// Dereference each entry and add a `date` field with a JS Date object based off the timestamp
+		.map(doc => Object.assign({date: new Date(doc.data().timestamp.seconds * 1000)}, doc.data()))
+		// Sort in reverse chronological order
+		.sort((a,b) => -(a.timestamp - b.timestamp));
+
+	// Iterate and add to the document:
+	const entryFrag = document.createDocumentFragment();
+	// Bucket entries day-by-day
+	const daysSeen = new Set();
+	for (const entry of entries) {
+		const day = entry.date.getDate();
+		if (!daysSeen.has(day)) {
+			daysSeen.add(day);
+			const dateHeading = document.createElement("li");
+			dateHeading.innerHTML = `<h3>${entry.date.toLocaleDateString()}</h3>`;
+			entryFrag.appendChild(dateHeading);
 		}
-		entries.forEach(entry => {
-			console.log("feed entry ", entry.data());
-		});
-	});
+		console.log("feed entry at ", entry.date, entry);
+		const entryEl = document.createElement("li");
+		
+
+		entryFrag.appendChild(entryEl);
+	}
+	entryList.appendChild(entryFrag);
 }
 
 // The reference to the user's document
@@ -110,8 +136,10 @@ function populateInfo() {
 
 			//Feed feature: 
 			// Start updating feed
-
-			startFeedUpdates(user.uid);
+			db.collection("feed")
+				.where("user", "==", user.uid)
+				// .orderBy("timestamp") // needs composite index, cannot test right now
+				.onSnapshot(updateFeed);
 			
 			//List the goals of the currently signed-in user.
 			listGoals();
@@ -123,6 +151,7 @@ function populateInfo() {
 
 	});
 }
+
 populateInfo();
 
 //--Username field editing-----------
@@ -226,6 +255,7 @@ function makeGoal() {
 			type: "added",
 			user: currentUser.id,
 			goal: goalDoc.id,
+			timestamp: new Date()
 		}).catch(console.error);
 		
 	})
