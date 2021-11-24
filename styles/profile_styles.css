@@ -156,35 +156,35 @@ td:hover span {
     border: 2px solid white;
     background-color: rgba(0, 0, 255, 0.7);
 }
-#make_goal fieldset form {
+#make_goal form {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
     column-gap: 2%;
 } 
-#make_goal fieldset form input,
-#make_goal fieldset form textarea {
+#make_goal form input,
+#make_goal form textarea {
     border-radius: 5px;
 }
-#make_goal fieldset form #goalDescrip {
+#make_goal form #goalDescrip {
     grid-column: 1 / span 1;
     grid-row: 1 / span 5;
 }
-#make_goal fieldset form #dateStartInput {
+#make_goal form #dateStartInput {
     grid-column: 2 / span 1;
     grid-row: 1 / span 1;
     margin-left: 5em;
 }
-#make_goal fieldset form #dateStartLabel {
+#make_goal form #dateStartLabel {
     grid-column: 2 / span 1;
     grid-row: 1 / span 1;
 }
-#make_goal fieldset form #dateEndInput {
+#make_goal form #dateEndInput {
     grid-column: 2 / span 1;
     grid-row: 2 / span 1;
     margin-left: 5em;
 }
-#make_goal fieldset form #dateEndLabel {
+#make_goal form #dateEndLabel {
     grid-column: 2 / span 1;
     grid-row: 2 / span 1;
 }
@@ -197,19 +197,28 @@ td:hover span {
     grid-column: 2 / span 1;
     grid-row: 4 / span 1;
 } */
-#make_goal fieldset form #amountGoalInput {
+#make_goal form #amountGoalInput {
     grid-column: 2 / span 1;
     grid-row: 5 / span 1;
     margin-left: 30%;
     margin-right: 30%;
 }
-#make_goal fieldset form #amountGoalLabel {
+#make_goal form #amountGoalLabel {
     grid-column: 2 / span 1;
     grid-row: 4 / span 1;
     text-align: center;
 }
-#make_goal #cancelGoal {
-    float: right;
+#make_goal form #saveGoal {
+    grid-column: 1 / span 1;
+    grid-row: 6 / span 1;
+    width: 20%;
+    justify-self: left;
+} 
+#make_goal form #cancelGoal {
+    grid-column: 2 / span 1;
+    grid-row: 6 / span 1;
+    width: 20%;
+    justify-self: right;
 }
 
 #challenge_button {

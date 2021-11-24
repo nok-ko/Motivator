@@ -129,21 +129,21 @@
 
         <!-- Make goal interface -->
         <section hidden id="make_goal">
-            <fieldset>
                 <form>
-                    <textarea id="goalDescrip" required="required" placeholder="Add a description of your goal. For example, I will do 20 pushups by tomorrow."></textarea>
+                    <textarea id="goalDescrip"
+                        placeholder="Add a description of your goal. For example, I will do 20 pushups by tomorrow."
+                        required></textarea>
                     <label id="dateStartLabel" for="dateStartInput">Start date:</label>
-                    <input id="dateStartInput" type="date" required="required">
+                    <input id="dateStartInput" type="date" required>
                     <label id="dateEndLabel" for="dateEndInput">End date:</label>
-                    <input id="dateEndInput" type="date" required="required">
+                    <input id="dateEndInput" type="date" required>
                     <!-- <label id="amountLabel" for="amountInput">How many times have you done it so far?</label>
                     <input id="amountInput" type="number" required="required" value="0"> -->
                     <label id="amountGoalLabel" for="amountGoalInput">Goal amount:</label>
-                    <input id="amountGoalInput" type="number" required="required" value="1">
+                    <input id="amountGoalInput" type="number" value="0" required>
+                    <button id="saveGoal" type="submit" class="btn btn-info" onclick="makeGoal()">Create</button>
+                    <button id="cancelGoal" type="button" class="btn btn-secondary" onclick="dismissGoal()">Close</button>
                 </form>
-            </fieldset>
-            <button id="saveGoal" type="submit" class="btn btn-info" onclick="makeGoal()">Create</button>
-            <button id="cancelGoal" type="button" class="btn btn-secondary" onclick="dismissGoal()">Close</button>
         </section>
 
         <!--User goals section. Contains goal widget.-->
