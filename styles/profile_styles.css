@@ -1,7 +1,8 @@
 #wrapper {
     max-height: calc(1fr - var(--sticky-footer-height));
     height: 100%;
-    display: flex;flex-direction: column;
+    display: flex;
+    flex-direction: column;
     /* grid-template-columns: repeat(8, 1fr); */
     /* grid-template-rows: repeat(20, 5vw); */
 }
@@ -155,6 +156,7 @@ td:hover span {
     padding: 5px;
     border: 2px solid white;
     background-color: rgba(0, 0, 255, 0.7);
+     overflow: hidden;
 }
 #make_goal form {
     display: grid;
@@ -247,25 +249,23 @@ td:hover span {
     display: grid;
     grid-gap: 1rem;
     grid-template: 3rem 1fr 1fr / 1fr;
+    transform: translateY(-250px);
 }
 #user_goals h2 {
     grid-column: 1 / span 2;
 }
 .make_goal_slideUp {
-    animation: slide 2s ease infinite reverse;
+    animation: slide 2s infinite reverse;
 }
 .make_goal_slideDown {
-    animation: slide 2s ease infinite; 
-}
-.make_goal_gobye {
-    transform: translateY(0);
+    animation: slide 2s infinite; 
 }
 .make_goal_uncovered {
-    transform: translateY(50%);
+    transform: translateY(0) !important;
 }
 @keyframes slide{
-    0% {transform: translateY(0);}
-    100%{transform: translateY(50%);}
+    0% {transform: translateY(-250px);}
+    100%{transform: translateY(0);}
 }
 
 /*== Goal widget ==*/

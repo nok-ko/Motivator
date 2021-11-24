@@ -128,7 +128,7 @@
         </section> -->
 
         <!-- Make goal interface -->
-        <section hidden id="make_goal">
+        <section id="make_goal">
                 <form>
                     <textarea id="goalDescrip"
                         placeholder="Add a description of your goal. For example: &quot;I will do 20 pushups.&quot;"
@@ -137,8 +137,6 @@
                     <input id="dateStartInput" type="date" required>
                     <label id="dateEndLabel" for="dateEndInput">End date:</label>
                     <input id="dateEndInput" type="date" required>
-                    <!-- <label id="amountLabel" for="amountInput">How many times have you done it so far?</label>
-                    <input id="amountInput" type="number" required="required" value="0"> -->
                     <label id="amountGoalLabel" for="amountGoalInput">Goal amount:</label>
                     <input id="amountGoalInput" type="number" value="0" required>
                     <button id="saveGoal" type="submit" class="btn btn-info" onclick="makeGoal()">Create</button>
@@ -159,14 +157,12 @@
                 <a href="profile.html">
                     <img src="icons/user.svg#icon">
                 </a>
-                <!-- <span class="label">Profile</span> -->
             </div>
             <div> </div>
             <div class="footer-icon-container" role="group">
                 <a href="calendar.html">
                     <img src="icons/calendar.svg#icon">
                 </a>
-                <!-- <span class="label">Calendar</span> -->
             </div>
         </div>
     </footer>

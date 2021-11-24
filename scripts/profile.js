@@ -173,7 +173,7 @@ function saveBio() {
 //--New Goal feature-------
 //Enable goal input interface.
 function summonGoal() {
-	document.getElementById('make_goal').hidden = false;
+	// document.getElementById('make_goal').hidden = false;
 	userGoals = document.getElementById("user_goals");
 	
 	//Add the classes which pertain to this animation.
@@ -198,7 +198,7 @@ function dismissGoal() {
 			userGoals.classList.remove("make_goal_uncovered");
 			userGoals.classList.remove("make_goal_slideUp");
 		});
-	document.getElementById('make_goal').hidden = true;
+	// document.getElementById('make_goal').hidden = true;
 	document.getElementById('goalDescrip').value = "";
 	document.getElementById('dateStartInput').value = "";
 	document.getElementById('dateEndInput').value = "";
