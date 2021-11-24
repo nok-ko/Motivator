@@ -32,14 +32,11 @@
                     <h1 class="text-light h3" id="nameText"></h1>
                 </fieldset>
                 <h4 id="emailText"></h4>
-                <!-- <img id="editInfo" src="icons/edit-2.svg#icon" onclick="editProfile()" class="edit-icon" alt="Edit">   -->
+                <img id="editInfo" src="icons/edit-2.svg#icon" onclick="editProfile()" class="edit-icon" alt="Edit">
                 <img hidden id="saveInfo" src="icons/edit-2.svg#icon" onclick="saveProfile()" class="edit-icon"
                     alt="Save">
-                <!-- <svg id="saveInfo" onclick="saveProfile()" class="edit-icon" aria-hidden="true" focusable="false">
-                        <use xlink:href="icons/edit-2.svg#icon"></use>
-                    </svg> -->
             </div>
-
+            <img src="icons/edit-2.svg#icon" alt="test">
         </section>
 
         <!--Bio Section.-->
@@ -56,86 +53,82 @@
             </div>
         </section>
 
-        <!--Contact info section (turn into calendar widget section?).-->
+        <!--Small calendar for Profile-->
+        <div id="calendar">
+            <table width="100%">
+                <tr>
+                    <th>M</th>
+                    <th>T</th>
+                    <th>W</th>
+                    <th>T</th>
+                    <th>F</th>
+                    <th>S</th>
+                    <th>S</th>
+                </tr>
+                <tr>
+                    <td><span>1</span></td>
+                    <td><span>2</span></td>
+                    <td><span>3</span></td>
+                    <td><span>4</span></td>
+                    <td><span>5</span></td>
+                    <td><span>6</span></td>
+                    <td><span>7</span></td>
+                </tr>
+                <tr>
+                    <td><span>8</span></td>
+                    <td><span>9</span></td>
+                    <td><span>10</span></td>
+                    <td><span>11</span></td>
+                    <td><span>12</span></td>
+                    <td><span>13</span></td>
+                    <td><span>14</span></td>
+                </tr>
+                <tr>
+                    <td><span>15</span></td>
+                    <td><span>16</span></td>
+                    <td><span>17</span></td>
+                    <td><span>18</span></td>
+                    <td><span>19</span></td>
+                    <td><span>20</span></td>
+                    <td><span>21</span></td>
+                </tr>
+                <tr>
+                    <td><span>22</span></td>
+                    <td><span>23</span></td>
+                    <td><span>24</span></td>
+                    <td><span>25</span></td>
+                    <td><span>26</span></td>
+                    <td><span>27</span></td>
+                    <td><span>28</span></td>
+                </tr>
+                <tr>
+                    <td><span>29</span></td>
+                    <td><span>30</span></td>
+                </tr>
+            </table>
+        </div>
 
-        <section id="contact_info" class="bg-darker rounded py-3 my-2 text-light">
-            <!--<h1 class="h3">Contact Info</h1>
-            <p>E-mail: tommylong@example.com</p>
-            <p>Phone: +1-604-555-0905</p> -->
-
-            <!--Small calendar for Profile-->
-            <div id="calendar">
-                <table width=100%>
-                    <tr>
-                        <th>M</th>
-                        <th>T</th>
-                        <th>W</th>
-                        <th>T</th>
-                        <th>F</th>
-                        <th>S</th>
-                        <th>S</th>
-                    </tr>
-                    <tr>
-                        <td><span>1</span></td>
-                        <td><span>2</span></td>
-                        <td><span>3</span></td>
-                        <td><span>4</span></td>
-                        <td><span>5</span></td>
-                        <td><span>6</span></td>
-                        <td><span>7</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>8</span></td>
-                        <td><span>9</span></td>
-                        <td><span>10</span></td>
-                        <td><span>11</span></td>
-                        <td><span>12</span></td>
-                        <td><span>13</span></td>
-                        <td><span>14</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>15</span></td>
-                        <td><span>16</span></td>
-                        <td><span>17</span></td>
-                        <td><span>18</span></td>
-                        <td><span>19</span></td>
-                        <td><span>20</span></td>
-                        <td><span>21</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>22</span></td>
-                        <td><span>23</span></td>
-                        <td><span>24</span></td>
-                        <td><span>25</span></td>
-                        <td><span>26</span></td>
-                        <td><span>27</span></td>
-                        <td><span>28</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>29</span></td>
-                        <td><span>30</span></td>
-                    </tr>
-                </table>
-            </div>
-        </section>
 
         <!--Buttons for new goals and making challenges.-->
-        <section id="buttons">
-            <button type="button" onclick="summonGoal()"><b>New Goal</b></button>
-            <button><b>Issue a Challenge</b></button>
+        <section id="new_goal_button">
+            <button type="button" onclick="summonMakeGoal()"><b>New Goal</b></button>
         </section>
 
         <!-- Make goal interface -->
-        <section hidden id="make_goal">
-            <fieldset>
-                <textarea id="goalDescrip" required="required"></textarea>
-                <input id="dateStartInput" type="date" required="required">
-                <input id="dateEndInput" type="date" required="required">
-                <input id="amountInput" type="number" required="required" value="0">
-                <input id="amountGoalInput" type="number" required="required" value="1">
-            </fieldset>
-            <button id="saveGoal" type="submit" class="btn btn-info" onclick="makeGoal()">Create</button>
-            <button id="cancelGoal" type="button" class="btn btn-secondary" onclick="dismissGoal()">Close</button>
+        <section id="make_goal">
+            <form>
+                <textarea id="goalDescrip"
+                    placeholder="Add a description of your goal. For example: &quot;I will do 20 pushups.&quot;"
+                    required></textarea>
+                <label id="dateStartLabel" for="dateStartInput">Start date:</label>
+                <input id="dateStartInput" type="date" required>
+                <label id="dateEndLabel" for="dateEndInput">End date:</label>
+                <input id="dateEndInput" type="date" required>
+                <label id="amountGoalLabel" for="amountGoalInput">Goal amount:</label>
+                <input id="amountGoalInput" type="number" value="0" required>
+                <button id="saveGoal" type="submit" class="btn btn-info" onclick="makeGoal()">Create</button>
+                <button id="cancelGoal" type="button" class="btn btn-secondary" onclick="dismissMakeGoal()">Close</button>
+            </form>
         </section>
 
         <!--User goals section. Contains goal widget.-->
@@ -151,14 +144,12 @@
                 <a href="profile.html">
                     <img src="icons/user.svg#icon">
                 </a>
-                <!-- <span class="label">Profile</span> -->
             </div>
             <div> </div>
             <div class="footer-icon-container" role="group">
                 <a href="calendar.html">
                     <img src="icons/calendar.svg#icon">
                 </a>
-                <!-- <span class="label">Calendar</span> -->
             </div>
         </div>
     </footer>
