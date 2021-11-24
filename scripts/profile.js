@@ -231,7 +231,7 @@ function makeGoal() {
 	dateEnd = document.getElementById('dateEndInput').value;
 	amountGoal = document.getElementById('amountGoalInput').value;
 
-	if (goalDescrip.length == 0 || dateStart.value == "" || dateEnd.value == "" || amountGoal.value == 0) {
+	if (goalDescrip.length == 0 || dateStart.length == 0 || dateEnd.length == 0 || amountGoal.value == 0) {
 		console.log("Must have inputs in each field to make new goal");
 	} else {
 		//Add new goal with generated ID.
@@ -248,7 +248,7 @@ function makeGoal() {
 			.catch((error) => {
 				console.error("Error creating goal: ", error);
 			});
-		dismissGoal();
+		dismissMakeGoal();
 	}
 
 }
