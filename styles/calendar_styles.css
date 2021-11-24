@@ -228,3 +228,43 @@
     .jsCalendar.white-theme ::selection {
         background:#AFAFAF
     }
+
+/*#calendar {
+    width: 100%;
+    grid-area: calendar;
+}
+
+table {
+    text-align: center;
+    width: 100%;
+}
+
+tr {
+    height: 60px;
+}
+
+th {
+    width: 14vw;
+}
+
+td {
+    height: 100px;
+    width: 14vw;
+}
+
+td:not(:hover)::before {
+    content: ".";
+    font-size: 50px;
+}
+
+td span {
+    display: none;
+}
+
+td:hover span {
+    display: inline;
+}
+
+a {
+    color: white;
+} */
