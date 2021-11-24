@@ -14,7 +14,7 @@ function listGoals() {
 	db.collection('users').doc(userID).collection('goals').onSnapshot(
 		(goals) => {
 			// Clear existing goals on each update:
-			goalsContainer.innerHTML = "";
+			goalContainer.innerHTML = "";
 
 			// Append to a fragment
 			goalFragment = document.createDocumentFragment();
@@ -146,8 +146,8 @@ function saveProfile() {
 	currentUser.update({
 		name: userName,
 	}).then(() => {
-		console.log("Name updated successfully.")
-	})
+		console.log("Name updated successfully.");
+	});
 
 	//Disable the form fields. Makes the input box invisible and
 	//	turn the name text on.
@@ -180,10 +180,9 @@ function saveBio() {
 	//Update the Firebase.
 	currentUser.update({
 		bio: userBio
-	})
-		.then(() => {
-			console.log("Bio successfully updated.");
-		})
+	}).then(() => {
+		console.log("Bio successfully updated.");
+	});
 
 	//Disable editing of the form fields. Makes the form invisible and
 	//	turns the paragraph text on.
@@ -221,7 +220,7 @@ function makeGoal() {
 	//The Promise from CollectionReference.add(…) resolves to a DocumentReference to the added thing
 	.then((goalDoc) => {
 		console.log("Goal created.");
-		
+
 		// Now that we have a goal, add an entry to the `feed` collection
 		db.collection("feed").add({
 			type: "added",
