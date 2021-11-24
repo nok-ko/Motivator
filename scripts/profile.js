@@ -170,37 +170,39 @@ function saveBio() {
 	document.getElementById('saveBio').hidden = true;
 }
 
-//--Animations for fading out and in---------------------
-function fadeOut(element) {
-    var op = 1;  // initial opacity
-    var timer = setInterval(function () {
-        if (op <= 0.1){
-            clearInterval(timer);
-            element.style.display = 'none';
-        }
-        element.style.opacity = op;
-        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-        op -= op * 0.1;
-    }, 50);
-}
-
-function fadeIn(element) {
-    var op = 0.1;  // initial opacity
-    element.style.display = 'block';
-    var timer = setInterval(function () {
-        if (op >= 1){
-            clearInterval(timer);
-        }
-        element.style.opacity = op;
-        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-        op += op * 0.1;
-    }, 10);
-}
-
 //--New Goal feature-------
 //Enable goal input interface.
 function summonGoal() {
 	document.getElementById('make_goal').hidden = false;
+	userGoals = document.getElementById("user_goals");
+	
+	//Add the classes which pertain to this animation.
+	userGoals.classList.add("make_goal_slideDown");
+	userGoals.addEventListener("animationiteration",
+		function () {
+			userGoals.classList.add("make_goal_uncovered");
+			//Remove the classes which pertain to the previous animation.
+			userGoals.classList.remove("make_goal_slideDown");
+		});
+}
+
+//Disable goal input interface. Clear form.
+function dismissGoal() {
+	userGoals = document.getElementById("user_goals");
+
+	//Add the classes which pertain to this animation.
+	userGoals.classList.add("make_goal_slideUp");
+	userGoals.addEventListener("animationiteration", 
+		function () {
+			//Remove the classes which pertain to the previous animation.
+			userGoals.classList.remove("make_goal_uncovered");
+			userGoals.classList.remove("make_goal_slideUp");
+		});
+	document.getElementById('make_goal').hidden = true;
+	document.getElementById('goalDescrip').value = "";
+	document.getElementById('dateStartInput').value = "";
+	document.getElementById('dateEndInput').value = "";
+	document.getElementById('amountGoalInput').value = "0";
 }
 
 //Create a new goal document and store it in the database.
@@ -232,13 +234,4 @@ function makeGoal() {
 		dismissGoal();
 	}
 
-}
-
-//Disable goal input interface. Clear form.
-function dismissGoal() {
-	document.getElementById('make_goal').hidden = true;
-	document.getElementById('goalDescrip').value = "";
-	document.getElementById('dateStartInput').value = "";
-	document.getElementById('dateEndInput').value = "";
-	document.getElementById('amountGoalInput').value = "0";
 }
