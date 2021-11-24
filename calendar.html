@@ -8,7 +8,7 @@
     <!-- Optional styles and scripts of your own -->
     <link rel="stylesheet" href="styles/calendar_styles.css">
     <link rel="stylesheet" href="styles/common_styles.css">
-    <script type="text/javascript" src="jsCalendar.js"></script>
+    <script type="text/javascript" src="scripts/jsCalendar.js"></script>
 
     <style>
         html, body {
@@ -24,21 +24,25 @@
         }
         #wrapper {
             margin: 0 auto;
-            width: 800px;
+            margin-top: 5vh;
+            width: 100%;
             box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4);
+            height: 85vh;
         }
         #wrapper .jsCalendar table {
             box-shadow: none;
+            width: 100%;
+            height: 100%;
         }
         .clear {
             clear: both;
         }
         #events-calendar {
-            float: left;
+            width: 100%;
+            height: 50vh;
         }
         #events {
-            float: left;
-            width: 435px;
+            width: 100%;
             margin: 10px 20px 10px 5px;
         }
         #events .title {
@@ -104,82 +108,18 @@
             border: 1px solid #000;
             box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
         }
-        .version {
-            font-size: 12px;
-            width: 800px;
-            margin: 0 auto;
-            text-align: right;
-        }
+
         </style>
 </head>
 
 <body>
-    <!--<div class="container">
-
-        <header>
-            <nav>
-                <p>
-                    <center> November </center>
-                </p>
-            </nav>
-        </header>
-
-        <aside>
-            <div> </div>
-        </aside>
-
-        <div class="calendar">
-            <div> Monday </div>
-            <div> Tuesday </div>
-            <div> Wednesday </div>
-            <div> Thursday </div>
-            <div> Friday </div>
-            <div> Saturday </div>
-            <div> Sunday </div>
-            <div class="day"> <span>1</span> </div>
-            <div class="day"> <span>2</span> </div>
-            <div class="day"> <span>3</span> </div>
-            <div class="day"> <span>4</span> </div>
-            <div class="day"> <span>5</span> </div>
-            <div class="day"> <span>6</span> </div>
-            <div class="day"> <span>7</span> </div>
-            <div class="day"> <span>8</span> </div>
-            <div class="day"> <span>9</span> </div>
-            <div class="day"> <span>10</span> </div>
-            <div class="day"> <span>11</span> </div>
-            <div class="day"> <span>12</span> </div>
-            <div class="day"> <span>13</span> </div>
-            <div class="day"> <span>14</span> </div>
-            <div class="day"> <span>15</span> </div>
-            <div class="day"> <span>16</span> </div>
-            <div class="day"> <span>17</span> </div>
-            <div class="day"> <span>18</span> </div>
-            <div class="day"> <span>19</span> </div>
-            <div class="day"> <span>20</span> </div>
-            <div class="day"> <span>21</span> </div>
-            <div class="day"> <span>22</span> </div>
-            <div class="day"> <span>23</span> </div>
-            <div class="day"> <span>24</span> </div>
-            <div class="day"> <span>25</span> </div>
-            <div class="day"> <span>26</span> </div>
-            <div class="day"> <span>27</span> </div>
-            <div class="day"> <span>28</span> </div>
-            <div class="day"> <span>29</span> </div>
-            <div class="day"> <span>30</span> </div>
-            <div class="day"> <span>31</span> </div>
-        </div>
-
-        <section>
-            <div> </div>
-        </section>
-    </div>-->
 
 <!-- Wrapper -->
 <div id="wrapper">
     <!-- Calendar element -->
     <div id="events-calendar"></div>
     <!-- Events -->
-    <!--<div id="events"></div>-->
+    <div id="events"></div>
     <!-- Clear -->
     <div class="clear"></div>
 </div>
@@ -193,21 +133,12 @@
                 </a>
                 <!-- <span class="label">Profile</span> -->
             </div>
-            <div class="footer-icon-container" role="group">
-                <img src="icons/leaderboard.svg#icon">
-                <!-- <span class="label">Leaderboards</span> -->
-            </div>
+            <div></div>
             <div class="footer-icon-container" role="group">
                 <a href="calendar.html">
                     <img src="icons/calendar.svg#icon">
                 </a>
                 <!-- <span class="label">Calendar</span> -->
-            </div>
-            <div class="footer-icon-container" role="group">
-                <a href="post.html">
-                    <img src="icons/share.svg#icon">
-                </a>
-                <!-- <span class="label">Feed</span> -->
             </div>
         </div>
     </footer>
