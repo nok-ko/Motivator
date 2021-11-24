@@ -211,7 +211,6 @@ function makeGoal() {
 	goalDescrip = document.getElementById('goalDescrip').value;
 	dateStart = document.getElementById('dateStartInput').value;
 	dateEnd = document.getElementById('dateEndInput').value;
-	// amount = document.getElementById('amountInput').value;
 	amountGoal = document.getElementById('amountGoalInput').value;
 
 	if (goalDescrip.length == 0 || dateStart.value == "" || dateEnd.value == "" || amountGoal.value == 0) {
@@ -222,7 +221,6 @@ function makeGoal() {
 			description: goalDescrip,
 			dateStart: dateStart,
 			dateEnd: dateEnd,
-			// amount: amount,
 			amountGoal: amountGoal
 		})
 			.then(() => {
