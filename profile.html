@@ -110,7 +110,7 @@
 
         <!--Buttons for new goals and making challenges.-->
         <section id="new_goal_button">
-            <button type="button" onclick="summonGoal()"><b>New Goal</b></button>
+            <button type="button" onclick="summonMakeGoal()"><b>New Goal</b></button>
         </section>
 
         <!-- Make goal interface -->
@@ -126,7 +126,7 @@
                 <label id="amountGoalLabel" for="amountGoalInput">Goal amount:</label>
                 <input id="amountGoalInput" type="number" value="0" required>
                 <button id="saveGoal" type="submit" class="btn btn-info" onclick="makeGoal()">Create</button>
-                <button id="cancelGoal" type="button" class="btn btn-secondary" onclick="dismissGoal()">Close</button>
+                <button id="cancelGoal" type="button" class="btn btn-secondary" onclick="dismissMakeGoal()">Close</button>
             </form>
         </section>
 

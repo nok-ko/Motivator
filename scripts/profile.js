@@ -172,7 +172,7 @@ function saveBio() {
 
 //--New Goal feature-------
 //Enable goal input interface.
-function summonGoal() {
+function summonMakeGoal() {
 	// document.getElementById('make_goal').hidden = false;
 	userGoals = document.getElementById("user_goals");
 	
@@ -187,7 +187,7 @@ function summonGoal() {
 }
 
 //Disable goal input interface. Clear form.
-function dismissGoal() {
+function dismissMakeGoal() {
 	userGoals = document.getElementById("user_goals");
 
 	//Add the classes which pertain to this animation.
@@ -221,6 +221,7 @@ function makeGoal() {
 			description: goalDescrip,
 			dateStart: dateStart,
 			dateEnd: dateEnd,
+			amount: 0,
 			amountGoal: amountGoal
 		})
 			.then(() => {
