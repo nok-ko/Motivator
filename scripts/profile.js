@@ -226,8 +226,37 @@ function saveBio() {
 
 //--New Goal feature-------
 //Enable goal input interface.
-function summonGoal() {
-	document.getElementById('make_goal').hidden = false;
+function summonMakeGoal() {
+	// document.getElementById('make_goal').hidden = false;
+	userGoals = document.getElementById("user_goals");
+	
+	//Add the classes which pertain to this animation.
+	userGoals.classList.add("make_goal_slideDown");
+	userGoals.addEventListener("animationiteration",
+		function () {
+			userGoals.classList.add("make_goal_uncovered");
+			//Remove the classes which pertain to the previous animation.
+			userGoals.classList.remove("make_goal_slideDown");
+		});
+}
+
+//Disable goal input interface. Clear form.
+function dismissMakeGoal() {
+	userGoals = document.getElementById("user_goals");
+
+	//Add the classes which pertain to this animation.
+	userGoals.classList.add("make_goal_slideUp");
+	userGoals.addEventListener("animationiteration", 
+		function () {
+			//Remove the classes which pertain to the previous animation.
+			userGoals.classList.remove("make_goal_uncovered");
+			userGoals.classList.remove("make_goal_slideUp");
+		});
+	// document.getElementById('make_goal').hidden = true;
+	document.getElementById('goalDescrip').value = "";
+	document.getElementById('dateStartInput').value = "";
+	document.getElementById('dateEndInput').value = "";
+	document.getElementById('amountGoalInput').value = "0";
 }
 
 //Create a new goal document and store it in the database.
@@ -236,35 +265,26 @@ function makeGoal() {
 	goalDescrip = document.getElementById('goalDescrip').value;
 	dateStart = document.getElementById('dateStartInput').value;
 	dateEnd = document.getElementById('dateEndInput').value;
-	amount = document.getElementById('amountInput').value;
 	amountGoal = document.getElementById('amountGoalInput').value;
 
-	//Add new goal with generated ID.
-	currentUser.collection("goals").add({
-		description: goalDescrip,
-		dateStart: dateStart,
-		dateEnd: dateEnd,
-		amount: amount,
-		amountGoal: amountGoal
-	})
-	//The Promise from CollectionReference.add(…) resolves to a DocumentReference to the added thing
-	.then((goalDoc) => {
-		console.log("Goal created.");
+	if (goalDescrip.length == 0 || dateStart.length == 0 || dateEnd.length == 0 || amountGoal.value == 0) {
+		console.log("Must have inputs in each field to make new goal");
+	} else {
+		//Add new goal with generated ID.
+		currentUser.collection("goals").add({
+			description: goalDescrip,
+			dateStart: dateStart,
+			dateEnd: dateEnd,
+			amount: 0,
+			amountGoal: amountGoal
+		})
+			.then(() => {
+				console.log("Goal created.");
+			})
+			.catch((error) => {
+				console.error("Error creating goal: ", error);
+			});
+		dismissMakeGoal();
+	}
 
-		// Now that we have a goal, add an entry to the `feed` collection
-		db.collection("feed").add({
-			type: "added",
-			user: currentUser.id,
-			goal: goalDoc.id,
-			timestamp: new Date()
-		}).catch(console.error);
-		
-	})
-	.catch(console.error);
-	dismissGoal();
-}
-
-//Disable goal input interface.
-function dismissGoal() {
-	document.getElementById('make_goal').hidden = true;
 }
