@@ -6,11 +6,12 @@
     --bs-darker-rgb: 255, 255, 255;
 
     /* TODO: these are no longer light */
-    --bs-light-rgb: 9, 9, 9
+    --bs-light-rgb: 9, 9, 9;
 
     --bs-darkest-rgb: 22, 26, 30;
     --sticky-footer-height: 4em;
 
+    --pink-accent: 254, 53, 149;
     --subdued-dark: rgb(71, 71, 71);
     --subdued-light: rgb(216, 216, 216);
 }
@@ -25,37 +26,46 @@ body {
     background-color: rgb(var(--bs-darker-rgb));
 }
 
-/*=/= Backgrounds =/=*/
+/*=/= Backgrounds + colours =/=*/
 
 /*== Footer ==*/
 footer.sticky {
-    border-top: 0.125em solid rgb(var(--bs-darkest-rgb));
     position: fixed;
     bottom:0;
     width:100%;
     height: var(--sticky-footer-height);
-    background-color: rgb(var(--bs-darkest-rgb));
+    background-image: linear-gradient(rgba(255, 255, 255, 1), rgb(var(--bs-darkest-rgb)));
+}
+footer.sticky .meta-icon-container {
+    display:grid;
+    grid-template-columns: 50% 50%;
+    column-gap: 1px;
+    height: 100%;
+    width: 100%;
+}
+#footer-profile, #footer-calendar {
+    width: 100%;
+    height: 100%;    
     display: flex;
     flex-direction: row;
     justify-content: center;
+    background-color: rgb(var(--bs-darkest-rgb));
+    border-top: 0.5em solid rgb(var(--bs-darkest-rgb));
+    transition: background-image 0.1s, border-top 0.1s;
 }
-
-.meta-icon-container {
-    display:grid;
-    grid-template-columns: 40% 20% 40%;
-    height: 100%;
+footer.sticky .meta-icon-container a img {
     justify-items: center;
     align-items: center;
-    width: 100%;
-}
-
-.footer-icon-container img {
     height: 3em;
+}
+#footer-profile:hover,
+#footer-calendar:hover {
+    background-image: linear-gradient(rgba(var(--pink-accent), 0.6), rgb(var(--bs-darkest-rgb)));
+    border-top: 0.5em solid rgb(var(--pink-accent));
 }
 /*=/= Footer =/=*/
 
-/*=/= Button Colours =/=*/
-
+/*== Button Colours ==*/
 .btn-subdued {
     background-color: var(--subdued-light);
     color: var(--subdued-dark);
