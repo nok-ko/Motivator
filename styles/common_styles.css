@@ -6,11 +6,12 @@
     --bs-darker-rgb: 255, 255, 255;
 
     /* TODO: these are no longer light */
-    --bs-light-rgb: 9, 9, 9
+    --bs-light-rgb: 9, 9, 9;
 
     --bs-darkest-rgb: 22, 26, 30;
     --sticky-footer-height: 4em;
 
+    --pink-accent: 254, 53, 149;
     --subdued-dark: rgb(71, 71, 71);
     --subdued-light: rgb(216, 216, 216);
 }
@@ -50,7 +51,7 @@ footer.sticky .meta-icon-container {
     justify-content: center;
     background-color: rgb(var(--bs-darkest-rgb));
     border-top: 0.5em solid rgb(var(--bs-darkest-rgb));
-    transition: background-image 1.15s, border-top .1s;
+    transition: background-image 0.1s, border-top 0.1s;
 }
 footer.sticky .meta-icon-container a img {
     justify-items: center;
@@ -59,8 +60,8 @@ footer.sticky .meta-icon-container a img {
 }
 #footer-profile:hover,
 #footer-calendar:hover {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgb(var(--bs-darkest-rgb)));
-    border-top: 0.5em solid red;
+    background-image: linear-gradient(rgba(var(--pink-accent), 0.6), rgb(var(--bs-darkest-rgb)));
+    border-top: 0.5em solid rgb(var(--pink-accent));
 }
 /*=/= Footer =/=*/
 
