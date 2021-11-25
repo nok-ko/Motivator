@@ -137,15 +137,17 @@
             }
 
             // Add event
-            events[id].push({
-                name: name
-            });
+            // events[id].push({
+            //     name: name
+            // });
 
-            // Refresh events
-            showEvents(current);
+            // // Refresh events
+            // showEvents(current);
         }, false);
 
         function closeText() {
             document.getElementById("event-description").value = null;
             document.getElementById("event-adder").hidden = true;
         }
+
+
