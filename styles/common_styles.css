@@ -1,4 +1,4 @@
-/*== Backgrounds ==*/
+/*== Backgrounds + Colours ==*/
 
 :root {    
     /* TODO: rename variables – these are no longer "dark" */
@@ -10,6 +10,9 @@
 
     --bs-darkest-rgb: 22, 26, 30;
     --sticky-footer-height: 4em;
+
+    --subdued-dark: rgb(71, 71, 71);
+    --subdued-light: rgb(216, 216, 216);
 }
     
 body {
@@ -18,12 +21,11 @@ body {
     height: calc(100% - var(--sticky-footer-height))
 }
 
-
-/*=/= Backgrounds =/=*/
-
 .bg-darker {
     background-color: rgb(var(--bs-darker-rgb));
 }
+
+/*=/= Backgrounds =/=*/
 
 /*== Footer ==*/
 footer.sticky {
@@ -51,3 +53,11 @@ footer.sticky {
     height: 3em;
 }
 /*=/= Footer =/=*/
+
+/*=/= Button Colours =/=*/
+
+.btn-subdued {
+    background-color: var(--subdued-light);
+    color: var(--subdued-dark);
+    border: none;
+}
