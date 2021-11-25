@@ -127,7 +127,8 @@
                 <label id="amountGoalLabel" for="amountGoalInput">Goal amount:</label>
                 <input id="amountGoalInput" type="number" value="0" required>
                 <button id="saveGoal" type="submit" class="btn btn-info" onclick="makeGoal()">Create</button>
-                <button id="cancelGoal" type="button" class="btn btn-secondary" onclick="dismissMakeGoal()">Close</button>
+                <button id="cancelGoal" type="button" class="btn btn-secondary"
+                    onclick="dismissMakeGoal()">Close</button>
             </form>
         </section>
 
@@ -138,19 +139,14 @@
     </main>
 
     <!--Footer-->
-    <footer class="sticky py-2 text-light">
+    <footer class="sticky">
         <div role="group" class="meta-icon-container">
-            <div class="footer-icon-container" role="group">
-                <a href="profile.html">
-                    <img src="icons/user.svg#icon">
-                </a>
-            </div>
-            <div> </div>
-            <div class="footer-icon-container" role="group">
-                <a href="calendar.html">
-                    <img src="icons/calendar.svg#icon">
-                </a>
-            </div>
+            <a id="footer-profile" class="footer-icon-container" role="group" href="profile.html">
+                <img src="icons/user.svg#icon">
+            </a>
+            <a id="footer-calendar" class="footer-icon-container" role="group" href="calendar.html">
+                <img src="icons/calendar.svg#icon">
+            </a>
         </div>
     </footer>
 
