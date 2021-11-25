@@ -25,47 +25,37 @@
     <main id="wrapper">
         <!--User image, name, edit info button.-->
         <section id="user_pic_block" class="bg-darker rounded">
-            <img class="img-avatar img-thumbnail" src="https://dummyimage.com/256/256" alt="Profile Picture">
+            <img class="img-avatar img-thumbnail" src="./images/dad.png" alt="Profile Picture">
             <div>
                 <fieldset id="nameField" disabled>
                     <input hidden id="nameInput" type="text" class="form-control">
                     <h1 class="text-light h3" id="nameText"></h1>
                 </fieldset>
                 <h4 id="emailText"></h4>
-                <!-- <img id="editInfo" src="icons/edit-2.svg#icon" onclick="editProfile()" class="edit-icon" alt="Edit">   -->
+                <img id="editInfo" src="icons/edit-2.svg#icon" onclick="editProfile()" class="edit-icon" alt="Edit">
                 <img hidden id="saveInfo" src="icons/edit-2.svg#icon" onclick="saveProfile()" class="edit-icon"
                     alt="Save">
-                <!-- <svg id="saveInfo" onclick="saveProfile()" class="edit-icon" aria-hidden="true" focusable="false">
-                        <use xlink:href="icons/edit-2.svg#icon"></use>
-                    </svg> -->
             </div>
-
+            <img src="icons/edit-2.svg#icon" alt="test">
         </section>
 
         <!--Bio Section.-->
-        <section id="bio" class="bg-darker rounded py-3 my-2 text-light">
+        <section id="bio" class="bg-darker rounded p-3 my-2 text-light">
             <h1 class="h3">User Bio</h1>
             <fieldset id="bioField" disabled>
                 <textarea hidden id="bioInput" class="form-control"></textarea>
                 <p id="bioText"></p>
             </fieldset>
-            <div class="d-flex justify-content-end">
-                <button type="button" id="editBio" class="btn btn-secondary" onclick="editBio()">Edit</button>
+            <div class="d-flex justify-content-end mt-3">
+                <button type="button" id="editBio" class="btn btn-secondary btn-subdued" onclick="editBio()">Edit</button>
                 <button hidden id="saveBio" type="button" class="btn btn-info" onclick="saveBio()">Save</button>
-                <span style="width: 10px"></span>
             </div>
         </section>
 
-        <!--Contact info section (turn into calendar widget section?).-->
-
-        <section id="contact_info" class="bg-darker rounded py-3 my-2 text-light">
-            <!--<h1 class="h3">Contact Info</h1>
-            <p>E-mail: tommylong@example.com</p>
-            <p>Phone: +1-604-555-0905</p> -->
-
-            <!--Small calendar for Profile-->
+        <!--Small calendar for Profile-->
+        <section class="bg-darker rounded py-3 my-2 text-light">
             <div id="calendar">
-                <table width=100%>
+                <table width="100%">
                     <tr>
                         <th>M</th>
                         <th>T</th>
@@ -118,24 +108,30 @@
                 </table>
             </div>
         </section>
+        
+
 
         <!--Buttons for new goals and making challenges.-->
-        <section id="buttons">
-            <button type="button" onclick="summonGoal()"><b>New Goal</b></button>
-            <button><b>Issue a Challenge</b></button>
+        <section id="new_goal_button">
+            <button type="button" class="btn btn-secondary" onclick="summonMakeGoal()"><b>New Goal</b></button>
         </section>
 
         <!-- Make goal interface -->
-        <section hidden id="make_goal">
-            <fieldset>
-                <textarea id="goalDescrip" required="required"></textarea>
-                <input id="dateStartInput" type="date" required="required">
-                <input id="dateEndInput" type="date" required="required">
-                <input id="amountInput" type="number" required="required" value="0">
-                <input id="amountGoalInput" type="number" required="required" value="1">
-            </fieldset>
-            <button id="saveGoal" type="submit" class="btn btn-info" onclick="makeGoal()">Create</button>
-            <button id="cancelGoal" type="button" class="btn btn-secondary" onclick="dismissGoal()">Close</button>
+        <section id="make_goal" class="shrink">
+            <form>
+                <textarea id="goalDescrip"
+                    placeholder="Add a description of your goal. For example: &quot;I will do 20 pushups.&quot;"
+                    required></textarea>
+                <label id="dateStartLabel" for="dateStartInput">Start date:</label>
+                <input id="dateStartInput" type="date" required>
+                <label id="dateEndLabel" for="dateEndInput">End date:</label>
+                <input id="dateEndInput" type="date" required>
+                <label id="amountGoalLabel" for="amountGoalInput">Goal amount:</label>
+                <input id="amountGoalInput" type="number" value="0" required>
+                <button id="saveGoal" type="submit" class="btn btn-info" onclick="makeGoal()">Create</button>
+                <button id="cancelGoal" type="button" class="btn btn-secondary"
+                    onclick="dismissMakeGoal()">Close</button>
+            </form>
         </section>
 
         <!--User goals section. Contains goal widget.-->
@@ -145,21 +141,14 @@
     </main>
 
     <!--Footer-->
-    <footer class="sticky py-2 text-light">
+    <footer class="sticky">
         <div role="group" class="meta-icon-container">
-            <div class="footer-icon-container" role="group">
-                <a href="profile.html">
-                    <img src="icons/user.svg#icon">
-                </a>
-                <!-- <span class="label">Profile</span> -->
-            </div>
-            <div></div>
-            <div class="footer-icon-container" role="group">
-                <a href="calendar.html">
-                    <img src="icons/calendar.svg#icon">
-                </a>
-                <!-- <span class="label">Calendar</span> -->
-            </div>
+            <a id="footer-profile" class="footer-icon-container" role="group" href="profile.html">
+                <img src="icons/user.svg#icon">
+            </a>
+            <a id="footer-calendar" class="footer-icon-container" role="group" href="calendar.html">
+                <img src="icons/calendar.svg#icon">
+            </a>
         </div>
     </footer>
 
