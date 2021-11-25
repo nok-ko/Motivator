@@ -60,10 +60,6 @@
     text-align: center;
 }
 
-#bio p {
-    font-size: 0.9rem;
-}
-
 #calendar {
     width: 100%;
     grid-area: calendar;
@@ -106,12 +102,18 @@ section#buttons {
     gap: 6rem;
 }
 #buttons > button {
-    background-color: rgba(0, 0, 255, 0.1);
-    border: 1px solid white;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    font-size: 1rem;
+		/* background-color: rgba(0, 0, 255, 0.1); */
+		/* border: 1px solid white; */
+		/* border: 1px solid rbg(var(--bs-darker-rgb); */
+		/* border: 1px solid rg(var(--bs-darker-rgb); */
+		/* border: 1px solid rgb(var(--bs-darker-rgb); */
+		/* border: 1px solid r(var(--bs-darker-rgb); */
+		/* border: 1px solid (var(--bs-darker-rgb); */
+		/* color: white; */
+		/* color: rgb\); */
+		/* font-size: 1rem; */
+		font-size: 1.5rem;
+		border-radius: 0.325rem;
 }
 #buttons > button:hover {
     background-color: rgba(0, 0, 255, 0.7);
@@ -212,8 +214,9 @@ section#buttons {
 
 /*== Goal widget ==*/
 .goal {
-    border: 1px solid white;
-    border-radius: 2rem;
+    /* border: 1px solid white; */
+    border-radius: 0.5rem;
+
     padding: 1rem;
     max-height: 100%;
     max-width: 100%;
@@ -238,17 +241,32 @@ section#buttons {
 .progressbar-fill {
     animation: load-progressbar 1.5s ease;
 }
+
 .progress-anim-finished {
     transform: scaleX(var(--progressbar-finish-percent));
 }
+
 .goal-smallinfo {
     display: flex;
     width: 90%;
     justify-content: space-between;
     flex-direction: row;
 }
+
 .goal-deadline {
     align-self: flex-end;
+}
+
+/* Put the New Goal button in the centre */
+section#new_goal_button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/* Make the button quite large and inviting. */
+section#new_goal_button > button {
+    min-width: 16rem;
 }
 
 /* Round the corners of elements with rounded class */

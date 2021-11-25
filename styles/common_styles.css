@@ -1,25 +1,33 @@
-/*== Backgrounds ==*/
+/*== Backgrounds + Colours ==*/
 
-:root {
-    --bs-dark-rgb: 40, 40, 45;
-    --bs-darker-rgb: 35, 35, 40;
+:root {    
+    /* TODO: rename variables – these are no longer "dark" */
+    --bs-dark-rgb: 220, 220, 220;
+    --bs-darker-rgb: 255, 255, 255;
+
+    /* TODO: these are no longer light */
+    --bs-light-rgb: 9, 9, 9
+
     --bs-darkest-rgb: 22, 26, 30;
     --sticky-footer-height: 4em;
+
+    --subdued-dark: rgb(71, 71, 71);
+    --subdued-light: rgb(216, 216, 216);
 }
+    
 body {
     background-color: rgb(var(--bs-dark-rgb));
-    color: white;
+    /* color: white; */
     height: calc(100% - var(--sticky-footer-height))
 }
+
 .bg-darker {
     background-color: rgb(var(--bs-darker-rgb));
 }
 
 /*=/= Backgrounds =/=*/
 
-
 /*== Footer ==*/
-
 footer.sticky {
     border-top: 0.125em solid rgb(var(--bs-darkest-rgb));
     position: fixed;
@@ -31,6 +39,7 @@ footer.sticky {
     flex-direction: row;
     justify-content: center;
 }
+
 .meta-icon-container {
     display:grid;
     grid-template-columns: 40% 20% 40%;
@@ -39,8 +48,16 @@ footer.sticky {
     align-items: center;
     width: 100%;
 }
+
 .footer-icon-container img {
     height: 3em;
 }
-
 /*=/= Footer =/=*/
+
+/*=/= Button Colours =/=*/
+
+.btn-subdued {
+    background-color: var(--subdued-light);
+    color: var(--subdued-dark);
+    border: none;
+}
