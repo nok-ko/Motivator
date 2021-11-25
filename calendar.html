@@ -8,77 +8,32 @@
     <!-- Optional styles and scripts of your own -->
     <link rel="stylesheet" href="styles/calendar_styles.css">
     <link rel="stylesheet" href="styles/common_styles.css">
+    <script type="text/javascript" src="scripts/jsCalendar.js"></script>
 </head>
 
 <body>
-    <div class="container">
 
-        <header>
-            <nav>
-                <p>
-                    November
-                </p>
-            </nav>
-        </header>
-
-        <div id="calendar">
-            <table>
-                <tr>
-                    <th>Monday</th>
-                    <th>Tuesday</th>
-                    <th>Wednesday</th>
-                    <th>Thursday</th>
-                    <th>Friday</th>
-                    <th>Saturday</th>
-                    <th>Sunday</th>
-                </tr>
-                <tr>
-                    <td><span><a href="post.html">1</a></span></td>
-                    <td><span><a href="post.html">2</a></span></td>
-                    <td><span><a href="post.html">3</a></span></td>
-                    <td><span><a href="post.html">4</a></span></td>
-                    <td><span><a href="post.html">5</a></span></td>
-                    <td><span><a href="post.html">6</a></span></td>
-                    <td><span><a href="post.html">7</a></span></td>
-                </tr>
-                <tr>
-                    <td><span><a href="post.html">8</a></span></td>
-                    <td><span><a href="post.html">9</a></span></td>
-                    <td><span><a href="post.html">10</a></span></td>
-                    <td><span><a href="post.html">11</a></span></td>
-                    <td><span><a href="post.html">12</a></span></td>
-                    <td><span><a href="post.html">13</a></span></td>
-                    <td><span><a href="post.html">14</a></span></td>
-                </tr>
-                <tr>
-                    <td><span><a href="post.html">15</a></span></td>
-                    <td><span><a href="post.html">16</a></span></td>
-                    <td><span><a href="post.html">17</a></span></td>
-                    <td><span><a href="post.html">18</a></span></td>
-                    <td><span><a href="post.html">19</a></span></td>
-                    <td><span><a href="post.html">20</a></span></td>
-                    <td><span><a href="post.html">21</a></span></td>
-                </tr>
-                <tr>
-                    <td><span><a href="post.html">22</a></span></td>
-                    <td><span><a href="post.html">23</a></span></td>
-                    <td><span><a href="post.html">24</a></span></td>
-                    <td><span><a href="post.html">25</a></span></td>
-                    <td><span><a href="post.html">26</a></span></td>
-                    <td><span><a href="post.html">27</a></span></td>
-                    <td><span><a href="post.html">28</a></span></td>
-                </tr>
-                <tr>
-                    <td><span><a href="post.html">29</a></span></td>
-                    <td><span><a href="post.html">30</a></span></td>
-                </tr>
-            </table>
+    <!-- Wrapper -->
+    <div id="wrapper">
+        <!-- Calendar element -->
+        <div id="events-calendar"></div>
+        <!-- Events -->
+        <div id="events">
+            <!--<div></div>-->
         </div>
-
-        <section>
-            <div> </div>
-        </section>
+        <div>
+            <section hidden id="event-adder">
+                <fieldset>
+                    <textarea id="event-description" required = "required"></textarea>
+                    <br>
+                    <button id="close" type="button" onclick="closeText()">Close</button>
+                </fieldset>            
+            </section>
+        </div>
+        <!-- Clear -->
+        <div class="clear"></div>
     </div>
+    <div class="clear"></div>
 
     <!--Footer-->
     <footer class="sticky">
@@ -91,6 +46,8 @@
             </a>
         </div>
     </footer>
+
+     <script src="scripts/event.js"></script>
 </body>
 
 </html>
