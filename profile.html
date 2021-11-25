@@ -25,7 +25,7 @@
     <main id="wrapper">
         <!--User image, name, edit info button.-->
         <section id="user_pic_block" class="bg-darker rounded">
-            <img class="img-avatar img-thumbnail" src="https://dummyimage.com/256/256" alt="Profile Picture">
+            <img class="img-avatar img-thumbnail" src="./images/dad.png" alt="Profile Picture">
             <div>
                 <fieldset id="nameField" disabled>
                     <input hidden id="nameInput" type="text" class="form-control">
@@ -40,82 +40,84 @@
         </section>
 
         <!--Bio Section.-->
-        <section id="bio" class="bg-darker rounded py-3 my-2 text-light">
+        <section id="bio" class="bg-darker rounded p-3 my-2 text-light">
             <h1 class="h3">User Bio</h1>
             <fieldset id="bioField" disabled>
                 <textarea hidden id="bioInput" class="form-control"></textarea>
                 <p id="bioText"></p>
             </fieldset>
-            <div class="d-flex justify-content-end">
-                <button type="button" id="editBio" class="btn btn-secondary" onclick="editBio()">Edit</button>
+            <div class="d-flex justify-content-end mt-3">
+                <button type="button" id="editBio" class="btn btn-secondary btn-subdued" onclick="editBio()">Edit</button>
                 <button hidden id="saveBio" type="button" class="btn btn-info" onclick="saveBio()">Save</button>
-                <span style="width: 10px"></span>
             </div>
         </section>
 
         <!--Small calendar for Profile-->
-        <div id="calendar">
-            <table width="100%">
-                <tr>
-                    <th>M</th>
-                    <th>T</th>
-                    <th>W</th>
-                    <th>T</th>
-                    <th>F</th>
-                    <th>S</th>
-                    <th>S</th>
-                </tr>
-                <tr>
-                    <td><span>1</span></td>
-                    <td><span>2</span></td>
-                    <td><span>3</span></td>
-                    <td><span>4</span></td>
-                    <td><span>5</span></td>
-                    <td><span>6</span></td>
-                    <td><span>7</span></td>
-                </tr>
-                <tr>
-                    <td><span>8</span></td>
-                    <td><span>9</span></td>
-                    <td><span>10</span></td>
-                    <td><span>11</span></td>
-                    <td><span>12</span></td>
-                    <td><span>13</span></td>
-                    <td><span>14</span></td>
-                </tr>
-                <tr>
-                    <td><span>15</span></td>
-                    <td><span>16</span></td>
-                    <td><span>17</span></td>
-                    <td><span>18</span></td>
-                    <td><span>19</span></td>
-                    <td><span>20</span></td>
-                    <td><span>21</span></td>
-                </tr>
-                <tr>
-                    <td><span>22</span></td>
-                    <td><span>23</span></td>
-                    <td><span>24</span></td>
-                    <td><span>25</span></td>
-                    <td><span>26</span></td>
-                    <td><span>27</span></td>
-                    <td><span>28</span></td>
-                </tr>
-                <tr>
-                    <td><span>29</span></td>
-                    <td><span>30</span></td>
-                </tr>
-            </table>
-        </div>
+        <section class="bg-darker rounded py-3 my-2 text-light">
+            <div id="calendar">
+                <table width="100%">
+                    <tr>
+                        <th>M</th>
+                        <th>T</th>
+                        <th>W</th>
+                        <th>T</th>
+                        <th>F</th>
+                        <th>S</th>
+                        <th>S</th>
+                    </tr>
+                    <tr>
+                        <td><span>1</span></td>
+                        <td><span>2</span></td>
+                        <td><span>3</span></td>
+                        <td><span>4</span></td>
+                        <td><span>5</span></td>
+                        <td><span>6</span></td>
+                        <td><span>7</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>8</span></td>
+                        <td><span>9</span></td>
+                        <td><span>10</span></td>
+                        <td><span>11</span></td>
+                        <td><span>12</span></td>
+                        <td><span>13</span></td>
+                        <td><span>14</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>15</span></td>
+                        <td><span>16</span></td>
+                        <td><span>17</span></td>
+                        <td><span>18</span></td>
+                        <td><span>19</span></td>
+                        <td><span>20</span></td>
+                        <td><span>21</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>22</span></td>
+                        <td><span>23</span></td>
+                        <td><span>24</span></td>
+                        <td><span>25</span></td>
+                        <td><span>26</span></td>
+                        <td><span>27</span></td>
+                        <td><span>28</span></td>
+                    </tr>
+                    <tr>
+                        <td><span>29</span></td>
+                        <td><span>30</span></td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+        
 
 
         <!--Buttons for new goals and making challenges.-->
         <section id="new_goal_button">
-            <button type="button" onclick="summonMakeGoal()"><b>New Goal</b></button>
+            <button type="button" class="btn btn-secondary" onclick="summonMakeGoal()"><b>New Goal</b></button>
         </section>
 
         <!-- Make goal interface -->
-        <section id="make_goal">
+        <section id="make_goal" class="shrink">
             <form>
                 <textarea id="goalDescrip"
                     placeholder="Add a description of your goal. For example: &quot;I will do 20 pushups.&quot;"
