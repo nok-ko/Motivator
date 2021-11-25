@@ -13,7 +13,7 @@ function listGoals() {
 	// TODO: Show/hide “loading” message while we pull in data
 	// TODO: live-update goals
 
-	db.collection('users').doc(userID).collection('goals').get().then(
+	db.collection('users').doc(userID).collection('goals').onSnapshot(
 		(goals) => {
 			goals.forEach((goal) => {
 				const goalEl = document.createElement("div")
@@ -105,7 +105,7 @@ function populateInfo() {
 			// Start updating feed
 
 			startFeedUpdates(user.uid);
-			
+		 
 			//List the goals of the currently signed-in user.
 			listGoals();
 
@@ -190,8 +190,37 @@ function saveBio() {
 
 //--New Goal feature-------
 //Enable goal input interface.
-function summonGoal() {
-	document.getElementById('make_goal').hidden = false;
+function summonMakeGoal() {
+	// document.getElementById('make_goal').hidden = false;
+	userGoals = document.getElementById("user_goals");
+	
+	//Add the classes which pertain to this animation.
+	userGoals.classList.add("make_goal_slideDown");
+	userGoals.addEventListener("animationiteration",
+		function () {
+			userGoals.classList.add("make_goal_uncovered");
+			//Remove the classes which pertain to the previous animation.
+			userGoals.classList.remove("make_goal_slideDown");
+		});
+}
+
+//Disable goal input interface. Clear form.
+function dismissMakeGoal() {
+	userGoals = document.getElementById("user_goals");
+
+	//Add the classes which pertain to this animation.
+	userGoals.classList.add("make_goal_slideUp");
+	userGoals.addEventListener("animationiteration", 
+		function () {
+			//Remove the classes which pertain to the previous animation.
+			userGoals.classList.remove("make_goal_uncovered");
+			userGoals.classList.remove("make_goal_slideUp");
+		});
+	// document.getElementById('make_goal').hidden = true;
+	document.getElementById('goalDescrip').value = "";
+	document.getElementById('dateStartInput').value = "";
+	document.getElementById('dateEndInput').value = "";
+	document.getElementById('amountGoalInput').value = "0";
 }
 
 //Create a new goal document and store it in the database.
@@ -200,27 +229,26 @@ function makeGoal() {
 	goalDescrip = document.getElementById('goalDescrip').value;
 	dateStart = document.getElementById('dateStartInput').value;
 	dateEnd = document.getElementById('dateEndInput').value;
-	amount = document.getElementById('amountInput').value;
 	amountGoal = document.getElementById('amountGoalInput').value;
 
-	//Add new goal with generated ID.
-	currentUser.collection("goals").add({
-		description: goalDescrip,
-		dateStart: dateStart,
-		dateEnd: dateEnd,
-		amount: amount,
-		amountGoal: amountGoal
-	})
-	.then(() => {
-		console.log("Goal created.");
-	})
-	.catch((error) => {
-		console.error("Error writing document: ", error);
-	});
-	dismissGoal();
-}
+	if (goalDescrip.length == 0 || dateStart.length == 0 || dateEnd.length == 0 || amountGoal.value == 0) {
+		console.log("Must have inputs in each field to make new goal");
+	} else {
+		//Add new goal with generated ID.
+		currentUser.collection("goals").add({
+			description: goalDescrip,
+			dateStart: dateStart,
+			dateEnd: dateEnd,
+			amount: 0,
+			amountGoal: amountGoal
+		})
+			.then(() => {
+				console.log("Goal created.");
+			})
+			.catch((error) => {
+				console.error("Error creating goal: ", error);
+			});
+		dismissMakeGoal();
+	}
 
-//Disable goal input interface.
-function dismissGoal() {
-	document.getElementById('make_goal').hidden = true;
 }

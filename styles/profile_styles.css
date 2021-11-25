@@ -60,90 +60,39 @@
     text-align: center;
 }
 
-#bio p {
-    font-size: 0.9rem;
-}
-
-
-#contact_info {
-    height: fit-content;
-    grid-column: 1 / span 8;
-    /* grid-row: 1 / 4; */
-
-    text-align: center;
-}
-#contact_info h1 {
-    font-size: 1.3rem;
-}
-#contact_info p { 
-    font-size: 0.8rem;
-}
-
-.day:not(:hover)::before {
-    content: ".";
-    font-size: 10pt;
-}
-
-.day span {
-    display: none;
-}
-
-.day:hover span {
-    display: inline;
-} */
-
 #calendar {
     width: 100%;
     grid-area: calendar;
 }
-
+.day:not(:hover)::before {
+    content: ".";
+    font-size: 10pt;
+}
+.day span {
+    display: none;
+}
+.day:hover span {
+    display: inline;
+}
 table {
     text-align: center;
     table-layout: fixed;
-
 }
-
 tr {
     height: auto;
 }
-
 tr > {
     font-size: 10px;
 }
-
-
-
-/*tr {
-    height: 60px;
-} 
-
-th {
-    width: 14vw;
-}
-
-td {
-    height: 100px;
-    width: 14vw;
-} */
-
 td:not(:hover)::before {
     content: ".";
     font-size: 15px;
 }
-
 td span {
     display: none;
 }
-
 td:hover span {
     display: inline;
-}
-
-
-#user_stats {
-    /* grid-column: 4 / 9; */
-    /* grid-row: 4 / 6; */
-    font-size: 0.8rem;
 }
 
 section#buttons {    
@@ -152,44 +101,90 @@ section#buttons {
     margin: 1rem;
     gap: 6rem;
 }
-
 #buttons > button {
-    background-color: rgba(0, 0, 255, 0.1);
-    border: 1px solid white;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    font-size: 1rem;
+		/* background-color: rgba(0, 0, 255, 0.1); */
+		/* border: 1px solid white; */
+		/* border: 1px solid rbg(var(--bs-darker-rgb); */
+		/* border: 1px solid rg(var(--bs-darker-rgb); */
+		/* border: 1px solid rgb(var(--bs-darker-rgb); */
+		/* border: 1px solid r(var(--bs-darker-rgb); */
+		/* border: 1px solid (var(--bs-darker-rgb); */
+		/* color: white; */
+		/* color: rgb\); */
+		/* font-size: 1rem; */
+		font-size: 1.5rem;
+		border-radius: 0.325rem;
 }
 #buttons > button:hover {
     background-color: rgba(0, 0, 255, 0.7);
     border: 2px solid white;
 }
-/* #make_goal {
-    TODO: styles for make goal form.
-    Make anim for appear: page below slide down, new goal form unveiled.   
-}*/
-#challenge_button {
-    /* grid-column: 5 / 8; */
-    /* grid-row: 6 / 7; */
-    margin: 1vw auto;
-}
-#challenge_button button {
-    background-color: rgba(0, 0, 255, 0.1);
-    border: 1px solid white;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    font-size: 1rem;
-}
-#challenge_button button:hover {
-    background-color: rgba(0, 0, 255, 0.7);
+
+#make_goal {
+    margin-left: 30%;
+    margin-right: 30%;
+    padding: 5px;
     border: 2px solid white;
+    background-color: rgba(0, 0, 255, 0.7);
+     overflow: hidden;
+}
+#make_goal form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    column-gap: 2%;
+} 
+#make_goal form input,
+#make_goal form textarea {
+    border-radius: 5px;
+}
+#make_goal form #goalDescrip {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 5;
+}
+#make_goal form #dateStartInput {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+    margin-left: 5em;
+}
+#make_goal form #dateStartLabel {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+}
+#make_goal form #dateEndInput {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    margin-left: 5em;
+}
+#make_goal form #dateEndLabel {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+}
+#make_goal form #amountGoalInput {
+    grid-column: 2 / span 1;
+    grid-row: 5 / span 1;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+#make_goal form #amountGoalLabel {
+    grid-column: 2 / span 1;
+    grid-row: 4 / span 1;
+    text-align: center;
+}
+#make_goal form #saveGoal {
+    grid-column: 1 / span 1;
+    grid-row: 6 / span 1;
+    width: 5em;
+    justify-self: left;
+} 
+#make_goal form #cancelGoal {
+    grid-column: 2 / span 1;
+    grid-row: 6 / span 1;
+    width: 5em;
+    justify-self: right;
 }
 
 #user_goals {
-    /* grid-column: 1 / span 8; */
-    /* grid-row: 7 / span 7; */
     padding: 1rem;
     font-size: 0.7rem;
     display: flex;
@@ -198,16 +193,30 @@ section#buttons {
     flex-direction: column;
 
     grid-template: 3rem 1fr 1fr / 1fr;
+    transform: translateY(-250px);
 }
-
 #user_goals h2 {
     grid-column: 1 / span 2;
+}
+.make_goal_slideUp {
+    animation: slide 2s infinite reverse;
+}
+.make_goal_slideDown {
+    animation: slide 2s infinite; 
+}
+.make_goal_uncovered {
+    transform: translateY(0) !important;
+}
+@keyframes slide{
+    0% {transform: translateY(-250px);}
+    100%{transform: translateY(0);}
 }
 
 /*== Goal widget ==*/
 .goal {
-    border: 1px solid white;
-    border-radius: 2rem;
+    /* border: 1px solid white; */
+    border-radius: 0.5rem;
+
     padding: 1rem;
     max-height: 100%;
     max-width: 100%;
@@ -232,17 +241,32 @@ section#buttons {
 .progressbar-fill {
     animation: load-progressbar 1.5s ease;
 }
+
 .progress-anim-finished {
     transform: scaleX(var(--progressbar-finish-percent));
 }
+
 .goal-smallinfo {
     display: flex;
     width: 90%;
     justify-content: space-between;
     flex-direction: row;
 }
+
 .goal-deadline {
     align-self: flex-end;
+}
+
+/* Put the New Goal button in the centre */
+section#new_goal_button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/* Make the button quite large and inviting. */
+section#new_goal_button > button {
+    min-width: 16rem;
 }
 
 /* Round the corners of elements with rounded class */
