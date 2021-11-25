@@ -81,8 +81,8 @@ function updateFeed(entryCollection) {
 	// Bucket entries day-by-day
 	const daysSeen = new Set();
 	for (const entry of entries) {
-		const day = entry.date.toDate();
-		// Never before seen dat
+		const day = entry.date.toDateString();
+		// Never before seen date, so make a heading for it.
 		if (!daysSeen.has(day)) {
 			daysSeen.add(day);
 			const dateHeading = document.createElement("li");
@@ -91,9 +91,17 @@ function updateFeed(entryCollection) {
 		}
 		console.log("feed entry at ", entry.date, entry);
 		const entryEl = document.createElement("li");
-		
-
 		entryFrag.appendChild(entryEl);
+
+		db.collection("users")
+			.doc(entry.user)
+			.collection("goals")
+			.doc(entry.goal)
+			.get().then(doc => {
+				const goal = doc.data();
+				// TODO: support entries other than “added”
+				entryEl.innerHTML = `<p>Added goal “${goal.description}”</p>`;
+			});
 	}
 	entryList.appendChild(entryFrag);
 }
