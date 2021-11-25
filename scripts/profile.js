@@ -81,7 +81,8 @@ function updateFeed(entryCollection) {
 	// Bucket entries day-by-day
 	const daysSeen = new Set();
 	for (const entry of entries) {
-		const day = entry.date.getDate();
+		const day = entry.date.toDate();
+		// Never before seen dat
 		if (!daysSeen.has(day)) {
 			daysSeen.add(day);
 			const dateHeading = document.createElement("li");
