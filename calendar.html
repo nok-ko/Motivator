@@ -5,6 +5,13 @@
     <meta charset="utf-8">
     <title> Calendar </title>
 
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.0/firebase-ui-auth.css" />
+    <script src="scripts/firebase_API.js"></script>
+
     <!-- Optional styles and scripts of your own -->
     <link rel="stylesheet" href="styles/calendar_styles.css">
     <link rel="stylesheet" href="styles/common_styles.css">
@@ -26,7 +33,7 @@
                 <fieldset>
                     <textarea id="event-description" required = "required"></textarea>
                     <br>
-                    <button id="close" type="button" onclick="closeText()">Close</button>
+                    <button id="close" type="button" onclick="addEvent()">Save</button>
                 </fieldset>            
             </section>
         </div>
@@ -36,14 +43,21 @@
     <div class="clear"></div>
 
     <!--Footer-->
-    <footer class="sticky">
+    <footer class="sticky py-2 text-light">
         <div role="group" class="meta-icon-container">
-            <a id="footer-profile" class="footer-icon-container" role="group" href="profile.html">
-                <img src="icons/user.svg#icon">
-            </a>
-            <a id="footer-calendar" class="footer-icon-container" role="group" href="calendar.html">
-                <img src="icons/calendar.svg#icon">
-            </a>
+            <div class="footer-icon-container" role="group">
+                <a href="profile.html">
+                    <img src="icons/user.svg#icon">
+                </a>
+                <!-- <span class="label">Profile</span> -->
+            </div>
+            <div></div>
+            <div class="footer-icon-container" role="group">
+                <a href="calendar.html">
+                    <img src="icons/calendar.svg#icon">
+                </a>
+                <!-- <span class="label">Calendar</span> -->
+            </div>
         </div>
     </footer>
 
