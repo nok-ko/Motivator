@@ -8,15 +8,20 @@ const db = firebase.firestore(app);
 // TODO: documentation pass
 function listGoals() {
 	const userID = firebase.auth().currentUser.uid; // assume current user is logged in
-	const goalsContainer = document.getElementById("user_goals")
+	const goalContainer = document.getElementById("goal_container");
 
 	// TODO: Show/hide “loading” message while we pull in data
-	// TODO: live-update goals
-
 	db.collection('users').doc(userID).collection('goals').onSnapshot(
 		(goals) => {
+			// Clear existing goals on each update:
+			goalContainer.innerHTML = "";
+
+			// Append to a fragment
+			goalFragment = document.createDocumentFragment();
+
+			// Populate the section with goals
 			goals.forEach((goal) => {
-				const goalEl = document.createElement("div")
+				const goalEl = document.createElement("div");
 				const amountGoal = goal.data().amountGoal;
 				const amount = goal.data().amount;
 				goalEl.classList.add("goal");
@@ -44,30 +49,67 @@ function listGoals() {
 				// Clean up animations once they finish
 				goalEl.querySelector(".progressbar-fill").addEventListener("animationend",
 					function () {
-						this.classList.add("progress-anim-finished")
+						this.classList.add("progress-anim-finished");
 					}, false);
-				// TODO: use a DocumentFragment when appending?
-				goalsContainer.appendChild(goalEl);
-			})
+				goalFragment.appendChild(goalEl);
+			});
+			goalContainer.appendChild(goalFragment);
 		}
 	);
 }
 
 // Feed feature:
-// Subscribe to feed updates from the database
-function startFeedUpdates(userID) {
-	db.collection("feeds").doc(userID).collection("entries").onSnapshot(entries => {
-		if (entries.empty) {
-			// 
+// Update feed with latest entries
+function updateFeed(entryCollection) {
+	// Define references to DOM elements
+	const entryList = document.getElementById("feed_entries");
+
+	// Exit early if nothing is in the feed.
+	if (entryCollection.empty) {
+		return;
+	}
+
+	// Sort clientside to avoid composite indexes in Firestore
+	const entries = entryCollection.docs
+		// Dereference each entry and add a `date` field with a JS Date object based off the timestamp
+		.map(doc => Object.assign({date: new Date(doc.data().timestamp.seconds * 1000)}, doc.data()))
+		// Sort in reverse chronological order
+		.sort((a,b) => -(a.timestamp - b.timestamp));
+
+	// Iterate and add to the document:
+	const entryFrag = document.createDocumentFragment();
+	// Bucket entries day-by-day
+	const daysSeen = new Set();
+	for (const entry of entries) {
+		const day = entry.date.toDateString();
+		// Never before seen date, so make a heading for it.
+		if (!daysSeen.has(day)) {
+			daysSeen.add(day);
+			const dateHeading = document.createElement("li");
+			dateHeading.innerHTML = `<h3>${entry.date.toLocaleDateString()}</h3>`;
+			entryFrag.appendChild(dateHeading);
 		}
-		entries.forEach(entry => {
-			console.log("feed entry ", entry.data());
-		});
-	});
+		console.log("feed entry at ", entry.date, entry);
+		const entryEl = document.createElement("li");
+		entryFrag.appendChild(entryEl);
+
+		db.collection("users")
+			.doc(entry.user)
+			.collection("goals")
+			.doc(entry.goal)
+			.get().then(doc => {
+				const goal = doc.data();
+				// TODO: support entries other than “added”
+				entryEl.innerHTML = `<p>Added goal “${goal.description}”</p>`;
+			});
+	}
+	entryList.appendChild(entryFrag);
 }
 
-// The variable which stores the UID to be used as a reference in multiple methods
-var currentUser;
+// The reference to the user's document
+let currentUser;
+// Access the user ID with currentUser.id
+// (see https://firebase.google.com/docs/reference/js/v8/firebase.firestore.DocumentReference for all methods)
 
 //Fill the profile with the data in fireDB.
 function populateInfo() {
@@ -81,9 +123,9 @@ function populateInfo() {
 			//get the document for current user.
 			currentUser.onSnapshot(userDoc => {
 				//get the data fields of the user
-				var userName = userDoc.data().name;
-				var userEmail = userDoc.data().email;
-				var userBio = userDoc.data().bio;
+				let userName = userDoc.data().name;
+				let userEmail = userDoc.data().email;
+				let userBio = userDoc.data().bio;
 
 				//if the data fields are not empty, then write them in to the form.
 				if (userName != null) {
@@ -103,9 +145,11 @@ function populateInfo() {
 
 			//Feed feature: 
 			// Start updating feed
-
-			startFeedUpdates(user.uid);
-		 
+			db.collection("feed")
+				.where("user", "==", user.uid)
+				// .orderBy("timestamp") // needs composite index, cannot test right now
+				.onSnapshot(updateFeed);
+			
 			//List the goals of the currently signed-in user.
 			listGoals();
 
@@ -116,6 +160,7 @@ function populateInfo() {
 
 	});
 }
+
 populateInfo();
 
 //--Username field editing-----------
@@ -139,8 +184,8 @@ function saveProfile() {
 	currentUser.update({
 		name: userName,
 	}).then(() => {
-		console.log("Name updated successfully.")
-	})
+		console.log("Name updated successfully.");
+	});
 
 	//Disable the form fields. Makes the input box invisible and
 	//	turn the name text on.
@@ -173,10 +218,9 @@ function saveBio() {
 	//Update the Firebase.
 	currentUser.update({
 		bio: userBio
-	})
-		.then(() => {
-			console.log("Bio successfully updated.");
-		})
+	}).then(() => {
+		console.log("Bio successfully updated.");
+	});
 
 	//Disable editing of the form fields. Makes the form invisible and
 	//	turns the paragraph text on.
