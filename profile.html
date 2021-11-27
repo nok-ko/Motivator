@@ -25,18 +25,21 @@
     <main id="wrapper">
         <!--User image, name, edit info button.-->
         <section id="user_pic_block" class="bg-darker rounded">
-            <img class="img-avatar img-thumbnail" src="./images/dad.png" alt="Profile Picture">
-            <div>
-                <fieldset id="nameField" disabled>
-                    <input hidden id="nameInput" type="text" class="form-control">
-                    <h1 class="text-light h3" id="nameText"></h1>
-                </fieldset>
-                <h4 id="emailText"></h4>
-                <img id="editInfo" src="icons/edit-2.svg#icon" onclick="editProfile()" class="edit-icon" alt="Edit">
-                <img hidden id="saveInfo" src="icons/edit-2.svg#icon" onclick="saveProfile()" class="edit-icon"
-                    alt="Save">
+            <div id="pic-and-name">
+                <img class="img-avatar img-thumbnail" src="./images/dad.png" alt="Profile Picture">
+                <div>
+                    <fieldset id="nameField" disabled>
+                        <input hidden id="nameInput" type="text" class="form-control">
+                        <h1 class="text-light h3" id="nameText"></h1>
+                    </fieldset>
+                    <h4 id="emailText"></h4>
+                </div>
             </div>
-            <img src="icons/edit-2.svg#icon" alt="test">
+            <div id="prof-button">
+                <button type="button" id="editProfile" class="btn btn-secondary btn-subdued"
+                    onclick="editProfile()">Edit</button>
+                <button hidden type="button" id="saveProfile" class="btn btn-info" onclick="saveProfile()">Save</button>
+            </div>
         </section>
 
         <!--Bio Section.-->
@@ -47,13 +50,14 @@
                 <p id="bioText"></p>
             </fieldset>
             <div class="d-flex justify-content-end mt-3">
-                <button type="button" id="editBio" class="btn btn-secondary btn-subdued" onclick="editBio()">Edit</button>
+                <button type="button" id="editBio" class="btn btn-secondary btn-subdued"
+                    onclick="editBio()">Edit</button>
                 <button hidden id="saveBio" type="button" class="btn btn-info" onclick="saveBio()">Save</button>
             </div>
         </section>
 
         <!--Small calendar for Profile-->
-        <section class="bg-darker rounded py-3 my-2 text-light">
+        <section id="calendar-sec" class="bg-darker rounded py-3 my-2 text-light">
             <div id="calendar">
                 <table width="100%">
                     <tr>
@@ -108,7 +112,7 @@
                 </table>
             </div>
         </section>
-        
+
 
 
         <!--Buttons for new goals and making challenges.-->

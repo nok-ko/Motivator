@@ -173,8 +173,8 @@ function editProfile() {
 	document.getElementById('nameText').hidden = true;
 	//Disappear the edit version of the button and appear the save version of the button.
 	//Not currently working.
-	document.getElementById('editInfo').hidden = true;
-	document.getElementById('saveInfo').hidden = false;
+	document.getElementById('editProfile').hidden = true;
+	document.getElementById('saveProfile').hidden = false;
 }
 
 //Save current form input into firebase. Disable editing of name form.
@@ -194,8 +194,8 @@ function saveProfile() {
 	document.getElementById('nameText').hidden = false;
 	//Disappear the save version of the button and appear the edit version of the button.
 	//Not currently working.
-	document.getElementById('editInfo').hidden = false;
-	document.getElementById('saveInfo').hidden = true;
+	document.getElementById('editProfile').hidden = false;
+	document.getElementById('saveProfile').hidden = true;
 }
 
 //--Bio field editing----------
@@ -237,28 +237,37 @@ function saveBio() {
 function summonMakeGoal() {
 	// document.getElementById('make_goal').hidden = false;
 	userGoals = document.getElementById("user_goals");
+	userFeed = document.getElementById("feed");
 	
 	//Add the classes which pertain to this animation.
 	userGoals.classList.add("make_goal_slideDown");
+	userFeed.classList.add("make_goal_slideDown");
 	userGoals.addEventListener("animationiteration",
 		function () {
 			userGoals.classList.add("make_goal_uncovered");
+			userFeed.classList.add("make_goal_uncovered");
 			//Remove the classes which pertain to the previous animation.
 			userGoals.classList.remove("make_goal_slideDown");
+			userFeed.classList.remove("make_goal_slideDown");
 		});
 }
 
 //Disable goal input interface. Clear form.
 function dismissMakeGoal() {
 	userGoals = document.getElementById("user_goals");
+	userFeed = document.getElementById("feed");
 
 	//Add the classes which pertain to this animation.
 	userGoals.classList.add("make_goal_slideUp");
+	userFeed.classList.add("make_goal_slideUp");
+
 	userGoals.addEventListener("animationiteration", 
 		function () {
 			//Remove the classes which pertain to the previous animation.
 			userGoals.classList.remove("make_goal_uncovered");
 			userGoals.classList.remove("make_goal_slideUp");
+			userFeed.classList.remove("make_goal_uncovered");
+			userFeed.classList.remove("make_goal_slideUp");
 		});
 	// document.getElementById('make_goal').hidden = true;
 	document.getElementById('goalDescrip').value = "";
