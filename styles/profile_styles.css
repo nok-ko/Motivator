@@ -1,3 +1,7 @@
+:root {
+    --pink-accent: 254, 53, 149;
+}
+
 #wrapper {
     padding-bottom: var(--sticky-footer-height);
     height: 100%;
@@ -30,6 +34,7 @@
     flex-direction: row;
     align-items: center;
     gap: 2rem;
+    border: 1px solid black;
 }
 
 /* Real broken icon stuff */
@@ -58,8 +63,12 @@
 
 #bio {
     text-align: center;
+    border: 1px solid black;
 }
 
+#calendar-sec {
+    border: 1px solid black;
+}
 #calendar {
     width: 100%;
     grid-area: calendar;
@@ -101,31 +110,21 @@ section#buttons {
     margin: 1rem;
     gap: 6rem;
 }
-#buttons > button {
-		/* background-color: rgba(0, 0, 255, 0.1); */
-		/* border: 1px solid white; */
-		/* border: 1px solid rbg(var(--bs-darker-rgb); */
-		/* border: 1px solid rg(var(--bs-darker-rgb); */
-		/* border: 1px solid rgb(var(--bs-darker-rgb); */
-		/* border: 1px solid r(var(--bs-darker-rgb); */
-		/* border: 1px solid (var(--bs-darker-rgb); */
-		/* color: white; */
-		/* color: rgb\); */
-		/* font-size: 1rem; */
-		font-size: 1.5rem;
-		border-radius: 0.325rem;
+/* Put the New Goal button in the centre */
+section#new_goal_button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
-#buttons > button:hover {
-    background-color: rgba(0, 0, 255, 0.7);
-    border: 2px solid white;
+/* Make the button quite large and inviting. */
+section#new_goal_button > button {
+    min-width: 16rem;
 }
 
 #make_goal {
     margin-left: 30%;
     margin-right: 30%;
     padding: 5px;
-    border: 2px solid white;
-    background-color: rgba(0, 0, 255, 0.7);
      overflow: hidden;
 }
 #make_goal form {
@@ -175,13 +174,13 @@ section#buttons {
     grid-column: 1 / span 1;
     grid-row: 6 / span 1;
     width: 5em;
-    justify-self: left;
+    justify-self: right;
 } 
 #make_goal form #cancelGoal {
     grid-column: 2 / span 1;
     grid-row: 6 / span 1;
     width: 5em;
-    justify-self: right;
+    justify-self: left;
 }
 
 #user_goals {
@@ -189,11 +188,11 @@ section#buttons {
     font-size: 0.7rem;
     display: flex;
     gap: 1rem;
-
+    border: 1px solid black;
     flex-direction: column;
 
     grid-template: 3rem 1fr 1fr / 1fr;
-    transform: translateY(-250px);
+    transform: translateY(-268px);
 }
 #user_goals h2 {
     grid-column: 1 / span 2;
@@ -208,7 +207,7 @@ section#buttons {
     transform: translateY(0) !important;
 }
 @keyframes slide{
-    0% {transform: translateY(-250px);}
+    0% {transform: translateY(-268px);}
     100%{transform: translateY(0);}
 }
 
@@ -257,23 +256,10 @@ section#buttons {
     align-self: flex-end;
 }
 
-/* Put the New Goal button in the centre */
-section#new_goal_button {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+#feed {
+    border: 1px solid black;
+    transform: translateY(-268px);
 }
-
-/* Make the button quite large and inviting. */
-section#new_goal_button > button {
-    min-width: 16rem;
-}
-
-/* Round the corners of elements with rounded class */
-.rounded {
-    border-radius: 1em !important;
-}
-
 /* List of feed stuff */
 ol#feed_entries {
     display: flex;
@@ -281,12 +267,15 @@ ol#feed_entries {
     list-style: none;
     padding: 0;
 }
-
 /* Date Headings within the list of feed entries */
 ol#feed_entries > li > h3 {
     font-size: large;
 }
 
+/* Round the corners of elements with rounded class */
+.rounded {
+    border-radius: 1em !important;
+}
 
 /* What do these things do? They seem obsolete.*/
 
@@ -312,4 +301,22 @@ ol#feed_entries > li > h3 {
     height: 4em;
 } */
 
+/* #buttons > button {
+    background-color: rgba(0, 0, 255, 0.1);
+    border: 1px solid white;
+    border: 1px solid rbg(var(--bs-darker-rgb);
+    border: 1px solid rg(var(--bs-darker-rgb);
+    border: 1px solid rgb(var(--bs-darker-rgb);
+    border: 1px solid r(var(--bs-darker-rgb);
+    border: 1px solid (var(--bs-darker-rgb);
+    color: white;
+    color: rgb\);
+    font-size: 1rem;
+    font-size: 1.5rem;
+    border-radius: 0.325rem;
+}
+#buttons > button:hover {
+background-color: rgba(0, 0, 255, 0.7);
+border: 2px solid white;
+} */
 
