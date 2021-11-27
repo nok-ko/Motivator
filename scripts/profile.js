@@ -33,7 +33,7 @@ function listGoals() {
 					style="--progressbar-finish-percent:${Math.floor(amount / amountGoal * 100)}%"
 					>
 						<rect fill="#CCCCCC" stroke-width="10" x="0" y="0" width="100" height="200" />
-						<rect class="progressbar-fill" fill="#888888" stroke-width="10" x="0" y="0" width="100"
+						<rect class="progressbar-fill" fill="#50C878" stroke-width="10" x="0" y="0" width="100"
 							height="200" />
 					</svg>
 					<div role="group" class="goal-smallinfo">
