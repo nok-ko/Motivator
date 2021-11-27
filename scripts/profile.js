@@ -173,8 +173,8 @@ function editProfile() {
 	document.getElementById('nameText').hidden = true;
 	//Disappear the edit version of the button and appear the save version of the button.
 	//Not currently working.
-	document.getElementById('editInfo').hidden = true;
-	document.getElementById('saveInfo').hidden = false;
+	document.getElementById('editProfile').hidden = true;
+	document.getElementById('saveProfile').hidden = false;
 }
 
 //Save current form input into firebase. Disable editing of name form.
@@ -194,8 +194,8 @@ function saveProfile() {
 	document.getElementById('nameText').hidden = false;
 	//Disappear the save version of the button and appear the edit version of the button.
 	//Not currently working.
-	document.getElementById('editInfo').hidden = false;
-	document.getElementById('saveInfo').hidden = true;
+	document.getElementById('editProfile').hidden = false;
+	document.getElementById('saveProfile').hidden = true;
 }
 
 //--Bio field editing----------
