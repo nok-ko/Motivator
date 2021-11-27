@@ -1,36 +1,43 @@
 body {
-    background-color: rgb(35, 35, 40);
-    color: white;
+    background-color: gold;
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 0.5fr;
+    grid-template-rows: 100vh;
 }
 
 #wrapper {
-    display: grid;
-    grid-template-columns: repeat(8, 12.5vw);
-    grid-template-rows: repeat(10, 5vw);
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+    display: flex;
+    flex-direction: column;
 }
+#b1 {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    height: 100%;
+    width: minmax(0%, 100%);
+    background-image: linear-gradient(to right, rgb(250, 223, 71), rgba(255, 233, 110, 0));
+}
+#b2 {
+    grid-column: 3 / span 1;
+    grid-row: 1 / span 1;
+    height: 100%;
+    width: minmax(0%, 100%);
+    background-image: linear-gradient(to left, rgba(250, 223, 71, 1), rgba(255, 233, 110, 0));
 
+}
 #logo {
-    grid-column: 4 / 6;
-    grid-row: 2 / 6;
+    /* grid-column: 1 / span 1;
+    grid-row: 2 / 6; */
     text-align: center;
 }
 #logo #trophy_icon {
-    width: 75%;
-    height: 75%;
-    background: gold;
-    border-radius: 50%;
+    width: 70%;
+    height: auto;
 }
 
 #title {
-    grid-column: 4 / 6;
-    grid-row: 6 / 8;
+    /* grid-column: 1 / span 1;
+    grid-row: 6 / 8; */
     text-align: center;
-}
-#title h1 {
-    font-size: 3vw;
-}
-
-#login_block {
-    grid-column: 3 / 7;
-    grid-row-start: 8;
 }
