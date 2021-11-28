@@ -186,7 +186,7 @@ section#new_goal_button > button {
     gap: 1rem;
     border: 1px solid black;
     flex-direction: column;
-
+    min-height: 250px;
     grid-template: 3rem 1fr 1fr / 1fr;
     transform: translateY(-250px);
 }
@@ -276,47 +276,3 @@ ol#feed_entries > li > h3 {
 .rounded {
     border-radius: 1em !important;
 }
-
-/* What do these things do? They seem obsolete.*/
-
-/* Hide text used as an accessibility label: */
-/* .access-label {
-    position: absolute !important;
-    width: 1px !important;
-    height: 1px !important;
-    overflow: hidden !important;
-    white-space: nowrap !important;
-} */
-
-/* .linklist {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.linklist > li {
-    display: inline;
-}
-.linklist > li > a {
-    width: 4em;
-    height: 4em;
-} */
-
-/* #buttons > button {
-    background-color: rgba(0, 0, 255, 0.1);
-    border: 1px solid white;
-    border: 1px solid rbg(var(--bs-darker-rgb);
-    border: 1px solid rg(var(--bs-darker-rgb);
-    border: 1px solid rgb(var(--bs-darker-rgb);
-    border: 1px solid r(var(--bs-darker-rgb);
-    border: 1px solid (var(--bs-darker-rgb);
-    color: white;
-    color: rgb\);
-    font-size: 1rem;
-    font-size: 1.5rem;
-    border-radius: 0.325rem;
-}
-#buttons > button:hover {
-background-color: rgba(0, 0, 255, 0.7);
-border: 2px solid white;
-} */
-

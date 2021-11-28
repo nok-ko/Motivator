@@ -103,10 +103,10 @@ function listGoals() {
 						</span>
 					</div>
 					<div class="goal-buttons">
-						<button id="iterate-goal" class="btn btn-info" type="button" onclick="iterateGoal(\'${goal.id}\')">+1</button>
+						<button id="iterate-goal" class="btn btn-info" type="button" onclick="incrementGoal(\'${goal.id}\')">+1</button>
 						<span>
 							<button id="edit-goal" class="btn btn-secondary" type="button">Edit</button>
-							<button id="delete-goal" class="btn btn-secondary" type="button">Delete</button>
+							<button id="delete-goal" class="btn btn-secondary" type="button" onclick="deleteGoal(\'${goal.id}\')">Delete</button>
 						</span>
 						</div>`;
 
@@ -122,12 +122,28 @@ function listGoals() {
 	);
 }
 
-function iterateGoal(goalID) {
-	currentUser.collection('goals').get().then((goals) => {
+function deleteGoal(goalID) {
+	goalColl = currentUser.collection('goals')
+	goalColl.get().then((goals) => {
+		goals.forEach((goal) => {
+			if (goal.id == goalID) {
+				goalColl.doc(goal.id).delete().then(() => {
+					console.log("Delete successful for goal with ID=" + goal.id)
+				}).catch((error) => {
+					console.error("Error deleting goal with ID=" + goal.id + ", error: " + error)
+				})
+			}
+		})
+	})
+}
+
+function incrementGoal(goalID) {
+	goalColl = currentUser.collection('goals')
+	goalColl.get().then((goals) => {
 		goals.forEach((goal) => {
 			if (goal.id == goalID) {
 				if (goal.data().amount < goal.data().amountGoal) {
-					currentUser.collection('goals').doc(goal.id).update({
+					goalColl.doc(goal.id).update({
 						amount: goal.data().amount + 1
 					})
 				}
