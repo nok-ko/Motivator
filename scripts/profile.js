@@ -109,7 +109,10 @@ function listGoals() {
 							<button id="delete-goal" class="btn btn-secondary" type="button" onclick="deleteGoal(\'${goal.id}\')">Delete</button>
 						</span>
 						</div>`;
-
+				// const iterateGoalEl = goalEl.getElementById("iterate-goal");
+				// iterateGoalEl.addEventListener("click", function (e) {
+				// 	e.target.incrementGoal(goal.id);
+				// })
 				// Clean up animations once they finish
 				goalEl.querySelector(".progressbar-fill").addEventListener("animationend",
 					function () {
@@ -123,33 +126,20 @@ function listGoals() {
 }
 
 function deleteGoal(goalID) {
-	goalColl = currentUser.collection('goals')
-	goalColl.get().then((goals) => {
-		goals.forEach((goal) => {
-			if (goal.id == goalID) {
-				goalColl.doc(goal.id).delete().then(() => {
-					console.log("Delete successful for goal with ID=" + goal.id)
-				}).catch((error) => {
-					console.error("Error deleting goal with ID=" + goal.id + ", error: " + error)
-				})
-			}
-		})
+	currentUser.collection('goals').doc(goalID).delete().then(() => {
+		console.log("Delete successful for goal with ID=" + goalID)
+	}).catch((error) => {
+		console.error("Error deleting goal with ID=" + goalID + ", error: " + error)
 	})
 }
 
 function incrementGoal(goalID) {
-	goalColl = currentUser.collection('goals')
-	goalColl.get().then((goals) => {
-		goals.forEach((goal) => {
-			if (goal.id == goalID) {
-				if (goal.data().amount < goal.data().amountGoal) {
-					goalColl.doc(goal.id).update({
-						amount: goal.data().amount + 1
-					})
-				}
-			}
+	goal = currentUser.collection('goals').doc(goalID);
+	if (goal.data().amount < goal.data().amountGoal) {
+		goal.update({
+			amount: goal.data().amount + 1
 		})
-	})
+	} 
 }
 
 // Feed feature:
