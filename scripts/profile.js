@@ -5,114 +5,13 @@
 
 const db = firebase.firestore(app);
 
-// TODO: documentation pass
-function listGoals() {
-	const userID = firebase.auth().currentUser.uid; // assume current user is logged in
-	const goalContainer = document.getElementById("goal_container");
-
-	// TODO: Show/hide “loading” message while we pull in data
-	db.collection('users').doc(userID).collection('goals').onSnapshot(
-		(goals) => {
-			// Clear existing goals on each update:
-			goalContainer.innerHTML = "";
-
-			// Append to a fragment
-			goalFragment = document.createDocumentFragment();
-
-			// Populate the section with goals
-			goals.forEach((goal) => {
-				const goalEl = document.createElement("div");
-				const amountGoal = goal.data().amountGoal;
-				const amount = goal.data().amount;
-				goalEl.classList.add("goal");
-
-				// FIXME I think this is questionable style, but… it's fast to implement
-				goalEl.innerHTML = `
-					<p class="goal-description">${goal.data().description}</p>
-					<svg class="progressbar" version="1.1" viewBox="0 0 100 200" preserveAspectRatio="none"
-					style="--progressbar-finish-percent:${Math.floor(amount / amountGoal * 100)}%"
-					>
-						<rect fill="#CCCCCC" stroke-width="10" x="0" y="0" width="100" height="200" />
-						<rect class="progressbar-fill" fill="#50C878" stroke-width="10" x="0" y="0" width="100"
-							height="200" />
-					</svg>
-					<div role="group" class="goal-smallinfo">
-						<span class="goal-progress">
-							${amount}/${amountGoal}
-						</span>
-						<span class="goal-deadline">
-							<!-- insert icon here -->
-							Due by ${new Date(goal.data().dateEnd).toDateString()}
-						</span>
-					</div>`;
-
-				// Clean up animations once they finish
-				goalEl.querySelector(".progressbar-fill").addEventListener("animationend",
-					function () {
-						this.classList.add("progress-anim-finished");
-					}, false);
-				goalFragment.appendChild(goalEl);
-			});
-			goalContainer.appendChild(goalFragment);
-		}
-	);
-}
-
-// Feed feature:
-// Update feed with latest entries
-function updateFeed(entryCollection) {
-	// Define references to DOM elements
-	const entryList = document.getElementById("feed_entries");
-
-	// Exit early if nothing is in the feed.
-	if (entryCollection.empty) {
-		return;
-	}
-
-	// Sort clientside to avoid composite indexes in Firestore
-	const entries = entryCollection.docs
-		// Dereference each entry and add a `date` field with a JS Date object based off the timestamp
-		.map(doc => Object.assign({date: new Date(doc.data().timestamp.seconds * 1000)}, doc.data()))
-		// Sort in reverse chronological order
-		.sort((a,b) => -(a.timestamp - b.timestamp));
-
-	// Iterate and add to the document:
-	const entryFrag = document.createDocumentFragment();
-	// Bucket entries day-by-day
-	const daysSeen = new Set();
-	for (const entry of entries) {
-		const day = entry.date.toDateString();
-		// Never before seen date, so make a heading for it.
-		if (!daysSeen.has(day)) {
-			daysSeen.add(day);
-			const dateHeading = document.createElement("li");
-			dateHeading.innerHTML = `<h3>${entry.date.toLocaleDateString()}</h3>`;
-			entryFrag.appendChild(dateHeading);
-		}
-		console.log("feed entry at ", entry.date, entry);
-		const entryEl = document.createElement("li");
-		entryFrag.appendChild(entryEl);
-
-		db.collection("users")
-			.doc(entry.user)
-			.collection("goals")
-			.doc(entry.goal)
-			.get().then(doc => {
-				const goal = doc.data();
-				// TODO: support entries other than “added”
-				entryEl.innerHTML = `<p>Added goal “${goal.description}”</p>`;
-			});
-	}
-	entryList.appendChild(entryFrag);
-}
-
 // The reference to the user's document
 let currentUser;
 // Access the user ID with currentUser.id
 // (see https://firebase.google.com/docs/reference/js/v8/firebase.firestore.DocumentReference for all methods)
 
 //Fill the profile with the data in fireDB.
-function populateInfo() {
+async function populateInfo() {
 	firebase.auth().onAuthStateChanged(user => {
 		// Check if user is signed in:
 		if (user) {
@@ -162,6 +61,128 @@ function populateInfo() {
 }
 
 populateInfo();
+
+// TODO: documentation pass
+function listGoals() {
+	const userID = firebase.auth().currentUser.uid; // assume current user is logged in
+	const goalContainer = document.getElementById("goal_container");
+
+	// TODO: Show/hide “loading” message while we pull in data
+	db.collection('users').doc(userID).collection('goals').onSnapshot(
+		(goals) => {
+			// Clear existing goals on each update:
+			goalContainer.innerHTML = "";
+
+			// Append to a fragment
+			goalFragment = document.createDocumentFragment();
+
+			// Populate the section with goals
+			goals.forEach((goal) => {
+				const goalEl = document.createElement("div");
+				const amountGoal = goal.data().amountGoal;
+				const amount = goal.data().amount;
+				goalEl.classList.add("goal");
+
+				// FIXME I think this is questionable style, but… it's fast to implement
+				goalEl.innerHTML = `
+					<p class="goal-description">${goal.data().description}</p>
+					<svg class="progressbar" version="1.1" viewBox="0 0 100 200" preserveAspectRatio="none"
+					style="--progressbar-finish-percent:${Math.floor(amount / amountGoal * 100)}%"
+					>
+						<rect fill="#CCCCCC" stroke-width="10" x="0" y="0" width="100" height="200" />
+						<rect class="progressbar-fill" fill="#50C878" stroke-width="10" x="0" y="0" width="100"
+							height="200" />
+					</svg>
+					<div role="group" class="goal-smallinfo">
+						<span class="goal-progress">
+							${amount}/${amountGoal}
+						</span>
+						<span class="goal-deadline">
+							<!-- insert icon here -->
+							Due by ${new Date(goal.data().dateEnd).toDateString()}
+						</span>
+					</div>
+					<div class="goal-buttons">
+						<button id="iterate-goal" class="btn btn-info" type="button" onclick="iterateGoal(\'${goal.id}\')">+1</button>
+						<span>
+							<button id="edit-goal" class="btn btn-secondary" type="button">Edit</button>
+							<button id="delete-goal" class="btn btn-secondary" type="button">Delete</button>
+						</span>
+						</div>`;
+
+				// Clean up animations once they finish
+				goalEl.querySelector(".progressbar-fill").addEventListener("animationend",
+					function () {
+						this.classList.add("progress-anim-finished");
+					}, false);
+				goalFragment.appendChild(goalEl);
+			});
+			goalContainer.appendChild(goalFragment);
+		}
+	);
+}
+
+function iterateGoal(goalID) {
+	currentUser.collection('goals').get().then((goals) => {
+		goals.forEach((goal) => {
+			if (goal.id == goalID) {
+				if (goal.data().amount < goal.data().amountGoal) {
+					currentUser.collection('goals').doc(goal.id).update({
+						amount: goal.data().amount + 1
+					})
+				}
+			}
+		})
+	})
+}
+
+// Feed feature:
+// Update feed with latest entries
+function updateFeed(entryCollection) {
+	// Define references to DOM elements
+	const entryList = document.getElementById("feed_entries");
+
+	// Exit early if nothing is in the feed.
+	if (entryCollection.empty) {
+		return;
+	}
+
+	// Sort clientside to avoid composite indexes in Firestore
+	const entries = entryCollection.docs
+		// Dereference each entry and add a `date` field with a JS Date object based off the timestamp
+		.map(doc => Object.assign({date: new Date(doc.data().timestamp.seconds * 1000)}, doc.data()))
+		// Sort in reverse chronological order
+		.sort((a,b) => -(a.timestamp - b.timestamp));
+
+	// Iterate and add to the document:
+	const entryFrag = document.createDocumentFragment();
+	// Bucket entries day-by-day
+	const daysSeen = new Set();
+	for (const entry of entries) {
+		const day = entry.date.toDateString();
+		// Never before seen date, so make a heading for it.
+		if (!daysSeen.has(day)) {
+			daysSeen.add(day);
+			const dateHeading = document.createElement("li");
+			dateHeading.innerHTML = `<h3>${entry.date.toLocaleDateString()}</h3>`;
+			entryFrag.appendChild(dateHeading);
+		}
+		console.log("feed entry at ", entry.date, entry);
+		const entryEl = document.createElement("li");
+		entryFrag.appendChild(entryEl);
+
+		db.collection("users")
+			.doc(entry.user)
+			.collection("goals")
+			.doc(entry.goal)
+			.get().then(doc => {
+				const goal = doc.data();
+				// TODO: support entries other than “added”
+				entryEl.innerHTML = `<p>Added goal “${goal.description}”</p>`;
+			});
+	}
+	entryList.appendChild(entryFrag);
+}
 
 //--Username field editing-----------
 //Enable editing for the username field.
