@@ -48,7 +48,7 @@ async function populateInfo() {
 				.where("user", "==", user.uid)
 				// .orderBy("timestamp") // needs composite index, cannot test right now
 				.onSnapshot(updateFeed);
-			
+
 			//List the goals of the currently signed-in user.
 			listGoals();
 
@@ -109,10 +109,7 @@ function listGoals() {
 							<button id="delete-goal" class="btn btn-secondary" type="button" onclick="deleteGoal(\'${goal.id}\')">Delete</button>
 						</span>
 						</div>`;
-				// const iterateGoalEl = goalEl.getElementById("iterate-goal");
-				// iterateGoalEl.addEventListener("click", function (e) {
-				// 	e.target.incrementGoal(goal.id);
-				// })
+
 				// Clean up animations once they finish
 				goalEl.querySelector(".progressbar-fill").addEventListener("animationend",
 					function () {
@@ -134,12 +131,14 @@ function deleteGoal(goalID) {
 }
 
 function incrementGoal(goalID) {
-	goal = currentUser.collection('goals').doc(goalID);
-	if (goal.data().amount < goal.data().amountGoal) {
-		goal.update({
-			amount: goal.data().amount + 1
-		})
-	} 
+	thisGoal = currentUser.collection('goals').doc(goalID);
+	thisGoal.get().then((goal) => {
+		if (goal.data().amount < goal.data().amountGoal) {
+			thisGoal.update({
+				amount: goal.data().amount + 1
+			})
+		}
+	});
 }
 
 // Feed feature:
@@ -156,9 +155,9 @@ function updateFeed(entryCollection) {
 	// Sort clientside to avoid composite indexes in Firestore
 	const entries = entryCollection.docs
 		// Dereference each entry and add a `date` field with a JS Date object based off the timestamp
-		.map(doc => Object.assign({date: new Date(doc.data().timestamp.seconds * 1000)}, doc.data()))
+		.map(doc => Object.assign({ date: new Date(doc.data().timestamp.seconds * 1000) }, doc.data()))
 		// Sort in reverse chronological order
-		.sort((a,b) => -(a.timestamp - b.timestamp));
+		.sort((a, b) => -(a.timestamp - b.timestamp));
 
 	// Iterate and add to the document:
 	const entryFrag = document.createDocumentFragment();
@@ -265,7 +264,7 @@ function summonMakeGoal() {
 	// document.getElementById('make_goal').hidden = false;
 	userGoals = document.getElementById("user_goals");
 	userFeed = document.getElementById("feed");
-	
+
 	//Add the classes which pertain to this animation.
 	userGoals.classList.add("make_goal_slideDown");
 	userFeed.classList.add("make_goal_slideDown");
@@ -288,7 +287,7 @@ function dismissMakeGoal() {
 	userGoals.classList.add("make_goal_slideUp");
 	userFeed.classList.add("make_goal_slideUp");
 
-	userGoals.addEventListener("animationiteration", 
+	userGoals.addEventListener("animationiteration",
 		function () {
 			//Remove the classes which pertain to the previous animation.
 			userGoals.classList.remove("make_goal_uncovered");
@@ -302,6 +301,7 @@ function dismissMakeGoal() {
 	document.getElementById('dateEndInput').value = "";
 	document.getElementById('amountGoalInput').value = "0";
 }
+
 
 //Create a new goal document and store it in the database.
 function makeGoal() {
