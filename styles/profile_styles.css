@@ -1,3 +1,7 @@
+:root {
+    --pink-accent: 254, 53, 149;
+}
+
 #wrapper {
     padding-bottom: var(--sticky-footer-height);
     height: 100%;
@@ -30,23 +34,13 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     gap: 2rem;
+    border: 1px solid black;
 }
-
-/* Real broken icon stuff */
-#user_pic_block .edit-icon {
-    /* Use the current text color as the icon’s fill color. */
-    background-color: white;
-    /* fill: currentColor;
-    stroke: currentColor; */
-    /* Inherit the text’s size too. Also allows sizing the icon by changing its font-size. */
-    width: 1em;
-    height: 1em;
-    /* The default vertical-align is `baseline`, which leaves a few pixels of space below the icon. Using `center` prevents this. For icons shown alongside text, you may want to use a more precise value, e.g. `vertical-align: -4px` or `vertical-align: -0.15em`. */
-    /* vertical-align: middle; */
-    /* Paths and strokes that overflow the viewBox can show in IE11. */
-    /* overflow: hidden; */
-    cursor: pointer;
+#user_pic_block #pic-and-name {
+    display: flex;
+    flex-direction: row;
 }
 #user_pic_block .img-avatar {
     /* Circle clipping mask for user profile images. */
@@ -56,11 +50,18 @@
     max-height: 6rem;
     /* height: 5rem; */
 }
+#user_pic_block #prof-button {
+    padding-right: 16px;
+}
 
 #bio {
     text-align: center;
+    border: 1px solid black;
 }
 
+#calendar-sec {
+    border: 1px solid black;
+}
 #calendar {
     width: 100%;
     grid-area: calendar;
@@ -102,32 +103,26 @@ section#buttons {
     margin: 1rem;
     gap: 6rem;
 }
-#buttons > button {
-		/* background-color: rgba(0, 0, 255, 0.1); */
-		/* border: 1px solid white; */
-		/* border: 1px solid rbg(var(--bs-darker-rgb); */
-		/* border: 1px solid rg(var(--bs-darker-rgb); */
-		/* border: 1px solid rgb(var(--bs-darker-rgb); */
-		/* border: 1px solid r(var(--bs-darker-rgb); */
-		/* border: 1px solid (var(--bs-darker-rgb); */
-		/* color: white; */
-		/* color: rgb\); */
-		/* font-size: 1rem; */
-		font-size: 1.5rem;
-		border-radius: 0.325rem;
+/* Put the New Goal button in the centre */
+section#new_goal_button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 0;
+    margin-bottom: 0;
 }
-#buttons > button:hover {
-    background-color: rgba(0, 0, 255, 0.7);
-    border: 2px solid white;
+/* Make the button quite large and inviting. */
+section#new_goal_button > button {
+    min-width: 16rem;
 }
 
 #make_goal {
+    margin-top: 15px !important;
+    margin-bottom: 0 !important;
     margin-left: 30%;
     margin-right: 30%;
     padding: 5px;
-    border: 2px solid white;
-    background-color: rgba(0, 0, 255, 0.7);
-     overflow: hidden;
+    overflow: hidden; 
 }
 #make_goal form {
     display: grid;
@@ -176,13 +171,13 @@ section#buttons {
     grid-column: 1 / span 1;
     grid-row: 6 / span 1;
     width: 5em;
-    justify-self: left;
+    justify-self: right;
 } 
 #make_goal form #cancelGoal {
     grid-column: 2 / span 1;
     grid-row: 6 / span 1;
     width: 5em;
-    justify-self: right;
+    justify-self: left;
 }
 
 #user_goals {
@@ -190,9 +185,9 @@ section#buttons {
     font-size: 0.7rem;
     display: flex;
     gap: 1rem;
-
+    border: 1px solid black;
     flex-direction: column;
-
+    min-height: 250px;
     grid-template: 3rem 1fr 1fr / 1fr;
     transform: translateY(-250px);
 }
@@ -242,7 +237,6 @@ section#buttons {
 .progressbar-fill {
     animation: load-progressbar 1.5s ease;
 }
-
 .progress-anim-finished {
     transform: scaleX(var(--progressbar-finish-percent));
 }
@@ -253,52 +247,33 @@ section#buttons {
     justify-content: space-between;
     flex-direction: row;
 }
-
 .goal-deadline {
     align-self: flex-end;
 }
-
-/* Put the New Goal button in the centre */
-section#new_goal_button {
+.goal-buttons {
     display: flex;
+    width: 90%;
+    justify-content: space-between;
     flex-direction: row;
-    justify-content: center;
 }
 
-/* Make the button quite large and inviting. */
-section#new_goal_button > button {
-    min-width: 16rem;
+#feed {
+    border: 1px solid black;
+    transform: translateY(-250px);
+}
+/* List of feed stuff */
+ol#feed_entries {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+}
+/* Date Headings within the list of feed entries */
+ol#feed_entries > li > h3 {
+    font-size: large;
 }
 
 /* Round the corners of elements with rounded class */
 .rounded {
     border-radius: 1em !important;
 }
-
-
-
-/* What do these things do? They seem obsolete.*/
-
-/* Hide text used as an accessibility label: */
-/* .access-label {
-    position: absolute !important;
-    width: 1px !important;
-    height: 1px !important;
-    overflow: hidden !important;
-    white-space: nowrap !important;
-} */
-
-/* .linklist {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.linklist > li {
-    display: inline;
-}
-.linklist > li > a {
-    width: 4em;
-    height: 4em;
-} */
-
-

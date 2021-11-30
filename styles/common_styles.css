@@ -17,9 +17,9 @@
 }
     
 body {
-    background-color: rgb(var(--bs-dark-rgb));
+    background-color:  rgb(201, 171, 0) /*rgb(var(--bs-dark-rgb))*/;
     /* color: white; */
-    height: calc(100% - var(--sticky-footer-height))
+    height: calc(100% - var(--sticky-footer-height)) !important;
 }
 
 .bg-darker {

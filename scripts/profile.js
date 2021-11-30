@@ -5,72 +5,13 @@
 
 const db = firebase.firestore(app);
 
-// TODO: documentation pass
-function listGoals() {
-	const userID = firebase.auth().currentUser.uid; // assume current user is logged in
-	const goalsContainer = document.getElementById("user_goals")
-
-	// TODO: Show/hide “loading” message while we pull in data
-	// TODO: live-update goals
-
-	db.collection('users').doc(userID).collection('goals').onSnapshot(
-		(goals) => {
-			goals.forEach((goal) => {
-				const goalEl = document.createElement("div")
-				const amountGoal = goal.data().amountGoal;
-				const amount = goal.data().amount;
-				goalEl.classList.add("goal");
-
-				// FIXME I think this is questionable style, but… it's fast to implement
-				goalEl.innerHTML = `
-					<p class="goal-description">${goal.data().description}</p>
-					<svg class="progressbar" version="1.1" viewBox="0 0 100 200" preserveAspectRatio="none"
-					style="--progressbar-finish-percent:${Math.floor(amount / amountGoal * 100)}%"
-					>
-						<rect fill="#CCCCCC" stroke-width="10" x="0" y="0" width="100" height="200" />
-						<rect class="progressbar-fill" fill="#888888" stroke-width="10" x="0" y="0" width="100"
-							height="200" />
-					</svg>
-					<div role="group" class="goal-smallinfo">
-						<span class="goal-progress">
-							${amount}/${amountGoal}
-						</span>
-						<span class="goal-deadline">
-							<!-- insert icon here -->
-							Due by ${new Date(goal.data().dateEnd).toDateString()}
-						</span>
-					</div>`;
-
-				// Clean up animations once they finish
-				goalEl.querySelector(".progressbar-fill").addEventListener("animationend",
-					function () {
-						this.classList.add("progress-anim-finished")
-					}, false);
-				// TODO: use a DocumentFragment when appending?
-				goalsContainer.appendChild(goalEl);
-			})
-		}
-	);
-}
-
-// Feed feature:
-// Subscribe to feed updates from the database
-function startFeedUpdates(userID) {
-	db.collection("feeds").doc(userID).collection("entries").onSnapshot(entries => {
-		if (entries.empty) {
-			// 
-		}
-		entries.forEach(entry => {
-			console.log("feed entry ", entry.data());
-		});
-	});
-}
-
-// The variable which stores the UID to be used as a reference in multiple methods
-var currentUser;
+// The reference to the user's document
+let currentUser;
+// Access the user ID with currentUser.id
+// (see https://firebase.google.com/docs/reference/js/v8/firebase.firestore.DocumentReference for all methods)
 
 //Fill the profile with the data in fireDB.
-function populateInfo() {
+async function populateInfo() {
 	firebase.auth().onAuthStateChanged(user => {
 		// Check if user is signed in:
 		if (user) {
@@ -81,9 +22,9 @@ function populateInfo() {
 			//get the document for current user.
 			currentUser.onSnapshot(userDoc => {
 				//get the data fields of the user
-				var userName = userDoc.data().name;
-				var userEmail = userDoc.data().email;
-				var userBio = userDoc.data().bio;
+				let userName = userDoc.data().name;
+				let userEmail = userDoc.data().email;
+				let userBio = userDoc.data().bio;
 
 				//if the data fields are not empty, then write them in to the form.
 				if (userName != null) {
@@ -103,9 +44,11 @@ function populateInfo() {
 
 			//Feed feature: 
 			// Start updating feed
+			db.collection("feed")
+				.where("user", "==", user.uid)
+				// .orderBy("timestamp") // needs composite index, cannot test right now
+				.onSnapshot(updateFeed);
 
-			startFeedUpdates(user.uid);
-		 
 			//List the goals of the currently signed-in user.
 			listGoals();
 
@@ -116,7 +59,135 @@ function populateInfo() {
 
 	});
 }
+
 populateInfo();
+
+// TODO: documentation pass
+function listGoals() {
+	const userID = firebase.auth().currentUser.uid; // assume current user is logged in
+	const goalContainer = document.getElementById("goal_container");
+
+	// TODO: Show/hide “loading” message while we pull in data
+	db.collection('users').doc(userID).collection('goals').onSnapshot(
+		(goals) => {
+			// Clear existing goals on each update:
+			goalContainer.innerHTML = "";
+
+			// Append to a fragment
+			goalFragment = document.createDocumentFragment();
+
+			// Populate the section with goals
+			goals.forEach((goal) => {
+				const goalEl = document.createElement("div");
+				const amountGoal = goal.data().amountGoal;
+				const amount = goal.data().amount;
+				goalEl.classList.add("goal");
+
+				// FIXME I think this is questionable style, but… it's fast to implement
+				goalEl.innerHTML = `
+					<p class="goal-description">${goal.data().description}</p>
+					<svg class="progressbar" version="1.1" viewBox="0 0 100 200" preserveAspectRatio="none"
+					style="--progressbar-finish-percent:${Math.floor(amount / amountGoal * 100)}%"
+					>
+						<rect fill="#CCCCCC" stroke-width="10" x="0" y="0" width="100" height="200" />
+						<rect class="progressbar-fill" fill="#50C878" stroke-width="10" x="0" y="0" width="100"
+							height="200" />
+					</svg>
+					<div role="group" class="goal-smallinfo">
+						<span class="goal-progress">
+							${amount}/${amountGoal}
+						</span>
+						<span class="goal-deadline">
+							<!-- insert icon here -->
+							Due by ${new Date(goal.data().dateEnd).toDateString()}
+						</span>
+					</div>
+					<div class="goal-buttons">
+						<button id="iterate-goal" class="btn btn-info" type="button" onclick="incrementGoal(\'${goal.id}\')">+1</button>
+						<span>
+							<button id="edit-goal" class="btn btn-secondary" type="button">Edit</button>
+							<button id="delete-goal" class="btn btn-secondary" type="button" onclick="deleteGoal(\'${goal.id}\')">Delete</button>
+						</span>
+						</div>`;
+
+				// Clean up animations once they finish
+				goalEl.querySelector(".progressbar-fill").addEventListener("animationend",
+					function () {
+						this.classList.add("progress-anim-finished");
+					}, false);
+				goalFragment.appendChild(goalEl);
+			});
+			goalContainer.appendChild(goalFragment);
+		}
+	);
+}
+
+function deleteGoal(goalID) {
+	currentUser.collection('goals').doc(goalID).delete().then(() => {
+		console.log("Delete successful for goal with ID=" + goalID)
+	}).catch((error) => {
+		console.error("Error deleting goal with ID=" + goalID + ", error: " + error)
+	})
+}
+
+function incrementGoal(goalID) {
+	thisGoal = currentUser.collection('goals').doc(goalID);
+	thisGoal.get().then((goal) => {
+		if (goal.data().amount < goal.data().amountGoal) {
+			thisGoal.update({
+				amount: goal.data().amount + 1
+			})
+		}
+	});
+}
+
+// Feed feature:
+// Update feed with latest entries
+function updateFeed(entryCollection) {
+	// Define references to DOM elements
+	const entryList = document.getElementById("feed_entries");
+
+	// Exit early if nothing is in the feed.
+	if (entryCollection.empty) {
+		return;
+	}
+
+	// Sort clientside to avoid composite indexes in Firestore
+	const entries = entryCollection.docs
+		// Dereference each entry and add a `date` field with a JS Date object based off the timestamp
+		.map(doc => Object.assign({ date: new Date(doc.data().timestamp.seconds * 1000) }, doc.data()))
+		// Sort in reverse chronological order
+		.sort((a, b) => -(a.timestamp - b.timestamp));
+
+	// Iterate and add to the document:
+	const entryFrag = document.createDocumentFragment();
+	// Bucket entries day-by-day
+	const daysSeen = new Set();
+	for (const entry of entries) {
+		const day = entry.date.toDateString();
+		// Never before seen date, so make a heading for it.
+		if (!daysSeen.has(day)) {
+			daysSeen.add(day);
+			const dateHeading = document.createElement("li");
+			dateHeading.innerHTML = `<h3>${entry.date.toLocaleDateString()}</h3>`;
+			entryFrag.appendChild(dateHeading);
+		}
+		console.log("feed entry at ", entry.date, entry);
+		const entryEl = document.createElement("li");
+		entryFrag.appendChild(entryEl);
+
+		db.collection("users")
+			.doc(entry.user)
+			.collection("goals")
+			.doc(entry.goal)
+			.get().then(doc => {
+				const goal = doc.data();
+				// TODO: support entries other than “added”
+				entryEl.innerHTML = `<p>Added goal “${goal.description}”</p>`;
+			});
+	}
+	entryList.appendChild(entryFrag);
+}
 
 //--Username field editing-----------
 //Enable editing for the username field.
@@ -128,8 +199,8 @@ function editProfile() {
 	document.getElementById('nameText').hidden = true;
 	//Disappear the edit version of the button and appear the save version of the button.
 	//Not currently working.
-	document.getElementById('editInfo').hidden = true;
-	document.getElementById('saveInfo').hidden = false;
+	document.getElementById('editProfile').hidden = true;
+	document.getElementById('saveProfile').hidden = false;
 }
 
 //Save current form input into firebase. Disable editing of name form.
@@ -139,8 +210,8 @@ function saveProfile() {
 	currentUser.update({
 		name: userName,
 	}).then(() => {
-		console.log("Name updated successfully.")
-	})
+		console.log("Name updated successfully.");
+	});
 
 	//Disable the form fields. Makes the input box invisible and
 	//	turn the name text on.
@@ -149,8 +220,8 @@ function saveProfile() {
 	document.getElementById('nameText').hidden = false;
 	//Disappear the save version of the button and appear the edit version of the button.
 	//Not currently working.
-	document.getElementById('editInfo').hidden = false;
-	document.getElementById('saveInfo').hidden = true;
+	document.getElementById('editProfile').hidden = false;
+	document.getElementById('saveProfile').hidden = true;
 }
 
 //--Bio field editing----------
@@ -173,10 +244,9 @@ function saveBio() {
 	//Update the Firebase.
 	currentUser.update({
 		bio: userBio
-	})
-		.then(() => {
-			console.log("Bio successfully updated.");
-		})
+	}).then(() => {
+		console.log("Bio successfully updated.");
+	});
 
 	//Disable editing of the form fields. Makes the form invisible and
 	//	turns the paragraph text on.
@@ -193,28 +263,37 @@ function saveBio() {
 function summonMakeGoal() {
 	// document.getElementById('make_goal').hidden = false;
 	userGoals = document.getElementById("user_goals");
-	
+	userFeed = document.getElementById("feed");
+
 	//Add the classes which pertain to this animation.
 	userGoals.classList.add("make_goal_slideDown");
+	userFeed.classList.add("make_goal_slideDown");
 	userGoals.addEventListener("animationiteration",
 		function () {
 			userGoals.classList.add("make_goal_uncovered");
+			userFeed.classList.add("make_goal_uncovered");
 			//Remove the classes which pertain to the previous animation.
 			userGoals.classList.remove("make_goal_slideDown");
+			userFeed.classList.remove("make_goal_slideDown");
 		});
 }
 
 //Disable goal input interface. Clear form.
 function dismissMakeGoal() {
 	userGoals = document.getElementById("user_goals");
+	userFeed = document.getElementById("feed");
 
 	//Add the classes which pertain to this animation.
 	userGoals.classList.add("make_goal_slideUp");
-	userGoals.addEventListener("animationiteration", 
+	userFeed.classList.add("make_goal_slideUp");
+
+	userGoals.addEventListener("animationiteration",
 		function () {
 			//Remove the classes which pertain to the previous animation.
 			userGoals.classList.remove("make_goal_uncovered");
 			userGoals.classList.remove("make_goal_slideUp");
+			userFeed.classList.remove("make_goal_uncovered");
+			userFeed.classList.remove("make_goal_slideUp");
 		});
 	// document.getElementById('make_goal').hidden = true;
 	document.getElementById('goalDescrip').value = "";
@@ -222,6 +301,7 @@ function dismissMakeGoal() {
 	document.getElementById('dateEndInput').value = "";
 	document.getElementById('amountGoalInput').value = "0";
 }
+
 
 //Create a new goal document and store it in the database.
 function makeGoal() {
