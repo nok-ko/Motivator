@@ -126,7 +126,8 @@ function addEvent() {
             currentUser.get()
                 .then(userDoc => {
                     currentUser.collection("notes").add({
-                        note: noteValue
+                        note: noteValue,
+                        noteDay: id
                     });
                 })
         }
@@ -174,7 +175,8 @@ function addEvent() {
     // });
 
     // Refresh events
-    showEvents(current);
+    //showEvents(current);
     document.getElementById("event-description").value = null;
     document.getElementById("event-adder").hidden = true;
 }
+
