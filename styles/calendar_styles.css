@@ -212,7 +212,7 @@ body {
     margin: 5px;
     display: block;
     overflow: hidden;
-    background: #FE5D9F;
+    background: red;
     cursor: pointer;
 }
 

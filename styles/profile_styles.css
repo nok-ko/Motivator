@@ -113,6 +113,7 @@ section#new_goal_button {
 /* Make the button quite large and inviting. */
 section#new_goal_button > button {
     min-width: 16rem;
+    border: 1px outset rgb(80, 200, 120);
 }
 
 #make_goal {
@@ -194,10 +195,10 @@ section#new_goal_button > button {
     grid-column: 1 / span 2;
 }
 .make_goal_slideUp {
-    animation: slide 2s infinite reverse;
+    animation: slide 1s infinite reverse;
 }
 .make_goal_slideDown {
-    animation: slide 2s infinite; 
+    animation: slide 1s infinite; 
 }
 .make_goal_uncovered {
     transform: translateY(0) !important;
