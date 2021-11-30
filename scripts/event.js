@@ -27,12 +27,40 @@ elements.events.appendChild(elements.actions);
 elements.addButton = document.createElement("input");
 elements.addButton.type = "button";
 elements.addButton.value = "Add";
-elements.addButton.id = "button";
+elements.addButton.className = "button";
 elements.actions.appendChild(elements.addButton);
 
 var events = {};
 var date_format = "DD/MM/YYYY";
 var current = null;
+
+// Update the currently displayed events whenever Firestore is updated
+firebase.auth().onAuthStateChanged(user => {
+    // (only if we're logged in)
+    if (user) {
+        currentUser = db.collection("users").doc(user.uid);
+        currentUser.collection("notes").onSnapshot((notes) => {
+            // Reset!
+            events = [];
+            notes.forEach((note) => {
+                let noteName = note.data().note;
+                let noteDay = note.data().noteDay;
+
+                // If no events, create list
+                if (!events.hasOwnProperty(noteDay)) {
+                    // Create list
+                    events[noteDay] = [];
+                }
+
+                events[noteDay].push({
+                    name: noteName
+                });
+                // Update the currently-displayed event :)
+                showEvents(current);
+            })
+        })
+    }
+})
 
 var showEvents = function (date) {
     // Date string
@@ -115,20 +143,25 @@ elements.addButton.addEventListener("click", function () {
 const db = firebase.firestore(app);
 
 function addEvent() {
+    // The new event's date, in a string
+    var id = jsCalendar.tools.dateToString(current, date_format, "en");
 
     var noteValue = document.getElementById("event-description").value;
 
     //Add to firestore
+    console.log("Adding Event at date: " + id + " with description: " + noteValue);
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             var currentUser = db.collection('users').doc(user.uid)
-
-            currentUser.get()
-                .then(userDoc => {
-                    currentUser.collection("notes").add({
-                        note: noteValue
-                    });
-                })
+            currentUser.collection("notes").add({
+                note: noteValue,
+                noteDay: id
+            }).then(_ => {
+                console.debug("Just addded the event!", {
+                    note: noteValue,
+                    noteDay: id
+                });
+            });
         }
     });
 
@@ -137,36 +170,6 @@ function addEvent() {
         return;
     }
 
-    var id = jsCalendar.tools.dateToString(current, date_format, "en");
-
-    // If no events, create list
-    if (!events.hasOwnProperty(id)) {
-        // Create list
-        events[id] = [];
-    }
-
-    // If where were no events
-    if (events[id].length === 0) {
-        // Select date
-        calendar.select(current);
-    }
-
-    firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-            currentUser = db.collection("users").doc(user.uid);
-
-            currentUser.collection("notes").onSnapshot((notes) => {
-                notes.forEach((note) => {
-                    var noteName = note.data().note;
-                    console.log(noteName);
-                    events[id].push({
-                        name: noteName
-                    });
-                })
-            })
-        }
-    })
-
     //Add event + show event from the firebase
 
     // events[id].push({
@@ -174,7 +177,7 @@ function addEvent() {
     // });
 
     // Refresh events
-    showEvents(current);
+    //showEvents(current);
     document.getElementById("event-description").value = null;
     document.getElementById("event-adder").hidden = true;
 }
