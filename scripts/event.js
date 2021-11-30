@@ -27,7 +27,7 @@ elements.events.appendChild(elements.actions);
 elements.addButton = document.createElement("input");
 elements.addButton.type = "button";
 elements.addButton.value = "Add";
-elements.addButton.id = "button";
+elements.addButton.className = "button";
 elements.actions.appendChild(elements.addButton);
 
 var events = {};
