@@ -259,6 +259,15 @@ function saveBio() {
 }
 
 //--New Goal feature-------
+//Populate the 'Start Date' field in new goal with the current date.
+today =  new Date();
+var YYYY = today.getFullYear();
+var MM = today.getMonth() + 1;
+var DD = today.getDate();
+var todayRFC = YYYY + "-" + MM + "-" + DD;
+document.getElementById('dateStartInput').value = todayRFC;
+
+
 //Enable goal input interface.
 function summonMakeGoal() {
 	// document.getElementById('make_goal').hidden = false;
@@ -297,7 +306,7 @@ function dismissMakeGoal() {
 		});
 	// document.getElementById('make_goal').hidden = true;
 	document.getElementById('goalDescrip').value = "";
-	document.getElementById('dateStartInput').value = "";
+	document.getElementById('dateStartInput').value = todayRFC;
 	document.getElementById('dateEndInput').value = "";
 	document.getElementById('amountGoalInput').value = "0";
 }
@@ -336,5 +345,4 @@ function makeGoal() {
 			});
 		dismissMakeGoal();
 	}
-
 }
