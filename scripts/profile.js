@@ -311,8 +311,14 @@ function makeGoal() {
 	dateEnd = document.getElementById('dateEndInput').value;
 	amountGoal = document.getElementById('amountGoalInput').value;
 
+	// If the fields are empty.
 	if (goalDescrip.length == 0 || dateStart.length == 0 || dateEnd.length == 0 || amountGoal.value == 0) {
-		console.log("Must have inputs in each field to make new goal");
+		document.getElementById("warning").style.display='block';
+		setTimeout(function() {
+			document.getElementById("warning").style.display='none';
+		}, 3000);
+		console.log("New goal not written to DB: empty values.");
+	// Otherwise,
 	} else {
 		//Add new goal with generated ID.
 		currentUser.collection("goals").add({

@@ -116,6 +116,37 @@ section#new_goal_button > button {
     border: 1px outset rgb(80, 200, 120);
 }
 
+/* Warning message for empty fields. JS triggers.*/
+#warning {
+    display: none;
+}
+.alert {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+    position: absolute;
+    top: 450px;
+    left: 20%;
+    right: 20%;
+}
+.alert:hover {
+    cursor: pointer;
+}
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.closebtn:hover {
+    color: black;
+}
+
 #make_goal {
     margin-top: 15px !important;
     margin-bottom: 0 !important;

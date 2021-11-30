@@ -80,3 +80,11 @@ footer.sticky .meta-icon-container a img {
     background-color: rgb(70, 175, 105); /* Colour a little bit darker than --green-accent. */
     border: 0px;
 }
+.btn-info:active {
+    background-color: rgb(70, 175, 105); /* Colour a little bit darker than --green-accent. */
+    border: 0px;
+}
+.btn-info:focus {
+    background-color: rgb(70, 175, 105); /* Colour a little bit darker than --green-accent. */
+    border: 0px;
+}
