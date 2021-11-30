@@ -31,11 +31,11 @@ body {
 
 /* Blue default */
 .jsCalendar table {
-    background-color: #000000;
+    background-color: #ffffff;
     border-collapse: collapse;
     border-radius: 4px;
     box-shadow: 0 0 2px rgba(80, 80, 80, .4);
-    color: #CCC;
+    color: rgb(0, 0, 0);
     grid-area: table;
     box-shadow: none;
     width: 100%;
@@ -99,7 +99,7 @@ body {
 
 .jsCalendar.black-theme tbody td.jsCalendar-next,
 .jsCalendar.black-theme tbody td.jsCalendar-previous {
-    color: #505050
+    color: #817e7e
 }
 
 .jsCalendar.black-theme tbody td.jsCalendar-next:hover,
@@ -211,7 +211,7 @@ body {
     margin: 5px;
     display: block;
     overflow: hidden;
-    background: #FE5D9F;
+    background: #50C878;
     cursor: pointer;
 }
 
@@ -256,4 +256,8 @@ fieldset {
     float: right;
     vertical-align: bottom;
     padding: 7px 20px 7px 20px;
+}
+
+button {
+    background-color:#50C878;
 }

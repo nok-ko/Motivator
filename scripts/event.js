@@ -27,6 +27,7 @@ elements.events.appendChild(elements.actions);
 elements.addButton = document.createElement("input");
 elements.addButton.type = "button";
 elements.addButton.value = "Add";
+elements.addButton.id = "button";
 elements.actions.appendChild(elements.addButton);
 
 var events = {};
@@ -158,10 +159,10 @@ function addEvent() {
                 notes.forEach((note) => {
                     var noteName = note.data().note;
                     console.log(noteName);
-                    document.getElementsById("list").value = noteName;
-                    document.getElementById("list").textContent = noteName;
+                    events[id].push({
+                        name: noteName
+                    });
                 })
-
             })
         }
     })
@@ -169,7 +170,7 @@ function addEvent() {
     //Add event + show event from the firebase
 
     // events[id].push({
-    //     name: event
+    //     name: noteName
     // });
 
     // Refresh events
