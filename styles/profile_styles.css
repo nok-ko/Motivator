@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 #wrapper {
     padding-bottom: var(--sticky-footer-height);
     height: 100%;
@@ -7,11 +6,9 @@
     /* align-items: center; */
     /* align-items: stretch; */
     /* grid-template-columns: repeat(8, 1fr); */
-    /* grid-template-rows: repeat(20, 5vw); */
-=======
+}
 :root {
     --pink-accent: 254, 53, 149;
->>>>>>> Stashed changes
 }
 
 #wrapper > section {
