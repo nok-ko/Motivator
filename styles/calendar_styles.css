@@ -1,6 +1,5 @@
 html,
 body {
-    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
     margin: 0 auto;
 }
 
@@ -33,7 +32,7 @@ body {
 .jsCalendar table {
     background-color: #ffffff;
     border-collapse: collapse;
-    border-radius: 4px;
+    border-radius: 18px;
     box-shadow: 0 0 2px rgba(80, 80, 80, .4);
     color: rgb(0, 0, 0);
     grid-area: table;
@@ -59,10 +58,9 @@ body {
     border-radius: 10px;
     color: #505050;
     cursor: pointer;
-    font-family: "Courier New", Courier, monospace;
     font-size: 1rem;
     font-weight: bold;
-    margin: 10px 1px;
+    margin: 10px 13px;
     text-align: center;
     transition: color 0.2s, background-color 0.2s;
 }
@@ -97,13 +95,14 @@ body {
     content: ">";
 }
 
-.jsCalendar.black-theme tbody td.jsCalendar-next,
-.jsCalendar.black-theme tbody td.jsCalendar-previous {
-    color: #817e7e
+.jsCalendar tbody td.jsCalendar-next,
+.jsCalendar tbody td.jsCalendar-previous {
+    color: #9b9999
 }
 
-.jsCalendar.black-theme tbody td.jsCalendar-next:hover,
-.jsCalendar.black-theme tbody td.jsCalendar-previous:hover {
+.jsCalendar tbody td.jsCalendar-next:hover,
+.jsCalendar tbody td.jsCalendar-previous:hover {
+    background-color: rgb(121, 116, 116);
     color: #FFF
 }
 
@@ -140,7 +139,7 @@ body {
     color: #FFFFFF;
 }
 
-.jsCalendar.black-theme tbody td.jsCalendar-selected {
+.jsCalendar tbody td.jsCalendar-selected {
     background-color: rgb(99, 96, 96);
     color: #ffffff;
 }
@@ -168,6 +167,7 @@ body {
     width: 100%;
     margin: 10px 0 0 0;
     background-color: #fff;
+    border-radius: 18px;
 }
 
 #events .title {
@@ -250,10 +250,15 @@ section {
     height: 70%;
 }
 
-#close {
+#save {
     float: right;
     vertical-align: bottom;
-    padding: 7px 20px 7px 20px;
+    padding: 4px 20px 4px 20px;
+}
+
+#close {
+    vertical-align: bottom;
+    padding: 4px 20px 4px 20px;
 }
 
 .event {

@@ -7,7 +7,6 @@ var elements = {
 }
 
 // Create the calendar
-elements.calendar.className = "black-theme";
 var calendar = jsCalendar.new(elements.calendar);
 
 //Create events elements
@@ -31,7 +30,7 @@ elements.addButton.className = "button";
 elements.actions.appendChild(elements.addButton);
 
 var events = {};
-var date_format = "DD/MM/YYYY";
+var date_format = "MM/DD/YYYY";
 var current = null;
 
 // Update the currently displayed events whenever Firestore is updated
@@ -139,6 +138,12 @@ calendar.onDateClick(function (event, date) {
 elements.addButton.addEventListener("click", function () {
     document.getElementById("event-adder").hidden = false;
 })
+
+function closeAdder() {
+    console.log("Clicked!");
+    document.getElementById("event-description").value = null;
+    document.getElementById("event-adder").hidden = true;
+}
 
 const db = firebase.firestore(app);
 
