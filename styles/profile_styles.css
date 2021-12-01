@@ -284,6 +284,14 @@ section#new_goal_button > button {
 .goal-deadline {
     align-self: flex-end;
 }
+.dateEnd-input {
+    width: 70%;
+}
+.amount-input,
+.amountGoal-input {
+    width: 20%;
+}
+
 .goal-buttons {
     display: flex;
     width: 90%;

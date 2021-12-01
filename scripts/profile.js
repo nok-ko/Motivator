@@ -97,22 +97,22 @@ function listGoals() {
 					<div role="group" class="goal-smallinfo">
 						<span class="goal-progress">
 							<span id="${goal.id}-amount">${amount}</span>
-							<span hidden id="${goal.id}-amount-input"><input type="number" value="${amount}"></span>
+							<span hidden id="${goal.id}-amount-input"><input class="amount-input" type="number" value="${amount}"></span>
 							  / 
 							<span id="${goal.id}-amountGoal">${amountGoal}</span>
-							<span hidden id="${goal.id}-amountGoal-input"><input type="number" value="${amountGoal}"></span>
+							<span hidden id="${goal.id}-amountGoal-input"><input class="amountGoal-input" type="number" value="${amountGoal}"></span>
 						</span>
 						<span class="goal-deadline">
 							Due by <span id="${goal.id}-dateEnd">${new Date(goal.data().dateEnd).toDateString()}</span>
-								   <span hidden id="${goal.id}-dateEnd-input"><input type="date" value="${goal.data().dateEnd}"></input></span>
+								   <span hidden id="${goal.id}-dateEnd-input"><input class="dateEnd-input" type="date" value="${goal.data().dateEnd}"></input></span>
 						</span>
 					</div>
 					<div class="goal-buttons">
-						<button class="btn btn-info" type="button" onclick="incrementGoal(\'${goal.id}\')">+1</button>
-						<button hidden class="btn btn-info" type="button" onclick="saveEditGoal(\'${goal.id}\')">Save Changes</button>
+						<button id="${goal.id}-inc-butt" class="btn btn-info" type="button" onclick="incrementGoal(\'${goal.id}\')">+1</button>
+						<button hidden id="${goal.id}-save-edit-butt" class="btn btn-info" type="button" onclick="saveEditGoal(\'${goal.id}\')">Save Changes</button>
 						<span>
-							<button class="btn btn-secondary" type="button" onclick="editGoal(\'${goal.id}\')">Edit</button>
-							<button class="btn btn-secondary" type="button" onclick="deleteGoal(\'${goal.id}\')">Delete</button>
+							<button id="${goal.id}-edit-butt" class="btn btn-secondary" type="button" onclick="editGoal(\'${goal.id}\')">Edit</button>
+							<button id="${goal.id}-delet-butt" class="btn btn-secondary" type="button" onclick="deleteGoal(\'${goal.id}\')">Delete</button>
 						</span>
 						</div>`;
 
@@ -134,20 +134,49 @@ function editGoal(goalID) {
 	document.getElementById(goalID + "-amount").hidden = true;
 	document.getElementById(goalID + "-amountGoal").hidden = true;
 	document.getElementById(goalID + "-dateEnd").hidden = true;
-	document.getElementById()
+	document.getElementById(goalID + "-inc-butt").hidden = true;
+	document.getElementById(goalID + "-edit-butt").hidden = true;
+	document.getElementById(goalID + "-delet-butt").hidden = true;
 
 	// Make visible the input fields.
 	document.getElementById(goalID + "-description-input").hidden = false;
 	document.getElementById(goalID + "-amount-input").hidden = false;
 	document.getElementById(goalID + "-amountGoal-input").hidden = false;
 	document.getElementById(goalID + "-dateEnd-input").hidden = false;
-
-
+	document.getElementById(goalID + "-save-edit-butt").hidden = false;
 }
 
-function saveEditGoal(goalID) {
+function saveEditGoal(goalID) {	
+	// Hide the input and buttons.
+	document.getElementById(goalID + "-description-input").hidden = true;
+	document.getElementById(goalID + "-amount-input").hidden = true;
+	document.getElementById(goalID + "-amountGoal-input").hidden = true;
+	document.getElementById(goalID + "-dateEnd-input").hidden = true;
+	document.getElementById(goalID + "-save-edit-butt").hidden = true;
 
-}
+	// Make visible the input fields and buttons.
+	document.getElementById(goalID + "-description").hidden = false;
+	document.getElementById(goalID + "-amount").hidden = false;
+	document.getElementById(goalID + "-amountGoal").hidden = false;
+	document.getElementById(goalID + "-dateEnd").hidden = false;
+	document.getElementById(goalID + "-inc-butt").hidden = false;
+	document.getElementById(goalID + "-edit-butt").hidden = false;
+	document.getElementById(goalID + "-delet-butt").hidden = false;
+
+	//TODO: Get goal reference. Set values of ref goal to values in input fields. 
+	thisGoal = currentUser.collection('goals').doc(goalID);
+	thisGoal.get().then((goal) => {
+		if (goal.data().amount < goal.data().amountGoal) {
+			thisGoal.update({
+				description: document.getElementById(goalID + "-description-input").value,
+				dateEnd: document.getElementById(goalID + "-dateEnd-input").firstChild.value,
+				amount: parseInt(document.getElementById(goalID + "-amount-input").firstChild.value),
+				amountGoal: parseInt(document.getElementById(goalID + "-amountGoal-input").firstChild.value)
+			})
+		}
+	});
+	}
+
 function deleteGoal(goalID) {
 	currentUser.collection('goals').doc(goalID).delete().then(() => {
 		console.log("Delete successful for goal with ID=" + goalID)
