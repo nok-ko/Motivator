@@ -345,37 +345,37 @@ document.getElementById('dateStartInput').value = todayRFC;
 function summonMakeGoal() {
 	// document.getElementById('make_goal').hidden = false;
 	userGoals = document.getElementById("user_goals");
-	userFeed = document.getElementById("feed");
+	// userFeed = document.getElementById("feed");
 
 	//Add the classes which pertain to this animation.
 	userGoals.classList.add("make_goal_slideDown");
-	userFeed.classList.add("make_goal_slideDown");
+	// userFeed.classList.add("make_goal_slideDown");
 	userGoals.addEventListener("animationiteration",
 		function () {
 			userGoals.classList.add("make_goal_uncovered");
-			userFeed.classList.add("make_goal_uncovered");
+			// userFeed.classList.add("make_goal_uncovered");
 			//Remove the classes which pertain to the previous animation.
 			userGoals.classList.remove("make_goal_slideDown");
-			userFeed.classList.remove("make_goal_slideDown");
+			// userFeed.classList.remove("make_goal_slideDown");
 		});
 }
 
 //Disable goal input interface. Clear form.
 function dismissMakeGoal() {
 	userGoals = document.getElementById("user_goals");
-	userFeed = document.getElementById("feed");
+	// userFeed = document.getElementById("feed");
 
 	//Add the classes which pertain to this animation.
 	userGoals.classList.add("make_goal_slideUp");
-	userFeed.classList.add("make_goal_slideUp");
+	// userFeed.classList.add("make_goal_slideUp");
 
 	userGoals.addEventListener("animationiteration",
 		function () {
 			//Remove the classes which pertain to the previous animation.
 			userGoals.classList.remove("make_goal_uncovered");
 			userGoals.classList.remove("make_goal_slideUp");
-			userFeed.classList.remove("make_goal_uncovered");
-			userFeed.classList.remove("make_goal_slideUp");
+			// userFeed.classList.remove("make_goal_uncovered");
+			// userFeed.classList.remove("make_goal_slideUp");
 		});
 
 	// document.getElementById('make_goal').hidden = true;
