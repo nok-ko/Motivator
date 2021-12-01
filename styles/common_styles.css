@@ -11,13 +11,14 @@
     --bs-darkest-rgb: 22, 26, 30;
     --sticky-footer-height: 4em;
 
-    --pink-accent: 254, 53, 149;
+    --gold-bg: 201, 171, 0;
+    --green-accent: 80, 200, 120;
     --subdued-dark: rgb(71, 71, 71);
     --subdued-light: rgb(216, 216, 216);
 }
     
 body {
-    background-color:  rgb(201, 171, 0) /*rgb(var(--bs-dark-rgb))*/;
+    background-color:  rgb(var(--gold-bg)) /*rgb(var(--bs-dark-rgb))*/;
     /* color: white; */
     height: calc(100% - var(--sticky-footer-height)) !important;
     font-family:'Franklin Gothic Medium', 'Arial', Arial, sans-serif;
@@ -61,8 +62,8 @@ footer.sticky .meta-icon-container a img {
 }
 #footer-profile:hover,
 #footer-calendar:hover {
-    background-image: linear-gradient(rgba(var(--pink-accent), 0.6), rgb(var(--bs-darkest-rgb)));
-    border-top: 0.5em solid rgb(var(--pink-accent));
+    background-image: linear-gradient(rgba(var(--green-accent), 0.6), rgb(var(--bs-darkest-rgb)));
+    border-top: 0.5em solid rgb(var(--green-accent));
 }
 /*=/= Footer =/=*/
 
@@ -71,6 +72,22 @@ footer.sticky .meta-icon-container a img {
     background-color: var(--subdued-light);
     color: var(--subdued-dark);
     border: none;
+}
+.btn-info {
+    background-color: rgb(var(--green-accent));
+    border: 0px;
+}
+.btn-info:hover {
+    background-color: rgb(70, 175, 105); /* Colour a little bit darker than --green-accent. */
+    border: 0px;
+}
+.btn-info:active {
+    background-color: rgb(70, 175, 105); /* Colour a little bit darker than --green-accent. */
+    border: 0px;
+}
+.btn-info:focus {
+    background-color: rgb(70, 175, 105); /* Colour a little bit darker than --green-accent. */
+    border: 0px;
 }
 
 #wrapper {

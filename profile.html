@@ -57,7 +57,7 @@
         </section>
 
         <!--Small calendar for Profile-->
-        <section id="calendar-sec" class="bg-darker rounded py-3 my-2 text-light">
+        <!-- <section id="calendar-sec" class="bg-darker rounded py-3 my-2 text-light">
             <div id="calendar">
                 <table width="100%">
                     <tr>
@@ -111,28 +111,29 @@
                     </tr>
                 </table>
             </div>
-        </section>
-
-
+        </section> -->
 
         <!--Buttons for new goals and making challenges.-->
         <section id="new_goal_button">
-            <button type="button" class="btn btn-secondary" onclick="summonMakeGoal()"><b>New Goal</b></button>
+            <button type="button" class="btn btn-info" onclick="summonMakeGoal()"><b>New Goal</b></button>
         </section>
 
         <!-- Make goal interface -->
         <section id="make_goal" class="shrink">
+            <div id="warning" class="alert"  onclick="this.style.display='none';">
+                <span class="closebtn">&times;</span>
+                There must be inputs in each field to create a goal.
+            </div>
             <form>
                 <textarea id="goalDescrip"
-                    placeholder="Add a description of your goal. For example: &quot;I will do 20 pushups.&quot;"
-                    required></textarea>
+                    placeholder="Add a description of your goal. For example: &quot;I will do 20 pushups.&quot;"></textarea>
                 <label id="dateStartLabel" for="dateStartInput">Start date:</label>
-                <input id="dateStartInput" type="date" required>
+                <input id="dateStartInput" type="date">
                 <label id="dateEndLabel" for="dateEndInput">End date:</label>
-                <input id="dateEndInput" type="date" required>
+                <input id="dateEndInput" type="date">
                 <label id="amountGoalLabel" for="amountGoalInput">Goal amount:</label>
-                <input id="amountGoalInput" type="number" value="0" required>
-                <button id="saveGoal" type="submit" class="btn btn-info" onclick="makeGoal()">Create</button>
+                <input id="amountGoalInput" type="number" value="0">
+                <button id="saveGoal" type="button" class="btn btn-info" onclick="makeGoal()">Create</button>
                 <button id="cancelGoal" type="button" class="btn btn-secondary"
                     onclick="dismissMakeGoal()">Close</button>
             </form>

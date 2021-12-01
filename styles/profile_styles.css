@@ -114,6 +114,38 @@ section#new_goal_button {
 /* Make the button quite large and inviting. */
 section#new_goal_button > button {
     min-width: 16rem;
+    border: 1px outset rgb(80, 200, 120);
+}
+
+/* Warning message for empty fields. JS triggers.*/
+#warning {
+    display: none;
+}
+.alert {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+    position: absolute;
+    top: 450px;
+    left: 20%;
+    right: 20%;
+}
+.alert:hover {
+    cursor: pointer;
+}
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.closebtn:hover {
+    color: black;
 }
 
 #make_goal {
@@ -195,10 +227,10 @@ section#new_goal_button > button {
     grid-column: 1 / span 2;
 }
 .make_goal_slideUp {
-    animation: slide 2s infinite reverse;
+    animation: slide 1s infinite reverse;
 }
 .make_goal_slideDown {
-    animation: slide 2s infinite; 
+    animation: slide 1s infinite; 
 }
 .make_goal_uncovered {
     transform: translateY(0) !important;
@@ -223,24 +255,29 @@ section#new_goal_button > button {
 .progressbar {
     display: block;
     min-width: 90%;
+    --progressbar-start-percent: 0%; /* JS will change this */
     --progressbar-finish-percent: 100%; /* JS will change this */
     max-height: 1.5rem;
 }
+
 @keyframes load-progressbar {
     from {
-        transform: scaleX(0%);
+        transform: scaleX(var(--progressbar-start-percent));
     }
     to {
         transform: scaleX(var(--progressbar-finish-percent));
     }
 }
 .progressbar-fill {
-    animation: load-progressbar 1.5s ease;
+    animation: load-progressbar 0.5s ease;
 }
 .progress-anim-finished {
     transform: scaleX(var(--progressbar-finish-percent));
 }
-
+.goal-description {
+    width: 90%;
+    text-align: center;
+}
 .goal-smallinfo {
     display: flex;
     width: 90%;
@@ -250,6 +287,14 @@ section#new_goal_button > button {
 .goal-deadline {
     align-self: flex-end;
 }
+.dateEnd-input {
+    width: 70%;
+}
+.amount-input,
+.amountGoal-input {
+    width: 20%;
+}
+
 .goal-buttons {
     display: flex;
     width: 90%;
