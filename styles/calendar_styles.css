@@ -32,11 +32,11 @@ body {
 
 /* Blue default */
 .jsCalendar table {
-    background-color: #000000;
+    background-color: #ffffff;
     border-collapse: collapse;
     border-radius: 4px;
     box-shadow: 0 0 2px rgba(80, 80, 80, .4);
-    color: #CCC;
+    color: rgb(0, 0, 0);
     grid-area: table;
     box-shadow: none;
     width: 100%;
@@ -63,7 +63,7 @@ body {
     font-family: "Courier New", Courier, monospace;
     font-size: 1rem;
     font-weight: bold;
-    margin: 10px 8px;
+    margin: 10px 1px;
     text-align: center;
     transition: color 0.2s, background-color 0.2s;
 }
@@ -71,7 +71,7 @@ body {
 .jsCalendar thead .jsCalendar-nav-left:hover,
 .jsCalendar thead .jsCalendar-nav-right:hover {
     background-color: #252525;
-    color: rgb(75, 72, 72);
+    color: rgb(255,255,255);
 }
 
 .jsCalendar thead .jsCalendar-nav-left {
@@ -100,7 +100,7 @@ body {
 
 .jsCalendar.black-theme tbody td.jsCalendar-next,
 .jsCalendar.black-theme tbody td.jsCalendar-previous {
-    color: #505050
+    color: #817e7e
 }
 
 .jsCalendar.black-theme tbody td.jsCalendar-next:hover,
@@ -108,9 +108,9 @@ body {
     color: #FFF
 }
 
-.jsCalendar thead .jsCalendar-week-days th {
+/* .jsCalendar thead .jsCalendar-week-days th {
     text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
-}
+} */
 
 .jsCalendar thead .jsCalendar-title-row,
 .jsCalendar thead .jsCalendar-week-days {
@@ -142,8 +142,8 @@ body {
 }
 
 .jsCalendar.black-theme tbody td.jsCalendar-selected {
-    background-color: #000;
-    border: 2px solid #404040
+    background-color: rgb(99, 96, 96);
+    color: #ffffff;
 }
 
 .jsCalendar tbody td:hover {
@@ -184,7 +184,7 @@ body {
 }
 
 #events .list {
-    height: 250px;
+    height: 150px;
     overflow-y: auto;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -212,7 +212,7 @@ body {
     margin: 5px;
     display: block;
     overflow: hidden;
-    background: red;
+    background: #50C878;
     cursor: pointer;
 }
 
@@ -241,7 +241,7 @@ body {
 }
 
 section {
-    height: 10vh;
+    height: fit-content;
 }
 
 #event-description {
@@ -249,12 +249,12 @@ section {
     height: 70%;
 }
 
-fieldset {
-    height: 100%;
-}
-
 #close {
     float: right;
     vertical-align: bottom;
     padding: 7px 20px 7px 20px;
+}
+
+button {
+    background-color:#50C878;
 }
