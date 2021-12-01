@@ -157,7 +157,7 @@ function addEvent() {
                 note: noteValue,
                 noteDay: id
             }).then(_ => {
-                console.debug("Just addded the event!", {
+                console.debug("Just added the event!", {
                     note: noteValue,
                     noteDay: id
                 });
@@ -170,14 +170,7 @@ function addEvent() {
         return;
     }
 
-    //Add event + show event from the firebase
-
-    // events[id].push({
-    //     name: noteName
-    // });
-
     // Refresh events
-    //showEvents(current);
     document.getElementById("event-description").value = null;
     document.getElementById("event-adder").hidden = true;
 }

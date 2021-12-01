@@ -150,23 +150,24 @@ body {
     color: #FFF;
 }
 
-.jsCalendar.black-theme ::-moz-selection {
-    background: #505050
+/* .jsCalendar ::-moz-selection {
+    background: #ad0a0a;
+    border: #860808;
 }
 
-.jsCalendar.black-theme ::selection {
-    background: #505050
-}
+.jsCalendar::selection {
+    background: #860808;
+} */
 
 #events-calendar {
     width: 100%;
     height: 50vh;
-    border: 1px;
 }
 
 #events {
     width: 100%;
-    margin: 10px 20px 10px 5px;
+    margin: 10px 0 0 0;
+    background-color: #fff;
 }
 
 #events .title {
@@ -200,7 +201,7 @@ body {
     font-family: Tahoma, Geneva, sans-serif;
     font-weight: bold;
     font-size: 12px;
-    color: #000;
+    color: #fff;
     border-radius: 8px;
     height: 14px;
     width: 14px;
@@ -212,7 +213,7 @@ body {
     margin: 5px;
     display: block;
     overflow: hidden;
-    background: #50C878;
+    background: #000;
     cursor: pointer;
 }
 
@@ -228,14 +229,14 @@ body {
     height: 28px;
     line-height: 28px;
     width: 120px;
-    background: #f8f8f8;
+    background: #959596;
     color: black;
     cursor: pointer;
     transition: all 0.2s;
 }
 
 #events .action input:hover {
-    background: #eee;
+    background: #bdc4ce;
     border: 1px solid #000;
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
 }
@@ -255,12 +256,15 @@ section {
     padding: 7px 20px 7px 20px;
 }
 
-button {
-    background-color:#50C878;
-}
-
 .event {
    height: fit-content;
-   padding-bottom: 3em;
-   
+   padding-bottom: 3em;  
+}
+
+button {
+    width: 120px;
+    background: #959596;
+    color: black;
+    cursor: pointer;
+    transition: all 0.2s;
 }
