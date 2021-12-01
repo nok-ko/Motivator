@@ -1,16 +1,14 @@
 html,
 body {
-    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
     margin: 0 auto;
 }
 
 #wrapper {
     height: 90vh;
-    width: 100%;
-    margin: 0 auto;
-    width: 100%;
+    width: 98%;
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4);
     height: 85vh;
+    margin: 1%;
 }
 
 .clear {
@@ -34,7 +32,7 @@ body {
 .jsCalendar table {
     background-color: #ffffff;
     border-collapse: collapse;
-    border-radius: 4px;
+    border-radius: 18px;
     box-shadow: 0 0 2px rgba(80, 80, 80, .4);
     color: rgb(0, 0, 0);
     grid-area: table;
@@ -60,10 +58,9 @@ body {
     border-radius: 10px;
     color: #505050;
     cursor: pointer;
-    font-family: "Courier New", Courier, monospace;
     font-size: 1rem;
     font-weight: bold;
-    margin: 10px 1px;
+    margin: 10px 13px;
     text-align: center;
     transition: color 0.2s, background-color 0.2s;
 }
@@ -98,13 +95,14 @@ body {
     content: ">";
 }
 
-.jsCalendar.black-theme tbody td.jsCalendar-next,
-.jsCalendar.black-theme tbody td.jsCalendar-previous {
-    color: #817e7e
+.jsCalendar tbody td.jsCalendar-next,
+.jsCalendar tbody td.jsCalendar-previous {
+    color: #9b9999
 }
 
-.jsCalendar.black-theme tbody td.jsCalendar-next:hover,
-.jsCalendar.black-theme tbody td.jsCalendar-previous:hover {
+.jsCalendar tbody td.jsCalendar-next:hover,
+.jsCalendar tbody td.jsCalendar-previous:hover {
+    background-color: rgb(121, 116, 116);
     color: #FFF
 }
 
@@ -151,13 +149,14 @@ body {
     color: #FFF;
 }
 
-.jsCalendar.black-theme ::-moz-selection {
-    background: #505050
+/* .jsCalendar ::-moz-selection {
+    background: #ad0a0a;
+    border: #860808;
 }
 
-.jsCalendar.black-theme ::selection {
-    background: #505050
-}
+.jsCalendar::selection {
+    background: #860808;
+} */
 
 #events-calendar {
     width: 100%;
@@ -166,7 +165,9 @@ body {
 
 #events {
     width: 100%;
-    margin: 10px 20px 10px 5px;
+    margin: 10px 0 0 0;
+    background-color: #fff;
+    border-radius: 18px;
 }
 
 #events .title {
@@ -200,7 +201,7 @@ body {
     font-family: Tahoma, Geneva, sans-serif;
     font-weight: bold;
     font-size: 12px;
-    color: #000;
+    color: #fff;
     border-radius: 8px;
     height: 14px;
     width: 14px;
@@ -212,7 +213,7 @@ body {
     margin: 5px;
     display: block;
     overflow: hidden;
-    background: #50C878;
+    background: #000;
     cursor: pointer;
 }
 
@@ -228,14 +229,14 @@ body {
     height: 28px;
     line-height: 28px;
     width: 120px;
-    background: #f8f8f8;
+    background: #959596;
     color: black;
     cursor: pointer;
     transition: all 0.2s;
 }
 
 #events .action input:hover {
-    background: #eee;
+    background: #bdc4ce;
     border: 1px solid #000;
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
 }
@@ -248,13 +249,27 @@ section {
     width: 100%;
     height: 70%;
 }
-
-#close {
+  
+#save {
     float: right;
     vertical-align: bottom;
-    padding: 7px 20px 7px 20px;
+    padding: 4px 20px 4px 20px;
+}
+
+#close {
+    vertical-align: bottom;
+    padding: 4px 20px 4px 20px;
+}
+
+.event {
+   height: fit-content;
+   padding-bottom: 3em;  
 }
 
 button {
-    background-color:#50C878;
+    width: 120px;
+    background: #959596;
+    color: black;
+    cursor: pointer;
+    transition: all 0.2s;
 }

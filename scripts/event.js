@@ -7,7 +7,6 @@ var elements = {
 }
 
 // Create the calendar
-elements.calendar.className = "black-theme";
 var calendar = jsCalendar.new(elements.calendar);
 
 //Create events elements
@@ -31,7 +30,7 @@ elements.addButton.className = "button";
 elements.actions.appendChild(elements.addButton);
 
 var events = {};
-var date_format = "DD/MM/YYYY";
+var date_format = "MM/DD/YYYY";
 var current = null;
 
 // Update the currently displayed events whenever Firestore is updated
@@ -140,6 +139,12 @@ elements.addButton.addEventListener("click", function () {
     document.getElementById("event-adder").hidden = false;
 })
 
+function closeAdder() {
+    console.log("Clicked!");
+    document.getElementById("event-description").value = null;
+    document.getElementById("event-adder").hidden = true;
+}
+
 const db = firebase.firestore(app);
 
 function addEvent() {
@@ -157,7 +162,7 @@ function addEvent() {
                 note: noteValue,
                 noteDay: id
             }).then(_ => {
-                console.debug("Just addded the event!", {
+                console.debug("Just added the event!", {
                     note: noteValue,
                     noteDay: id
                 });
@@ -170,14 +175,7 @@ function addEvent() {
         return;
     }
 
-    //Add event + show event from the firebase
-
-    // events[id].push({
-    //     name: noteName
-    // });
-
     // Refresh events
-    //showEvents(current);
     document.getElementById("event-description").value = null;
     document.getElementById("event-adder").hidden = true;
 }

@@ -10,13 +10,14 @@
     /* align-items: center; */
     /* align-items: stretch; */
     /* grid-template-columns: repeat(8, 1fr); */
-    /* grid-template-rows: repeat(20, 5vw); */
+}
+:root {
+    --pink-accent: 254, 53, 149;
 }
 
 #wrapper > section {
     margin: calc(min(3.0rem, 2%));
 }
-
 
 /* profile_styles.css | http://127.0.0.1:5502/styles/profile_styles.css */
 

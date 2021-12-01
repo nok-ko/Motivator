@@ -21,6 +21,7 @@ body {
     background-color:  rgb(var(--gold-bg)) /*rgb(var(--bs-dark-rgb))*/;
     /* color: white; */
     height: calc(100% - var(--sticky-footer-height)) !important;
+    font-family:'Franklin Gothic Medium', 'Arial', Arial, sans-serif;
 }
 
 .bg-darker {
@@ -87,4 +88,15 @@ footer.sticky .meta-icon-container a img {
 .btn-info:focus {
     background-color: rgb(70, 175, 105); /* Colour a little bit darker than --green-accent. */
     border: 0px;
+}
+
+#wrapper {
+    padding-bottom: var(--sticky-footer-height);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* align-items: stretch; */
+    /* grid-template-columns: repeat(8, 1fr); */
+    /* grid-template-rows: repeat(20, 5vw); */
 }
