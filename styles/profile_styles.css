@@ -254,19 +254,21 @@ section#new_goal_button > button {
 .progressbar {
     display: block;
     min-width: 90%;
+    --progressbar-start-percent: 0%; /* JS will change this */
     --progressbar-finish-percent: 100%; /* JS will change this */
     max-height: 1.5rem;
 }
+
 @keyframes load-progressbar {
     from {
-        transform: scaleX(0%);
+        transform: scaleX(var(--progressbar-start-percent));
     }
     to {
         transform: scaleX(var(--progressbar-finish-percent));
     }
 }
 .progressbar-fill {
-    animation: load-progressbar 1.5s ease;
+    animation: load-progressbar 0.5s ease;
 }
 .progress-anim-finished {
     transform: scaleX(var(--progressbar-finish-percent));

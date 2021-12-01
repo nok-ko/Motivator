@@ -62,6 +62,10 @@ async function populateInfo() {
 
 populateInfo();
 
+// global state of animations per goal ID
+lastAnimation = {};
+
+
 // TODO: documentation pass
 function listGoals() {
 	const userID = firebase.auth().currentUser.uid; // assume current user is logged in
@@ -83,13 +87,24 @@ function listGoals() {
 				const amount = goal.data().amount;
 				goalEl.classList.add("goal");
 
+				// The value for --progressbar-start-percent once we're done this animation
+				let animationStartValue = 0;
+				// Same for the finish:
+				const animationFinishValue = Math.floor(amount / amountGoal * 100);
+
+				// Look up whether this goal has a lastAnimation entry
+				if (lastAnimation.hasOwnProperty(goal.id)) {
+					// It does, so use it.
+					animationStartValue = lastAnimation[goal.id];
+				}
+				lastAnimation[goal.id] = animationFinishValue;
+
 				// FIXME I think this is questionable style, but… it's fast to implement
 				goalEl.innerHTML = `
 					<p id="${goal.id}-description" class="goal-description">${goal.data().description}</p>
 					<input hidden type="text" id="${goal.id}-description-input" class="goal-description" value="${goal.data().description}"/>
 					<svg class="progressbar" version="1.1" viewBox="0 0 100 200" preserveAspectRatio="none"
-					style="--progressbar-finish-percent:${Math.floor(amount / amountGoal * 100)}%"
-					>
+					style="--progressbar-start-percent:${animationStartValue}%; --progressbar-finish-percent:${animationFinishValue}%">
 						<rect fill="#CCCCCC" stroke-width="10" x="0" y="0" width="100" height="200" />
 						<rect class="progressbar-fill" fill="#50C878" stroke-width="10" x="0" y="0" width="100"
 							height="200" />
@@ -119,6 +134,8 @@ function listGoals() {
 				// Clean up animations once they finish
 				goalEl.querySelector(".progressbar-fill").addEventListener("animationend",
 					function () {
+						finishPercent = goalEl.querySelector(".progressbar").style.getPropertyValue("--progressbar-finish-percent");
+						goalEl.querySelector(".progressbar").style.setProperty("--progressbar-start-percent", finishPercent);
 						this.classList.add("progress-anim-finished");
 					}, false);
 				goalFragment.appendChild(goalEl);
@@ -128,7 +145,7 @@ function listGoals() {
 	);
 }
 
-function editGoal(goalID) {	
+function editGoal(goalID) {
 	// Hide the text fields.
 	document.getElementById(goalID + "-description").hidden = true;
 	document.getElementById(goalID + "-amount").hidden = true;
@@ -146,7 +163,7 @@ function editGoal(goalID) {
 	document.getElementById(goalID + "-save-edit-butt").hidden = false;
 }
 
-function saveEditGoal(goalID) {	
+function saveEditGoal(goalID) {
 	// Hide the input and buttons.
 	document.getElementById(goalID + "-description-input").hidden = true;
 	document.getElementById(goalID + "-amount-input").hidden = true;
@@ -165,17 +182,13 @@ function saveEditGoal(goalID) {
 
 	//TODO: Get goal reference. Set values of ref goal to values in input fields. 
 	thisGoal = currentUser.collection('goals').doc(goalID);
-	thisGoal.get().then((goal) => {
-		if (goal.data().amount < goal.data().amountGoal) {
-			thisGoal.update({
-				description: document.getElementById(goalID + "-description-input").value,
-				dateEnd: document.getElementById(goalID + "-dateEnd-input").firstChild.value,
-				amount: parseInt(document.getElementById(goalID + "-amount-input").firstChild.value),
-				amountGoal: parseInt(document.getElementById(goalID + "-amountGoal-input").firstChild.value)
-			})
-		}
+	thisGoal.update({
+		description: document.getElementById(goalID + "-description-input").value,
+		dateEnd: document.getElementById(goalID + "-dateEnd-input").firstChild.value,
+		amount: parseInt(document.getElementById(goalID + "-amount-input").firstChild.value),
+		amountGoal: parseInt(document.getElementById(goalID + "-amountGoal-input").firstChild.value)
 	});
-	}
+}
 
 function deleteGoal(goalID) {
 	currentUser.collection('goals').doc(goalID).delete().then(() => {
@@ -193,7 +206,12 @@ function incrementGoal(goalID) {
 				amount: goal.data().amount + 1
 			})
 		}
+
+		// Update the animation
+		lastAnimation[goalID] = Math.floor(goal.data().amount / goal.data().amountGoal * 100);
 	});
+
+	
 }
 
 // Feed feature:
