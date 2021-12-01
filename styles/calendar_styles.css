@@ -139,7 +139,7 @@ body {
     color: #FFFFFF;
 }
 
-.jsCalendar tbody td.jsCalendar-selected {
+.jsCalendar.black-theme tbody td.jsCalendar-selected {
     background-color: rgb(99, 96, 96);
     color: #ffffff;
 }
@@ -249,7 +249,7 @@ section {
     width: 100%;
     height: 70%;
 }
-
+  
 #save {
     float: right;
     vertical-align: bottom;
