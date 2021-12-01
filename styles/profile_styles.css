@@ -271,7 +271,10 @@ section#new_goal_button > button {
 .progress-anim-finished {
     transform: scaleX(var(--progressbar-finish-percent));
 }
-
+.goal-description {
+    width: 90%;
+    text-align: center;
+}
 .goal-smallinfo {
     display: flex;
     width: 90%;
