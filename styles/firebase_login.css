@@ -27,17 +27,13 @@ body {
 
 }
 #logo {
-    /* grid-column: 1 / span 1;
-    grid-row: 2 / 6; */
     text-align: center;
 }
 #logo #trophy_icon {
-    width: 70%;
+    width: 50%;
     height: auto;
 }
 
 #title {
-    /* grid-column: 1 / span 1;
-    grid-row: 6 / 8; */
     text-align: center;
 }
