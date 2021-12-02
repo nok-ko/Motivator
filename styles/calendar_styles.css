@@ -149,15 +149,6 @@ body {
     color: #FFF;
 }
 
-/* .jsCalendar ::-moz-selection {
-    background: #ad0a0a;
-    border: #860808;
-}
-
-.jsCalendar::selection {
-    background: #860808;
-} */
-
 #events-calendar {
     width: 100%;
     height: 50vh;

@@ -42,12 +42,12 @@ async function populateInfo() {
 				}
 			});
 
-			//Feed feature: 
+			//Feed feature WIP: 
 			// Start updating feed
-			db.collection("feed")
-				.where("user", "==", user.uid)
-				// .orderBy("timestamp") // needs composite index, cannot test right now
-				.onSnapshot(updateFeed);
+			// db.collection("feed")
+			// 	.where("user", "==", user.uid)
+			// 	// .orderBy("timestamp") // needs composite index, cannot test right now
+			// 	.onSnapshot(updateFeed);
 
 			//List the goals of the currently signed-in user.
 			listGoals();
@@ -56,22 +56,16 @@ async function populateInfo() {
 			// No user is signed in.
 			console.log("No user is signed in");
 		}
-
 	});
 }
-
-populateInfo();
-
 // global state of animations per goal ID
 lastAnimation = {};
-
+populateInfo();
 
 // TODO: documentation pass
 function listGoals() {
 	const userID = firebase.auth().currentUser.uid; // assume current user is logged in
 	const goalContainer = document.getElementById("goal_container");
-
-	// TODO: Show/hide “loading” message while we pull in data
 	db.collection('users').doc(userID).collection('goals').onSnapshot(
 		(goals) => {
 			// Clear existing goals on each update:
@@ -99,7 +93,7 @@ function listGoals() {
 				}
 				lastAnimation[goal.id] = animationFinishValue;
 
-				// FIXME I think this is questionable style, but… it's fast to implement
+				// Create goal bar element.
 				goalEl.innerHTML = `
 					<p id="${goal.id}-description" class="goal-description">${goal.data().description}</p>
 					<input hidden type="text" id="${goal.id}-description-input" class="goal-description" value="${goal.data().description}"/>
@@ -214,53 +208,53 @@ function incrementGoal(goalID) {
 	
 }
 
-// Feed feature:
+// Feed feature WIP:
 // Update feed with latest entries
-function updateFeed(entryCollection) {
-	// Define references to DOM elements
-	const entryList = document.getElementById("feed_entries");
+// function updateFeed(entryCollection) {
+// 	// Define references to DOM elements
+// 	const entryList = document.getElementById("feed_entries");
 
-	// Exit early if nothing is in the feed.
-	if (entryCollection.empty) {
-		return;
-	}
+// 	// Exit early if nothing is in the feed.
+// 	if (entryCollection.empty) {
+// 		return;
+// 	}
 
-	// Sort clientside to avoid composite indexes in Firestore
-	const entries = entryCollection.docs
-		// Dereference each entry and add a `date` field with a JS Date object based off the timestamp
-		.map(doc => Object.assign({ date: new Date(doc.data().timestamp.seconds * 1000) }, doc.data()))
-		// Sort in reverse chronological order
-		.sort((a, b) => -(a.timestamp - b.timestamp));
+// 	// Sort clientside to avoid composite indexes in Firestore
+// 	const entries = entryCollection.docs
+// 		// Dereference each entry and add a `date` field with a JS Date object based off the timestamp
+// 		.map(doc => Object.assign({ date: new Date(doc.data().timestamp.seconds * 1000) }, doc.data()))
+// 		// Sort in reverse chronological order
+// 		.sort((a, b) => -(a.timestamp - b.timestamp));
 
-	// Iterate and add to the document:
-	const entryFrag = document.createDocumentFragment();
-	// Bucket entries day-by-day
-	const daysSeen = new Set();
-	for (const entry of entries) {
-		const day = entry.date.toDateString();
-		// Never before seen date, so make a heading for it.
-		if (!daysSeen.has(day)) {
-			daysSeen.add(day);
-			const dateHeading = document.createElement("li");
-			dateHeading.innerHTML = `<h3>${entry.date.toLocaleDateString()}</h3>`;
-			entryFrag.appendChild(dateHeading);
-		}
-		console.log("feed entry at ", entry.date, entry);
-		const entryEl = document.createElement("li");
-		entryFrag.appendChild(entryEl);
+// 	// Iterate and add to the document:
+// 	const entryFrag = document.createDocumentFragment();
+// 	// Bucket entries day-by-day
+// 	const daysSeen = new Set();
+// 	for (const entry of entries) {
+// 		const day = entry.date.toDateString();
+// 		// Never before seen date, so make a heading for it.
+// 		if (!daysSeen.has(day)) {
+// 			daysSeen.add(day);
+// 			const dateHeading = document.createElement("li");
+// 			dateHeading.innerHTML = `<h3>${entry.date.toLocaleDateString()}</h3>`;
+// 			entryFrag.appendChild(dateHeading);
+// 		}
+// 		console.log("feed entry at ", entry.date, entry);
+// 		const entryEl = document.createElement("li");
+// 		entryFrag.appendChild(entryEl);
 
-		db.collection("users")
-			.doc(entry.user)
-			.collection("goals")
-			.doc(entry.goal)
-			.get().then(doc => {
-				const goal = doc.data();
-				// TODO: support entries other than “added”
-				entryEl.innerHTML = `<p>Added goal “${goal.description}”</p>`;
-			});
-	}
-	entryList.appendChild(entryFrag);
-}
+// 		db.collection("users")
+// 			.doc(entry.user)
+// 			.collection("goals")
+// 			.doc(entry.goal)
+// 			.get().then(doc => {
+// 				const goal = doc.data();
+// 				// TODO: support entries other than “added”
+// 				entryEl.innerHTML = `<p>Added goal “${goal.description}”</p>`;
+// 			});
+// 	}
+// 	entryList.appendChild(entryFrag);
+// }
 
 //--Username field editing-----------
 //Enable editing for the username field.
@@ -271,7 +265,6 @@ function editProfile() {
 	document.getElementById('nameInput').hidden = false;
 	document.getElementById('nameText').hidden = true;
 	//Disappear the edit version of the button and appear the save version of the button.
-	//Not currently working.
 	document.getElementById('editProfile').hidden = true;
 	document.getElementById('saveProfile').hidden = false;
 }
@@ -292,7 +285,6 @@ function saveProfile() {
 	document.getElementById('nameInput').hidden = true;
 	document.getElementById('nameText').hidden = false;
 	//Disappear the save version of the button and appear the edit version of the button.
-	//Not currently working.
 	document.getElementById('editProfile').hidden = false;
 	document.getElementById('saveProfile').hidden = true;
 }
@@ -338,49 +330,53 @@ today = new Date();
 var YYYY = today.getFullYear();
 var MM = today.getMonth() + 1;
 var DD = today.getDate();
-var todayRFC = YYYY + "-" + MM + "-" + DD;
-document.getElementById('dateStartInput').value = todayRFC;
+if (MM < 10) {
+	MM = "0" + (today.getMonth() + 1);
+}
+if (DD < 10) {
+	DD = "0" + today.getDate();
+}
+var today = YYYY + "-" + MM + "-" + DD;
+document.getElementById('dateStartInput').value = today;
 
 //Enable goal input interface.
 function summonMakeGoal() {
-	// document.getElementById('make_goal').hidden = false;
 	userGoals = document.getElementById("user_goals");
-	// userFeed = document.getElementById("feed");
+	// userFeed = document.getElementById("feed"); WIP
 
 	//Add the classes which pertain to this animation.
 	userGoals.classList.add("make_goal_slideDown");
-	// userFeed.classList.add("make_goal_slideDown");
+	// userFeed.classList.add("make_goal_slideDown"); WIP
 	userGoals.addEventListener("animationiteration",
 		function () {
 			userGoals.classList.add("make_goal_uncovered");
-			// userFeed.classList.add("make_goal_uncovered");
+			// userFeed.classList.add("make_goal_uncovered"); WIP
 			//Remove the classes which pertain to the previous animation.
 			userGoals.classList.remove("make_goal_slideDown");
-			// userFeed.classList.remove("make_goal_slideDown");
+			// userFeed.classList.remove("make_goal_slideDown"); WIP
 		});
 }
 
 //Disable goal input interface. Clear form.
 function dismissMakeGoal() {
 	userGoals = document.getElementById("user_goals");
-	// userFeed = document.getElementById("feed");
+	// userFeed = document.getElementById("feed"); WIP
 
 	//Add the classes which pertain to this animation.
 	userGoals.classList.add("make_goal_slideUp");
-	// userFeed.classList.add("make_goal_slideUp");
+	// userFeed.classList.add("make_goal_slideUp"); WIP
 
 	userGoals.addEventListener("animationiteration",
 		function () {
 			//Remove the classes which pertain to the previous animation.
 			userGoals.classList.remove("make_goal_uncovered");
 			userGoals.classList.remove("make_goal_slideUp");
-			// userFeed.classList.remove("make_goal_uncovered");
-			// userFeed.classList.remove("make_goal_slideUp");
+			// userFeed.classList.remove("make_goal_uncovered"); WIP
+			// userFeed.classList.remove("make_goal_slideUp"); WIP
 		});
 
-	// document.getElementById('make_goal').hidden = true;
 	document.getElementById('goalDescrip').value = "";
-	document.getElementById('dateStartInput').value = todayRFC;
+	document.getElementById('dateStartInput').value = today;
 	document.getElementById('dateEndInput').value = "";
 	document.getElementById('amountGoalInput').value = "0";
 }

@@ -1,25 +1,14 @@
-:root {
-    --pink-accent: 254, 53, 149;
-}
 
 #wrapper {
     padding-bottom: var(--sticky-footer-height);
     height: 100%;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    /* align-items: stretch; */
-    /* grid-template-columns: repeat(8, 1fr); */
-}
-:root {
-    --pink-accent: 254, 53, 149;
 }
 
-#wrapper > section {
+#wrapper > div {
     margin: calc(min(3.0rem, 2%));
 }
-
-/* profile_styles.css | http://127.0.0.1:5502/styles/profile_styles.css */
 
 #user_pic_block h1 {
     font-size: 2.3rem;
@@ -45,10 +34,8 @@
 #user_pic_block .img-avatar {
     /* Circle clipping mask for user profile images. */
     clip-path: circle(45% at 50% 50%);
-
     /* Max-height to make it not take up all of the screen */
     max-height: 6rem;
-    /* height: 5rem; */
 }
 #user_pic_block #prof-button {
     padding-right: 16px;
@@ -59,52 +46,14 @@
     border: 1px solid black;
 }
 
-#calendar-sec {
-    border: 1px solid black;
-}
-#calendar {
-    width: 100%;
-    grid-area: calendar;
-}
-.day:not(:hover)::before {
-    content: ".";
-    font-size: 10pt;
-}
-.day span {
-    display: none;
-}
-.day:hover span {
-    display: inline;
-}
-table {
-    text-align: center;
-    table-layout: fixed;
-}
-tr {
-    height: auto;
-}
-tr > {
-    font-size: 10px;
-}
-td:not(:hover)::before {
-    content: ".";
-    font-size: 15px;
-}
-td span {
-    display: none;
-}
-td:hover span {
-    display: inline;
-}
-
-section#buttons {    
+div#buttons {    
     display: flex;
     justify-content: center;
     margin: 1rem;
     gap: 6rem;
 }
 /* Put the New Goal button in the centre */
-section#new_goal_button {
+div#new_goal_button {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -112,7 +61,7 @@ section#new_goal_button {
     margin-bottom: 0;
 }
 /* Make the button quite large and inviting. */
-section#new_goal_button > button {
+div#new_goal_button > button {
     min-width: 16rem;
     border: 1px outset rgb(80, 200, 120);
 }
@@ -242,9 +191,7 @@ section#new_goal_button > button {
 
 /*== Goal widget ==*/
 .goal {
-    /* border: 1px solid white; */
     border-radius: 0.5rem;
-
     padding: 1rem;
     max-height: 100%;
     max-width: 100%;
@@ -302,21 +249,23 @@ section#new_goal_button > button {
     flex-direction: row;
 }
 
+/* 
+--Feed Feature: WIP--
 #feed {
     border: 1px solid black;
     transform: translateY(-250px);
 }
-/* List of feed stuff */
+List of feed stuff
 ol#feed_entries {
     display: flex;
     flex-direction: column;
     list-style: none;
     padding: 0;
 }
-/* Date Headings within the list of feed entries */
+Date Headings within the list of feed entries
 ol#feed_entries > li > h3 {
     font-size: large;
-}
+} */
 
 /* Round the corners of elements with rounded class */
 .rounded {

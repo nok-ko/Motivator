@@ -1,34 +1,25 @@
-/*== Backgrounds + Colours ==*/
 
 :root {    
-    /* TODO: rename variables – these are no longer "dark" */
-    --bs-dark-rgb: 220, 220, 220;
-    --bs-darker-rgb: 255, 255, 255;
-
-    /* TODO: these are no longer light */
-    --bs-light-rgb: 9, 9, 9;
-
-    --bs-darkest-rgb: 22, 26, 30;
     --sticky-footer-height: 4em;
 
+    /* Colours */
+    --bs-white: 255, 255, 255;
+    --bs-darkest-rgb: 22, 26, 30;
     --gold-bg: 201, 171, 0;
     --green-accent: 80, 200, 120;
-    --subdued-dark: rgb(71, 71, 71);
-    --subdued-light: rgb(216, 216, 216);
+    --subdued-dark: 71, 71, 71;
+    --subdued-light: 216, 216, 216;
 }
     
 body {
-    background-color:  rgb(var(--gold-bg)) /*rgb(var(--bs-dark-rgb))*/;
-    /* color: white; */
+    background-color:  rgb(var(--gold-bg));
     height: calc(100% - var(--sticky-footer-height)) !important;
     font-family:'Franklin Gothic Medium', 'Arial', Arial, sans-serif;
 }
 
-.bg-darker {
-    background-color: rgb(var(--bs-darker-rgb));
+.bg-white {
+    background-color: rgb(var(--bs-white));
 }
-
-/*=/= Backgrounds + colours =/=*/
 
 /*== Footer ==*/
 footer.sticky {
@@ -69,8 +60,8 @@ footer.sticky .meta-icon-container a img {
 
 /*== Button Colours ==*/
 .btn-subdued {
-    background-color: var(--subdued-light);
-    color: var(--subdued-dark);
+    background-color: rgb(var(--subdued-light));
+    color: rgb(var(--subdued-dark));
     border: none;
 }
 .btn-info {
@@ -95,8 +86,4 @@ footer.sticky .meta-icon-container a img {
     height: 100%;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    /* align-items: stretch; */
-    /* grid-template-columns: repeat(8, 1fr); */
-    /* grid-template-rows: repeat(20, 5vw); */
 }

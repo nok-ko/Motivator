@@ -15,7 +15,7 @@
     <!-- Optional styles and scripts of your own -->
     <link rel="stylesheet" href="styles/calendar_styles.css">
     <link rel="stylesheet" href="styles/common_styles.css">
-    <script type="text/javascript" src="scripts/jsCalendar.js"></script>
+    <script src="scripts/jsCalendar.js"></script>
 </head>
 
 <body>
@@ -29,14 +29,14 @@
             <!--<div></div>-->
         </div>
         <div class="event">
-            <section hidden id="event-adder">
+            <div hidden id="event-adder">
                 <fieldset>
                     <textarea id="event-description" required = "required"></textarea>
                     <br>
                     <button id="close" type="button" class="button" onclick="closeAdder()">Close</button>
                     <button id="save" type="button" class="button" onclick="addEvent()">Save</button>
                 </fieldset>            
-            </section>
+            </div>
         </div>
         <!-- Clear -->
         <div class="clear"></div>
@@ -45,11 +45,11 @@
     <!--Footer-->
     <footer class="sticky">
         <div role="group" class="meta-icon-container">
-            <a id="footer-profile" class="footer-icon-container" role="group" href="profile.html">
-                <img src="icons/user.svg#icon">
+            <a href="profile.html" id="footer-profile" class="footer-icon-container">
+                <img src="icons/user.svg#icon" alt="user-svg">
             </a>
-            <a id="footer-calendar" class="footer-icon-container" role="group" href="calendar.html">
-                <img src="icons/calendar.svg#icon">
+            <a href="calendar.html" id="footer-calendar" class="footer-icon-container">
+                <img src="icons/calendar.svg#icon" alt="calendar-svg">
             </a>
         </div>
     </footer>
