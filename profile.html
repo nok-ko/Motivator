@@ -17,22 +17,20 @@
     <!-- Local styles -->
     <link rel="stylesheet" href="styles/common_styles.css">
     <link rel="stylesheet" href="styles/profile_styles.css">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 
 <body>
     <main id="wrapper">
         <!--User image, name, edit info button.-->
-        <section id="user_pic_block" class="bg-darker rounded">
+        <div id="user_pic_block" class="bg-darker rounded">
             <div id="pic-and-name">
                 <img class="img-avatar img-thumbnail" src="./images/dad.png" alt="Profile Picture">
                 <div>
                     <fieldset id="nameField" disabled>
                         <input hidden id="nameInput" type="text" class="form-control">
-                        <h1 class="text-light h3" id="nameText"></h1>
+                        <h1 class="text-light h3" id="nameText">NAME</h1>
                     </fieldset>
-                    <h4 id="emailText"></h4>
+                    <h4 id="emailText">email</h4>
                 </div>
             </div>
             <div id="prof-button">
@@ -40,10 +38,10 @@
                     onclick="editProfile()">Edit</button>
                 <button hidden type="button" id="saveProfile" class="btn btn-info" onclick="saveProfile()">Save</button>
             </div>
-        </section>
+        </div>
 
-        <!--Bio Section.-->
-        <section id="bio" class="bg-darker rounded p-3 my-2 text-light">
+        <!--Bio div.-->
+        <div id="bio" class="bg-darker rounded p-3 my-2 text-light">
             <h1 class="h3">User Bio</h1>
             <fieldset id="bioField" disabled>
                 <textarea hidden id="bioInput" class="form-control"></textarea>
@@ -54,15 +52,15 @@
                     onclick="editBio()">Edit</button>
                 <button hidden id="saveBio" type="button" class="btn btn-info" onclick="saveBio()">Save</button>
             </div>
-        </section>
+        </div>
 
         <!--Buttons for new goals and making challenges.-->
-        <section id="new_goal_button">
+        <div id="new_goal_button">
             <button type="button" class="btn btn-info" onclick="summonMakeGoal()"><b>New Goal</b></button>
-        </section>
+        </div>
 
         <!-- Make goal interface -->
-        <section id="make_goal" class="shrink">
+        <div id="make_goal" class="shrink">
             <div id="warning" class="alert"  onclick="this.style.display='none';">
                 <span class="closebtn">&times;</span>
                 There must be inputs in each field to create a goal.
@@ -80,33 +78,29 @@
                 <button id="cancelGoal" type="button" class="btn btn-secondary"
                     onclick="dismissMakeGoal()">Close</button>
             </form>
-        </section>
+        </div>
 
-        <!--User goals section. Contains goal widget.-->
-        <section id="user_goals" class="bg-darker rounded py-3 my-2 text-light">
+        <!--User goals div. Contains goal widget.-->
+        <div id="user_goals" class="bg-darker rounded py-3 my-2 text-light">
             <h2>Goals</h2>
             <div role="group" id="goal_container"></div>
-        </section>
+        </div>
 
-        <!-- Feed section. -->
-        <section id="feed" class="bg-darker rounded py-3 my-2 text-light">
+        <!-- Feed div. -->
+        <div id="feed" class="bg-darker rounded py-3 my-2 text-light">
             <h2>Feed</h2>
-            <ol role="group" id="feed_entries">
-                <!-- <li><h3>Nov 22</h3></li>
-                <li>test2</li>
-                <li>test3</li> -->
-            </ol>
-        </section>
+            <ol role="group" id="feed_entries"></ol>
+        </div>
     </main>
 
     <!--Footer-->
     <footer class="sticky">
         <div role="group" class="meta-icon-container">
-            <a id="footer-profile" class="footer-icon-container" role="group" href="profile.html">
-                <img src="icons/user.svg#icon">
+            <a href="profile.html" id="footer-profile" class="footer-icon-container">
+                <img src="icons/user.svg#icon" alt="user-svg">
             </a>
-            <a id="footer-calendar" class="footer-icon-container" role="group" href="calendar.html">
-                <img src="icons/calendar.svg#icon">
+            <a href="calendar.html" id="footer-calendar" class="footer-icon-container">
+                <img src="icons/calendar.svg#icon" alt="calendar-svg">
             </a>
         </div>
     </footer>

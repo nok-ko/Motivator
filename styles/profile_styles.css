@@ -12,7 +12,7 @@
     --pink-accent: 254, 53, 149;
 }
 
-#wrapper > section {
+#wrapper > div {
     margin: calc(min(3.0rem, 2%));
 }
 
@@ -83,6 +83,7 @@ tr {
 tr > {
     font-size: 10px;
 }
+
 td:not(:hover)::before {
     content: ".";
     font-size: 15px;
@@ -94,14 +95,14 @@ td:hover span {
     display: inline;
 }
 
-section#buttons {    
+div#buttons {    
     display: flex;
     justify-content: center;
     margin: 1rem;
     gap: 6rem;
 }
 /* Put the New Goal button in the centre */
-section#new_goal_button {
+div#new_goal_button {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -109,7 +110,7 @@ section#new_goal_button {
     margin-bottom: 0;
 }
 /* Make the button quite large and inviting. */
-section#new_goal_button > button {
+div#new_goal_button > button {
     min-width: 16rem;
     border: 1px outset rgb(80, 200, 120);
 }
